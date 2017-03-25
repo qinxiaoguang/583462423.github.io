@@ -1,0 +1,942 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="j2ee," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="开始j2ee的学习之旅，首先要学的就是jsp.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP学习">
+<meta property="og:url" content="http://yoursite.com/2017/02/05/JSP学习/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="开始j2ee的学习之旅，首先要学的就是jsp.">
+<meta property="og:updated_time" content="2017-02-07T14:33:37.352Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSP学习">
+<meta name="twitter:description" content="开始j2ee的学习之旅，首先要学的就是jsp.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/05/JSP学习/"/>
+
+
+
+
+
+  <title> JSP学习 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/05/JSP学习/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JSP学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-05T21:46:54+08:00">
+                2017-02-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/05/JSP学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/05/JSP学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>开始j2ee的学习之旅，首先要学的就是jsp.</p>
+<a id="more"></a>
+<h1 id="JSP页面元素构成"><a href="#JSP页面元素构成" class="headerlink" title="JSP页面元素构成"></a>JSP页面元素构成</h1><p>注释 ， 静态内容， 指令， 表达式， 小脚本， 声明</p>
+<h2 id="JSP指令"><a href="#JSP指令" class="headerlink" title="JSP指令"></a>JSP指令</h2><ul>
+<li>page指令： 通常位于JSP页面的顶端，同一个页面可以有多个page指令</li>
+<li>include指令： 将一个外部文件嵌入到当前JSP文件中，同时解析这个页面中的JSP语句</li>
+<li>taglib指令： 使用标签库定义新的自定义标签，在JSP页面中启用定制行为</li>
+</ul>
+<h3 id="PAGE指令"><a href="#PAGE指令" class="headerlink" title="PAGE指令"></a>PAGE指令</h3><p>语法： &lt;%@ page value1=”” value2=”” …%&gt;</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:right">默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>language</td>
+<td style="text-align:center">制定JSP页面使用的脚本语言</td>
+<td style="text-align:right">java</td>
+</tr>
+<tr>
+<td>import</td>
+<td style="text-align:center">通过改属性来引用脚本语言中使用到的类文件</td>
+<td style="text-align:right">无</td>
+</tr>
+<tr>
+<td>contentType</td>
+<td style="text-align:center">用来指定JSP页面所采用的编码方式</td>
+<td style="text-align:right">text/html,ISO-8859-1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="JSP注释"><a href="#JSP注释" class="headerlink" title="JSP注释"></a>JSP注释</h2><ul>
+<li>HTML注释方式，客户端可见</li>
+<li>JSP注释方式：&lt;%– –%&gt; ,客户端不可见</li>
+<li>脚本注释： //  /**/</li>
+</ul>
+<h2 id="JSP脚本"><a href="#JSP脚本" class="headerlink" title="JSP脚本"></a>JSP脚本</h2><p>即在JSP页面中执行的JAVA代码<br>语法: &lt;% JAVA代码 %&gt;</p>
+<h2 id="JSP声明"><a href="#JSP声明" class="headerlink" title="JSP声明"></a>JSP声明</h2><p>语法：&lt;%! JAVA声明 %&gt;</p>
+<h2 id="JSP表达式"><a href="#JSP表达式" class="headerlink" title="JSP表达式"></a>JSP表达式</h2><p>在JSP页面中执行的表达式<br>语法： &lt;%=表达式 %&gt;</p>
+<p>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;%!</div><div class="line"> /*声明变量*/</div><div class="line"> String s = &quot;hah&quot;;</div><div class="line">%&gt;</div><div class="line"></div><div class="line">&lt;%=s %&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="JSP内置对象"><a href="#JSP内置对象" class="headerlink" title="JSP内置对象"></a>JSP内置对象</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>JSP内置对象是WEB容器创建的一组对象，不适用new关键字就可以使用的内置对象<br>eg:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">out.println(&quot;hahha&quot;);</div></pre></td></tr></table></figure></p>
+<h2 id="常用JSP内置对象"><a href="#常用JSP内置对象" class="headerlink" title="常用JSP内置对象"></a>常用JSP内置对象</h2><p>out,request,response,session,application</p>
+<p>不常用：Page，pageContext,exception,config</p>
+<h2 id="out对象"><a href="#out对象" class="headerlink" title="out对象"></a>out对象</h2><p>JspWriter实例<br>常用方法:</p>
+<ul>
+<li>void println() 向客户端打印字符串</li>
+<li>void clear()清除缓冲区内容，如果在flush之后调用会抛异常</li>
+<li>void clearBuffer() 清除缓冲区内容</li>
+<li>void flush() 将缓冲区内容输出到客户端</li>
+<li>int getBufferSize() 返回缓冲区以字节数的大小，如不设缓冲区则为0</li>
+<li>int getRemaining() 返回缓冲区还剩余多少可用</li>
+<li>boolean isAutoFlush() 返回缓冲区满时，是自动清空还是抛出异常</li>
+<li>void close() 关闭输出流</li>
+</ul>
+<p>注意，如果调用clear()方法之前缓冲区有内容，这个时候缓冲区的内容不被发送到客户端，直接被清除。</p>
+<h2 id="request对象"><a href="#request对象" class="headerlink" title="request对象"></a>request对象</h2><p>客户端的请求信息被封装在request对象中，通过它才能了解客户的需求然后做出响应，它是HttpServletRequest类的实例。request对象具有请求域，即完成客户端的请求之前，该对象一直有效。</p>
+<p>常用方法如下：</p>
+<ul>
+<li>String getParameter(String name) 返回name制定参数的参数值，说白了，就是获取表单中某一属性值</li>
+<li>String[] getParameterValues(String name)返回包含参数name的所有值的数组，其实就是获取表单某一属性的多值</li>
+<li>void setAttribute(String,Object) 存储此请求中的属性,其实就是修改或添加一个新的表单值</li>
+<li>Object getAttribute(String name) 返回指定属性的属性值，注意和setAttribute配套使用</li>
+<li>String getContentType() 得到请求体的MIME类型</li>
+<li>String getProtocol() 返回请求用的协议类型及版本号q</li>
+<li>String getServerName() 返回接受请求的服务器主机名</li>
+<li>int getServerPort() 返回服务器接收此请求所用的端口号</li>
+<li>String getCharacterEncoding() 返回字符串编码方式</li>
+<li>void setCharacterEncoding() 设置请求的字符串编码方式</li>
+<li>int getContentLength() 返回请求体的长度(以字节数)</li>
+<li>String getRemoteAddr() 返回发送此请求的客户端IP地址</li>
+<li>String getRealPath(String path) 返回一虚拟路径的真实路径</li>
+<li>String getContextPath() 返回上下文路径</li>
+</ul>
+<p>如果使用request获取表单值发生乱码，那么在获取前，可以使用request.setCharacterEncoding(“utf-8”)来设置编码格式。但是如果直接使用uri传参方式，request获取的值是乱码的，该种方式无法解决，这个时候需要配置tomcat服务器，conf/server.xml,修改Connector标签，该标签也可以设置端口号，在该标签后加上 URIEncoding=”utf-8”即可，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</div><div class="line">          connectionTimeout=&quot;20000&quot;</div><div class="line">          redirectPort=&quot;8443&quot; URIEncoding=&quot;utf-8&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="response对象"><a href="#response对象" class="headerlink" title="response对象"></a>response对象</h2><p>response对象包含了响应客户端请求的有关信息，但在JSP中很少直接使用。它是HttpServletResponse类的实例。response对象具有页面作用域，即访问一个页面时，改页面内的response对象只能对这次访问有效，其他页面的response对象对当前页面无效。</p>
+<p>常用方法：</p>
+<ul>
+<li>String getCharacterEncoding() 返回相应用的是何种字符编码</li>
+<li>void setContentType(String type) 设置响应的MIME类型</li>
+<li>PrintWriter getWriter() 返回可以向客户端输出字符的一个对象</li>
+<li>sendRedirect(String location) 重定向客户端的请求</li>
+</ul>
+<p>注：PrintWriter对象向客户端输出的信息总是在内置的out对象前，因为out对象是有缓冲区的，如果想要out对象提前于PrintWriter前，那么可在后边使用out.flush()来清空缓冲区并显示。</p>
+<h3 id="请求重定向与请求转发"><a href="#请求重定向与请求转发" class="headerlink" title="请求重定向与请求转发"></a>请求重定向与请求转发</h3><p>请求重定向：客户端行为，response.sendRedirect(String url),从本质上讲等同于两次请求，前一次的请求对象不会保存，地址栏的URL地址会改变。<br>请求转发：服务器行为，request.getRequestDispatcher(String url).forward(req,resp) 是一次请求，转发后请求对象会保存，地址栏的URL地址不会改变。</p>
+<h2 id="session对象"><a href="#session对象" class="headerlink" title="session对象"></a>session对象</h2><p>什么是session:</p>
+<ul>
+<li>session表示客户端与服务器的一次会话</li>
+<li>Web中的session指的是用户在浏览某个网址时，从进入网站到浏览器关闭所经过的这段时间，也就是用户浏览这个网站所花费的时间</li>
+<li>从上述定义中可以看到，session实际上是一个特定的时间概念</li>
+<li>在服务器的内存中保存着不同用户的session</li>
+</ul>
+<p>session对象</p>
+<ul>
+<li>session对象是一个JSP内置对象</li>
+<li>session对象在第一个JSP页面被装载时自动创建，注意是自动创建，不是人为创建，完成会话期管理</li>
+<li>从一个客户打开浏览器并连接到服务器开始，到客户关闭浏览器离开这个服务器结束，被称为一个会话。</li>
+<li>当一个客户访问一个服务器时，可能会在服务器的几个页面之间切换，服务器应当通过某种办法知道这是一个客户，就需要session对象</li>
+<li>session对象是HttpSession实例。</li>
+</ul>
+<p>常用方法：</p>
+<ul>
+<li>long getCreationTime() 返回session创建时间</li>
+<li>String getId() 返回SESSION创建时JSP引擎为它设置的唯一ID号</li>
+<li>Object setAttribute(String name,Object value)使用指定名称将对象绑定到此对话</li>
+<li>Object getAttribute(String name) 返回此会话中的指定名称绑定在一起的对象，如果没有对象绑定在该名称夏，则返回null</li>
+<li>String[] getValueNames() 返回一个包含此SESSION所有可用属性的数组</li>
+<li>int getMaxInactiveInterval 返回两次请求间隔多长时间此SESSION被取消（s）</li>
+<li>setMaxInactiveInterval() 设置失效时间，失效后会重创建，之前所附带的属性也会消失</li>
+</ul>
+<h3 id="session的生命周期"><a href="#session的生命周期" class="headerlink" title="session的生命周期"></a>session的生命周期</h3><p>创建：<br>当客户端第一次访问某个JSP或者serlet时候，服务器会为当前会话创建一个SessionId,每次客户端向服务端发送请求时，都会将此SessionId携带过去，服务端会对此SessionId进行校验。</p>
+<p>活动：</p>
+<ul>
+<li>某次会话当中通过超链接打开的新页面属于同一次会话。</li>
+<li>只要当前会话页面没有全部关闭，重新打开新的浏览器窗口访问同一项目资源时，属于同一次会话。</li>
+<li>除非本次会话的所有页面都关闭后再重新访问某个JSP或者Servlet将会创建新的会话。</li>
+</ul>
+<p>销毁：<br>三种：</p>
+<ol>
+<li>调用session.invalidate()</li>
+<li>session过期</li>
+<li>服务器重启。<h2 id="application对象"><a href="#application对象" class="headerlink" title="application对象"></a>application对象</h2></li>
+</ol>
+<ul>
+<li>application对象实现了用户间数据的共享，可存放全局变量</li>
+<li>application开始于服务器的启动，终止于服务器的关闭</li>
+<li>在用户的前后连接或不同用户之间的连接中，可以对application对象的同一属性进行操作</li>
+<li>在任何地方对application对象属性的操作，都将影响到其他用户对此的访问</li>
+<li>服务器的启动和关闭决定了application对象的生命。</li>
+<li>是ServletContext的实例</li>
+</ul>
+<p>常用方法：</p>
+<ul>
+<li>public void setAttribute(String name,Object value)使用指定名称将对象绑定到此会话。</li>
+<li>public Object getAttribute(String name) 返回此会话中的指定名称绑定在一起的对象，如果没有对象绑定在该名称下，则返回null</li>
+<li>Enumeration getAttributeNames() 返回所有可用属性名的枚举</li>
+<li>String getServerInfo() 返回JSP(SERVLET)引擎名及版本号</li>
+</ul>
+<h2 id="page对象"><a href="#page对象" class="headerlink" title="page对象"></a>page对象</h2><p>page对象就是指当前页面本身，有点类似类中的this指针，它是java.lang.Object类的实例。</p>
+<p>常用方法:</p>
+<ul>
+<li>class getClass() 返回此Object的类</li>
+<li>int hashCode() 返回此Object的hash码</li>
+<li>boolean equals(Object obj)</li>
+<li>void copy(Object obj)把此Object拷贝到指定的Object对象中</li>
+<li>Object clone()</li>
+<li>String toString()</li>
+<li>void notify() 唤醒一个等待的线程</li>
+<li>void notifyAll() 唤醒所有等待的线程</li>
+<li>void wait(int timeout) 使一个线程处于等待知道timeout结束或被唤醒</li>
+<li>void wait() 使一个线程处于等待直到被唤醒</li>
+</ul>
+<h2 id="pageContext对象"><a href="#pageContext对象" class="headerlink" title="pageContext对象"></a>pageContext对象</h2><ul>
+<li>pageContext对象提供了对JSP页面内所有的对象及名字空间的访问</li>
+<li>pageContext对象可以访问到本页所在Session，也可以取本页所在的application的某一属性值</li>
+<li>pageContext对象相当于页面中所有功能的集大成者</li>
+<li>pageContext对象的本类名也叫pageContext</li>
+</ul>
+<p>常用方法</p>
+<ul>
+<li>JspWriter getOut()</li>
+<li>HttpSession getSession() 返回当前页面的session对象</li>
+<li>Object getPage()</li>
+<li>ServletRequest getRequest()</li>
+<li>ServletResponse getResponse()</li>
+<li>void setAttribute</li>
+<li>Object getAttribute(String name, int scope)</li>
+<li>int getAttributeScope(String name)返回某一属性的作用范围</li>
+<li>void forward(String relativeUrlPath)使当前页面重导到另一页面</li>
+<li>void include(String relativeUrlPath)在当前位置包含另一文件</li>
+</ul>
+<h2 id="Config对象"><a href="#Config对象" class="headerlink" title="Config对象"></a>Config对象</h2><p>config对象是在一个Servlet初始化时，JSP引擎向它传递信息用的，此信息包括Servlet初始化时所要用到的参数(通过属性名和属性值构成)以及服务器的有关信息(通过传递一个ServletContext对象)</p>
+<p>常用方法</p>
+<ul>
+<li>ServletContext getServletContext() 返回含有服务器相关信息的ServletContext对象</li>
+<li>String getInitParameter(String name)返回初始化参数的值</li>
+<li>Enumeration getInitParameterNames() 返回Servlet初始化所需所有参数的枚举</li>
+</ul>
+<h2 id="exception对象"><a href="#exception对象" class="headerlink" title="exception对象"></a>exception对象</h2><p>异常对象，如果有需要处理的异常，需要在page标签内加入属性 errorPage = “xxx.jsp”来制定哪个页面处理该异常，在xxx.jsp的page标签中，要配置属性isErrorPage = “true”</p>
+<p>常用方法：</p>
+<ul>
+<li>String getMessage()返回描述异常的信息</li>
+<li>String toString()</li>
+<li>void printStackTrace()</li>
+<li>Throwable FillInStackTrace()重写异常的执行栈轨迹</li>
+</ul>
+<h1 id="JavaBean"><a href="#JavaBean" class="headerlink" title="JavaBean"></a>JavaBean</h1><h2 id="JavaBean-简介"><a href="#JavaBean-简介" class="headerlink" title="JavaBean 简介"></a>JavaBean 简介</h2><p>JavaBeans就是符合某种特定规范的Java类，使用JavaBeans的好处是解决代码重复编写，减少代码冗余，功能区分明确，提高了代码的维护性。</p>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><ol>
+<li>共有类（public class XXX）</li>
+<li>无参的构造方法</li>
+<li>属性私有</li>
+<li>set,get方法获取属性</li>
+</ol>
+<h2 id="Jsp动作元素"><a href="#Jsp动作元素" class="headerlink" title="Jsp动作元素"></a>Jsp动作元素</h2><p>(Jsp action elements)动作元素为请求处理阶段提供信息。动作元素遵循XML元素的语法，有一个包含元素名的开始标签，可以有属性，可选的内容，与开始标签匹配的结束标签</p>
+<h3 id="五类"><a href="#五类" class="headerlink" title="五类"></a>五类</h3><ul>
+<li>第一类是与存取JavaBean有关的，包括：<jsp:usebean><jsp:setproperty><jsp:getproperty></jsp:getproperty></jsp:setproperty></jsp:usebean></li>
+<li>第二类是JSP1.2就开始有的基本元素，包括6个基本元素：<jsp:include> <jsp:forward><jsp:param><jsp:plugin><jsp:params><jsp:fallback></jsp:fallback></jsp:params></jsp:plugin></jsp:param></jsp:forward></jsp:include></li>
+<li>第三类是JSP2.0新增加的元素，主要与JSP Document有关，包括6个元素：<jsp:root><jsp:declaration><jsp:scriptlet><jsp:expression><jsp:text><jsp:output></jsp:output></jsp:text></jsp:expression></jsp:scriptlet></jsp:declaration></jsp:root></li>
+<li>第四类是JSP2.0新增的动作元素，主要是用来动态生成XML元素标签的值，包括3个动作元素:<jsp:attribute><jsp:body><jsp:element></jsp:element></jsp:body></jsp:attribute></li>
+<li>第五类是JSP2.0新增的动作元素，主要是用在Tag File中，有2个元素：<jsp:invoke><jsp:dobody></jsp:dobody></jsp:invoke></li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>javabean创建在项目文件下的src目录，在JSP中，要使用&lt;%@ page import=”com.xx.xxx”%&gt;来导入，然后跟JAVA一样，new一个javabean对象，就可使用。</p>
+<h3 id="useBeans"><a href="#useBeans" class="headerlink" title="useBeans"></a>useBeans</h3><p>作用：在jsp页面中实例化或在指定范围内使用javabean</p>
+<jsp:usebean id="标识符" class="java类名" scope="作用范围">
+
+<h3 id="setProperty"><a href="#setProperty" class="headerlink" title="setProperty"></a>setProperty</h3><p>作用：给已实例化的javabean对象属性赋值，有四种方法：</p>
+<ul>
+<li><jsp:setproperty name="javabean实例名" property="*">（跟表单关联，自动创建对应的bean）</jsp:setproperty></li>
+<li><jsp:setproperty name="javabean实例名" property="javabean属性名">（跟表单关联，部分匹配）</jsp:setproperty></li>
+<li><jsp:setproperty name="javabean实例名" property="javabean属性名" value="BeanValue">（手工设置，与表单没有关系）</jsp:setproperty></li>
+<li><jsp:setproperty name="javabean实例名" property="propertyName" param="request对象中的参数名">(跟request参数关联)</jsp:setproperty></li>
+</ul>
+<h3 id="getProperty"><a href="#getProperty" class="headerlink" title="getProperty"></a>getProperty</h3><p>作用：获取指定javabean对象的属性值</p>
+<jsp:getproperty name="javabean实例名" property="属性名">
+
+<h3 id="javabean四个作用域范围"><a href="#javabean四个作用域范围" class="headerlink" title="javabean四个作用域范围"></a>javabean四个作用域范围</h3><p>useBean的时候有个属性是scope就是指定作用域范围，值可取：</p>
+<ul>
+<li>page: 仅在当前页面有效</li>
+<li>request: 可以通过HttpRequest.getAttribute()方法取得javabean对象</li>
+<li>session: 可以通过HttpSession.getAttribute()方法取得javabean对象</li>
+<li>application: 可以通过application.getAttribute()方法取得javabean对象</li>
+</ul>
+<h1 id="Jsp状态管理"><a href="#Jsp状态管理" class="headerlink" title="Jsp状态管理"></a>Jsp状态管理</h1><h2 id="Http协议的无状态性"><a href="#Http协议的无状态性" class="headerlink" title="Http协议的无状态性"></a>Http协议的无状态性</h2><p>无状态是指，当浏览器发送请求给服务器的时候，服务器响应客户端请求，但是当浏览器再次发送请求给服务器的时候，服务器并不知道它就是刚才的浏览器。简单的说，服务器不会记住你。</p>
+<h2 id="保存用户的状态的两大机制"><a href="#保存用户的状态的两大机制" class="headerlink" title="保存用户的状态的两大机制"></a>保存用户的状态的两大机制</h2><ol>
+<li>Session</li>
+<li>Cookie</li>
+</ol>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><p>Cookie是服务器保存在客户端的文本信息。</p>
+<p>创建Cookie:Cookie newCookie = new Cookie(String key,Object value);<br>写入Cookie对象：response.addCookie(newCookie);<br>读取Cookie对象：Cookie[] cookies = request.getCookies();</p>
+<p>注意，读取出来的是数组。</p>
+<p>常用方法：</p>
+<ul>
+<li>void setMaxAge(int expiry);设置cookie的有效期，以秒为单位</li>
+<li>void setValue(String value)在cookie创建后，对cookie进行赋值</li>
+<li>String getName() 获取cookie名称</li>
+<li>String getValue() 获取cookie的值</li>
+<li>int getMaxAge() 获取cookie的有效时间，以秒为单位</li>
+</ul>
+<h2 id="Session和Cookie的对比"><a href="#Session和Cookie的对比" class="headerlink" title="Session和Cookie的对比"></a>Session和Cookie的对比</h2><p>Session:</p>
+<ol>
+<li>服务端</li>
+<li>保存Object</li>
+<li>随会话结束而销毁</li>
+<li>保存重要信息</li>
+</ol>
+<p>Cookie:</p>
+<ol>
+<li>客户端</li>
+<li>保存String</li>
+<li>长期保存</li>
+<li>保存不重要的信息</li>
+</ol>
+<h1 id="JSP指令与动作"><a href="#JSP指令与动作" class="headerlink" title="JSP指令与动作"></a>JSP指令与动作</h1><h2 id="include指令"><a href="#include指令" class="headerlink" title="include指令"></a>include指令</h2><p>语法：&lt;%@ include file=”URL”%&gt;</p>
+<h2 id="include动作"><a href="#include动作" class="headerlink" title="include动作"></a>include动作</h2><p>语法：<jsp:include page="URL" flush="true|false"><br>page，表示要包含的页面，flush表示是否使用缓冲区</jsp:include></p>
+<h2 id="include指令与动作的区别"><a href="#include指令与动作的区别" class="headerlink" title="include指令与动作的区别"></a>include指令与动作的区别</h2><ol>
+<li>语法不同</li>
+<li>指令发生在页面转换期间，jsp动作发生在请求期间</li>
+<li>指令的include的内容为文件的实际内容，而动作包含的内容是最终输出的内容</li>
+<li>指令 主页面和包含页面转换为一个Servlet,而动作则是转换为独立的Servlet</li>
+<li>指令的编译时间慢资源需解析，动作较快</li>
+<li>指令执行时间快，动作较慢资源需解析</li>
+</ol>
+<h2 id="动作"><a href="#动作" class="headerlink" title="动作"></a><jsp:forward>动作</jsp:forward></h2><p>语法：<jsp:forward page="URL"><br>等同于： request.getRequestDispatcher(“url”).forward(request,response);</jsp:forward></p>
+<h2 id="动作-1"><a href="#动作-1" class="headerlink" title=" 动作"></a><jsp:param> 动作</jsp:param></h2><p>语法：<jsp:param name="参数名" value="参数值"><br>一般与forward动作配合使用，作为其子标签，表示请求转发修改或添加的新参数</jsp:param></p>
+</jsp:getproperty></jsp:usebean>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/j2ee/" rel="tag"># j2ee</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/16/ubuntu-下谷歌浏览器搭配ss访问外网的配置/" rel="next" title="ubuntu 下谷歌浏览器搭配ss访问外网的配置">
+                <i class="fa fa-chevron-left"></i> ubuntu 下谷歌浏览器搭配ss访问外网的配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/07/servlet学习/" rel="prev" title="servlet学习">
+                servlet学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/05/JSP学习/"
+           data-title="JSP学习" data-url="http://yoursite.com/2017/02/05/JSP学习/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP页面元素构成"><span class="nav-number">1.</span> <span class="nav-text">JSP页面元素构成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP指令"><span class="nav-number">1.1.</span> <span class="nav-text">JSP指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PAGE指令"><span class="nav-number">1.1.1.</span> <span class="nav-text">PAGE指令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP注释"><span class="nav-number">1.2.</span> <span class="nav-text">JSP注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP脚本"><span class="nav-number">1.3.</span> <span class="nav-text">JSP脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP声明"><span class="nav-number">1.4.</span> <span class="nav-text">JSP声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP表达式"><span class="nav-number">1.5.</span> <span class="nav-text">JSP表达式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP内置对象"><span class="nav-number">2.</span> <span class="nav-text">JSP内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用JSP内置对象"><span class="nav-number">2.2.</span> <span class="nav-text">常用JSP内置对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#out对象"><span class="nav-number">2.3.</span> <span class="nav-text">out对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#request对象"><span class="nav-number">2.4.</span> <span class="nav-text">request对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#response对象"><span class="nav-number">2.5.</span> <span class="nav-text">response对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求重定向与请求转发"><span class="nav-number">2.5.1.</span> <span class="nav-text">请求重定向与请求转发</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#session对象"><span class="nav-number">2.6.</span> <span class="nav-text">session对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#session的生命周期"><span class="nav-number">2.6.1.</span> <span class="nav-text">session的生命周期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#application对象"><span class="nav-number">2.7.</span> <span class="nav-text">application对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#page对象"><span class="nav-number">2.8.</span> <span class="nav-text">page对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pageContext对象"><span class="nav-number">2.9.</span> <span class="nav-text">pageContext对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config对象"><span class="nav-number">2.10.</span> <span class="nav-text">Config对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exception对象"><span class="nav-number">2.11.</span> <span class="nav-text">exception对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaBean"><span class="nav-number">3.</span> <span class="nav-text">JavaBean</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaBean-简介"><span class="nav-number">3.1.</span> <span class="nav-text">JavaBean 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计原则"><span class="nav-number">3.2.</span> <span class="nav-text">设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jsp动作元素"><span class="nav-number">3.3.</span> <span class="nav-text">Jsp动作元素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#五类"><span class="nav-number">3.3.1.</span> <span class="nav-text">五类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">3.4.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#useBeans"><span class="nav-number">3.4.1.</span> <span class="nav-text">useBeans</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setProperty"><span class="nav-number">3.4.2.</span> <span class="nav-text">setProperty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getProperty"><span class="nav-number">3.4.3.</span> <span class="nav-text">getProperty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javabean四个作用域范围"><span class="nav-number">3.4.4.</span> <span class="nav-text">javabean四个作用域范围</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Jsp状态管理"><span class="nav-number">4.</span> <span class="nav-text">Jsp状态管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Http协议的无状态性"><span class="nav-number">4.1.</span> <span class="nav-text">Http协议的无状态性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#保存用户的状态的两大机制"><span class="nav-number">4.2.</span> <span class="nav-text">保存用户的状态的两大机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">4.2.1.</span> <span class="nav-text">Cookie</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session和Cookie的对比"><span class="nav-number">4.3.</span> <span class="nav-text">Session和Cookie的对比</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP指令与动作"><span class="nav-number">5.</span> <span class="nav-text">JSP指令与动作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#include指令"><span class="nav-number">5.1.</span> <span class="nav-text">include指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#include动作"><span class="nav-number">5.2.</span> <span class="nav-text">include动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#include指令与动作的区别"><span class="nav-number">5.3.</span> <span class="nav-text">include指令与动作的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动作"><span class="nav-number">5.4.</span> <span class="nav-text">动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动作-1"><span class="nav-number">5.5.</span> <span class="nav-text"> 动作</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

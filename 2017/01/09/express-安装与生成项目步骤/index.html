@@ -1,0 +1,712 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="^ ^">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express 安装与生成项目步骤">
+<meta property="og:url" content="http://yoursite.com/2017/01/09/express-安装与生成项目步骤/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="^ ^">
+<meta property="og:updated_time" content="2017-01-09T03:59:20.898Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="express 安装与生成项目步骤">
+<meta name="twitter:description" content="^ ^">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/09/express-安装与生成项目步骤/"/>
+
+
+
+
+
+  <title> express 安装与生成项目步骤 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/09/express-安装与生成项目步骤/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                express 安装与生成项目步骤
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-09T11:55:27+08:00">
+                2017-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/09/express-安装与生成项目步骤/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/09/express-安装与生成项目步骤/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>^ ^</p>
+<a id="more"></a>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>首先去官网下载nodejs并安装。</p>
+<p>之后依次执行以下cmd命令，其实该过程并不是安装<code>express</code>，安装的只是express生成器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g express-generator@4 # 全局安装.</div></pre></td></tr></table></figure>
+<h1 id="生成项目"><a href="#生成项目" class="headerlink" title="生成项目"></a>生成项目</h1><p>依次在某一个项目包中执行以下CMD命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">express -e myproj  # myproj是项目名</div><div class="line">cd myproj &amp;&amp; npm install # 进入到项目包中并且安装依赖包</div><div class="line">npm start # 执行</div></pre></td></tr></table></figure>
+<h1 id="使用mysql"><a href="#使用mysql" class="headerlink" title="使用mysql"></a>使用mysql</h1><p>创建项目后，如果想要使用mysql，则需要安装module</p>
+<p>安装方法是在项目目录下打开CMD命令行工具，执行npm install mysql，之后就可以在js文件中使用</p>
+<p>使用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var mysql = require(&apos;mysql&apos;);</div><div class="line">var conn = mysql.createConnection(&#123;</div><div class="line">    host:&apos;localhost&apos;,</div><div class="line">    user:&apos;root&apos;,</div><div class="line">    password:&apos;root&apos;,</div><div class="line">    database:&apos;myapp&apos;</div><div class="line">&#125;);</div><div class="line">conn.connect();</div><div class="line">conn.query(&apos;SELECT * FROM person&apos;,function(err,rows,fields)&#123;</div><div class="line">    if(err)throw err;</div><div class="line">    console.log(&apos;mysql已经执行&apos;,&apos;rows的长度是&apos;,rows.length);</div><div class="line">&#125;);</div><div class="line">conn.end();</div></pre></td></tr></table></figure>
+<h1 id="建立连接"><a href="#建立连接" class="headerlink" title="建立连接"></a>建立连接</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var conn = mysql.createConnection(&#123;</div><div class="line">    host:&apos;localhost&apos;,</div><div class="line">    user:&apos;root&apos;,</div><div class="line">    password:&apos;root&apos;,</div><div class="line">    database:&apos;myapp&apos;</div><div class="line">&#125;);</div><div class="line">conn.connect(function(err) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    console.error(&apos;error connecting: &apos; + err.stack);</div><div class="line">    return;</div><div class="line">  &#125;</div><div class="line">  console.log(&apos;connected as id &apos; + connection.threadId);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>如果直接使用query方法，则会默认进行连接，就不用调用connect方法了。<br>连接中常用的选项如下：</p>
+<ul>
+<li>host:默认localhost</li>
+<li>port:端口，默认3306</li>
+<li>user:用户名</li>
+<li>password:密码</li>
+<li>database:数据库名</li>
+<li>charset:字符集，默认UTF8_GENERAL_CI</li>
+<li>connectTimeout:超时，单位毫秒，默认10000<h1 id="终止连接"><a href="#终止连接" class="headerlink" title="终止连接"></a>终止连接</h1></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">conn.end(function(err)&#123;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>或没有回调的终止连接:conn.destroy()</p>
+<h1 id="使用连接池"><a href="#使用连接池" class="headerlink" title="使用连接池"></a>使用连接池</h1><p>首先连接池的概念：(百度)像打开关闭数据库连接这种和数据库的交互可能是很费时的，尤其是当客户端数量增加的时候，会消耗大量的资源，成本是非常高的。可以在应用服务器启动的时候建立很多个数据库连接并维护在一个池中。连接请求由池中的连接提供。在连接使用完毕以后，把连接归还到池中，以用于满足将来更多的请求。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var mysql = require(&apos;mysql&apos;);</div><div class="line">var pool  = mysql.createPool(&#123;</div><div class="line">  connectionLimit : 10,</div><div class="line">  user            : &apos;root&apos;,</div><div class="line">  password        : &apos;root&apos;,</div><div class="line">  database        : &apos;myapp&apos;</div><div class="line">&#125;);</div><div class="line">pool.query(&apos;SELECT * FROM person&apos;, function(err, rows, fields) &#123;</div><div class="line">  if (err) throw err;</div><div class="line">  console.log(&apos;The solution is: &apos;, rows[0].solution);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="获取连接"><a href="#获取连接" class="headerlink" title="获取连接"></a>获取连接</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">pool.getConnction(function(err,conn)&#123;</div><div class="line">	if(err)throw err;</div><div class="line">    </div><div class="line">    //连接成功，就可以使用conn来进行操作</div><div class="line">    conn.query(...);</div><div class="line">    </div><div class="line">    conn.release(); //注意这里不能使用end()，要使用release()来释放回连接池中。</div><div class="line">    </div><div class="line">    //如果你想要销毁该连接，需要使用conn.destroy()方法，之后连接池中会重新创建一个新的连接。</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="连接池事件"><a href="#连接池事件" class="headerlink" title="连接池事件"></a>连接池事件</h2><p>connection,当连接池创建一个新的连接后，会发送该事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pool.on(&apos;connection&apos;,function(connection)&#123;</div><div class="line">	...</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="终止连接池所有连接"><a href="#终止连接池所有连接" class="headerlink" title="终止连接池所有连接"></a>终止连接池所有连接</h2><p>``<br>pool.end(function(err){</p>
+<p>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># 更改用户</div></pre></td></tr></table></figure></p>
+<p>conn.changeUser({user:’root’},function(err){<br>    if(err)throw err;<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># query方法</div><div class="line"></div><div class="line">可以使用conn或pool对象来调用query方法。</div><div class="line"></div><div class="line">第一种：query(sqlString,callback)</div></pre></td></tr></table></figure></p>
+<p>conn.query(‘SELECT * FROM person’,function(err,rows,fields){<br>    if(err)throw err;<br>    console.log(‘mysql已经执行’,’rows的长度是’,rows.length);<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">第二种:query(sqlString,value,callback)</div></pre></td></tr></table></figure></p>
+<p>conn.query(‘SELECT * FROM person where <code>name</code> = ?’,[‘david’],function(err,rows,fields){<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">第三种:query(options,callback)</div></pre></td></tr></table></figure></p>
+<p>conn.query({<br>    sql:’SELECT * FROM person where <code>name</code> = ?’,<br>    timeout:10000,<br>    values:[‘david’]<br>},fucntion(err,rows,fields){<br>    …<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注意，该方法中的sqlString不单单只是查询，也可以是插入，更新等sql操作,如插入操作：</div></pre></td></tr></table></figure></p>
+<p>conn.query(‘INSERT INTO person SET ?’, {name: ‘秦晓光’,age:22}, function(err, result) {<br>  if (err) throw err;<br>  console.log(result.insertId); //打印出插入成功后的id<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">如删除操作:</div></pre></td></tr></table></figure></p>
+<p>conn.query(‘DELETE FROM person WHERE age = 18’, function (err, result) {<br>  if (err) throw err;<br>  console.log(‘deleted ‘ + result.affectedRows + ‘ rows’); //打印出受影响的行数，即删除了多少行<br>})<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">如更新操作：</div></pre></td></tr></table></figure></p>
+<p>connection.query(‘UPDATE posts SET …’, function (err, result) {<br>  if (err) throw err;<br>  console.log(‘changed ‘ + result.changedRows + ‘ rows’); //更新的行数<br>})<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">如果你使用select查询语句返回多行，并需要对每行都要执行一定的操作，那么可以使用以下方法：</div></pre></td></tr></table></figure></p>
+<p>var query = conn.query(‘select * from person’);<br>query.on(‘result’,function(row){<br>    conn.pause();            //暂停查询<br>    console.log(row);<br>    …                        //row是查询的当前行，在这里可以对row进行操作。<br>    conn.resume();            //恢复查询<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">当数据量比较大的时候，并且处理不过来，就可以使用pause方法来中断查询操作，处理完毕后就可以使用resume来恢复，这里的pause和resume在数据量少的时候并不是必须的。</div><div class="line"></div><div class="line">当然query还有更多的事件</div></pre></td></tr></table></figure></p>
+<p>query<br>  .on(‘error’, function(err) {<br>    // Handle error, an ‘end’ event will be emitted after this as well<br>  })<br>  .on(‘fields’, function(fields) {<br>    // the field packets for the rows to follow<br>  })<br>  .on(‘result’, function(row) {<br>    // Pausing the connnection is useful if your processing involves I/O<br>    connection.pause();<br>    processRow(row, function() {<br>      connection.resume();<br>    });<br>  })<br>  .on(‘end’, function() {<br>    // all rows have been received<br>  });<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Escaping query values</div><div class="line"></div><div class="line">这个术语不太明白，不过看解释说是防止sql注射。</div><div class="line">使用方法如下：</div></pre></td></tr></table></figure></p>
+<p>var userId = ‘some user provided value’;<br>var sql    = ‘SELECT * FROM users WHERE id = ‘ + connection.escape(userId);<br>connection.query(sql, function(err, results) {<br>  // …<br>});<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">可以使用conn或pool等来调用escape()方法。</div><div class="line"></div><div class="line"># 封装</div><div class="line"></div><div class="line">一般为了简便，会把mysql进行封装，可以在项目根目录新建一个文件夹mysql，在mysql中创建pool.js</div></pre></td></tr></table></figure></p>
+<h2 id="pool-js"><a href="#pool-js" class="headerlink" title="pool.js"></a>pool.js</h2><p>var mysql = require(‘mysql’);<br>var pool = mysql.createPool({<br>    host:’localhost’,<br>    user:’root’,<br>    password:’root’,<br>    database:’myapp’,<br>    port:’3306’<br>});<br>module.exports = pool;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">之后在app.js中的使用方法是：</div></pre></td></tr></table></figure></p>
+<p>var pool  = require(‘./mysql/pool’);<br>pool.getConnection(function(err,coon){<br>    …<br>});<br>```</p>
+<h1 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h1><p>这里只列出了常用的一些操作，如果想要查看其他详细操作，可到项目地址查看:<a href="https://github.com/mysqljs/mysql" target="_blank" rel="external">https://github.com/mysqljs/mysql</a>;</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/09/侧边栏滑出状态栏透明效果实现/" rel="next" title="侧边栏滑出状态栏透明效果实现">
+                <i class="fa fa-chevron-left"></i> 侧边栏滑出状态栏透明效果实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/09/网页设计实现导航滚动到顶部固定的效果/" rel="prev" title="网页设计实现导航滚动到顶部固定的效果">
+                网页设计实现导航滚动到顶部固定的效果 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/09/express-安装与生成项目步骤/"
+           data-title="express 安装与生成项目步骤" data-url="http://yoursite.com/2017/01/09/express-安装与生成项目步骤/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成项目"><span class="nav-number">2.</span> <span class="nav-text">生成项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用mysql"><span class="nav-number">3.</span> <span class="nav-text">使用mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建立连接"><span class="nav-number">4.</span> <span class="nav-text">建立连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#终止连接"><span class="nav-number">5.</span> <span class="nav-text">终止连接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用连接池"><span class="nav-number">6.</span> <span class="nav-text">使用连接池</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取连接"><span class="nav-number">6.1.</span> <span class="nav-text">获取连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接池事件"><span class="nav-number">6.2.</span> <span class="nav-text">连接池事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#终止连接池所有连接"><span class="nav-number">6.3.</span> <span class="nav-text">终止连接池所有连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pool-js"><span class="nav-number">6.4.</span> <span class="nav-text">pool.js</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目地址"><span class="nav-number">7.</span> <span class="nav-text">项目地址</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

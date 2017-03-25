@@ -1,0 +1,726 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="动画有视图动画和属性动画，视图动画提供了AlphaAnimation,RotateAnimation,TranslateAnimation,ScaleAnimation等四种动画方式，并提供了AnimationSet动画集合。但是视图动画缺陷是不具有交互性，即视图动画只是展示了效果，但是实际位置还是在原位置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android动画学习">
+<meta property="og:url" content="http://yoursite.com/2017/01/09/Android动画学习/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="动画有视图动画和属性动画，视图动画提供了AlphaAnimation,RotateAnimation,TranslateAnimation,ScaleAnimation等四种动画方式，并提供了AnimationSet动画集合。但是视图动画缺陷是不具有交互性，即视图动画只是展示了效果，但是实际位置还是在原位置。">
+<meta property="og:updated_time" content="2017-01-09T04:09:55.779Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android动画学习">
+<meta name="twitter:description" content="动画有视图动画和属性动画，视图动画提供了AlphaAnimation,RotateAnimation,TranslateAnimation,ScaleAnimation等四种动画方式，并提供了AnimationSet动画集合。但是视图动画缺陷是不具有交互性，即视图动画只是展示了效果，但是实际位置还是在原位置。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/09/Android动画学习/"/>
+
+
+
+
+
+  <title> Android动画学习 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/09/Android动画学习/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android动画学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-09T12:03:38+08:00">
+                2017-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/09/Android动画学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/09/Android动画学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>动画有视图动画和属性动画，视图动画提供了<code>AlphaAnimation</code>,<code>RotateAnimation</code>,<code>TranslateAnimation</code>,<code>ScaleAnimation</code>等四种动画方式，并提供了AnimationSet动画集合。但是视图动画缺陷是不具有交互性，即视图动画只是展示了效果，但是实际位置还是在原位置。</p>
+<a id="more"></a>
+<h1 id="视图动画"><a href="#视图动画" class="headerlink" title="视图动画"></a>视图动画</h1><p>这些动画使用方法基本上如出一辙，先初始化并设置其属性后，再调用某View的startAnimation方法即可。</p>
+<h2 id="AlphaAnimation"><a href="#AlphaAnimation" class="headerlink" title="AlphaAnimation"></a>AlphaAnimation</h2><p>透明度动画</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">AlphaAnimation aa = new AlphaAnimation(1,0);</div><div class="line">aa.setDuration(1000);</div><div class="line">//注意setFillAfter，这个方法很重要，如果设置为true，则动画执行后，view的显示状态为执行后的状态，否则恢复为动画执行前的状态</div><div class="line">aa.setFillAfter(true);</div><div class="line">myView.startAnimation(aa);</div></pre></td></tr></table></figure>
+<h2 id="RotateAnimation"><a href="#RotateAnimation" class="headerlink" title="RotateAnimation"></a>RotateAnimation</h2><p>旋转动画</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RotateAnimation ra = new RotateAnimation(0,360,100,100);</div><div class="line">ra.setDuration(1000);</div><div class="line">ra.setFillAfter(true);</div><div class="line">myView.startAnimation(ra);</div></pre></td></tr></table></figure>
+<p>参数中前两个是起始的角度，后两个是旋转中心。也可以设置为自身中心点，方法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">RotateAnimation ra = new RotateAnimation(0,360,RotateAnimation.RELATIVE_TO_SELF,0.5F,RotateAnimation.RELATIVE_TO_SELF,0.5F);</div></pre></td></tr></table></figure>
+<h2 id="TranslateAnimation"><a href="#TranslateAnimation" class="headerlink" title="TranslateAnimation"></a>TranslateAnimation</h2><p>位移动画</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TranslateAnimation ta = new TranslateAnimation(0,200,0,300);</div><div class="line">ta.setDuration(1000);</div><div class="line">ta.setFillAfter(true);</div><div class="line">myView.startAnimation(ta);</div></pre></td></tr></table></figure>
+<p>位移动画的参数比较特殊，前两个参数表示X坐标移动的起点和终点，同样，后两个参数为Y坐标从起点移动到终点。</p>
+<h2 id="ScaleAnimation"><a href="#ScaleAnimation" class="headerlink" title="ScaleAnimation"></a>ScaleAnimation</h2><p>缩放动画</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ScaleAnimation sa = new ScaleAnimation(0,2,0,2);</div><div class="line">sa.setDuration(1000);</div><div class="line">sa.setFillAfter(true);</div><div class="line">myView.startAnimation(sa);</div></pre></td></tr></table></figure>
+<p>其参数类似位移动画的参数，前两个参数为X轴缩放倍数的开始与结束值，同样，后两个参数为Y轴的。这种初始化方法的默认缩放中心点为(0,0)，当然我们可以自定义缩放中心点，类似旋转，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ScaleAnimation sa = new ScaleAnimation(0,1,0,1,ScaleAnimation.RELATIVE_TO_SELF,0.5F,ScaleAnimation.RELATIVE_TO_SELF,0.5F);</div></pre></td></tr></table></figure>
+<h2 id="AnimationSet"><a href="#AnimationSet" class="headerlink" title="AnimationSet"></a>AnimationSet</h2><p>动画集合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> AnimationSet as = new AnimationSet(true);</div><div class="line">AlphaAnimation aa = new AlphaAnimation(1,0);</div><div class="line">RotateAnimation ra = new RotateAnimation(0,360,100,100);</div><div class="line">TranslateAnimation ta = new TranslateAnimation(0,200,0,300);</div><div class="line">ScaleAnimation sa = new ScaleAnimation(0,1,0,1,ScaleAnimation.RELATIVE_TO_SELF,0.5F,ScaleAnimation.RELATIVE_TO_SELF,0.5F);</div><div class="line">as.addAnimation(aa);</div><div class="line">as.addAnimation(ra);</div><div class="line">as.addAnimation(ta);</div><div class="line">as.addAnimation(sa);</div><div class="line">as.setDuration(1000);</div><div class="line">as.setFillAfter(true);</div><div class="line">myView.startAnimation(as);</div></pre></td></tr></table></figure>
+<p>当然，我们可以单独给其中的动画设置持续时间等。</p>
+<h2 id="动画的监听"><a href="#动画的监听" class="headerlink" title="动画的监听"></a>动画的监听</h2><p>动画的监听实现也比较简单，只需要给相应的动画对象设置监听事件即可，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">as.setAnimationListener(new Animation.AnimationListener() &#123;</div><div class="line">    @Override</div><div class="line">    public void onAnimationEnd(Animation animation) &#123;</div><div class="line">		//动画结束时运行</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onAnimationRepeat(Animation animation) &#123;</div><div class="line">		//动画重复时运行</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onAnimationStart(Animation animation) &#123;</div><div class="line">		//动画开始时运行</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="属性动画"><a href="#属性动画" class="headerlink" title="属性动画"></a>属性动画</h1><p>属性动画与视图动画的区别是，属性动画更改的是View的属性，比如一个按钮，如果使用视图动画移动了其位置，但是实际位置还是在原来的位置上，这个时候点击移动后的位置处是没有效果的，但是属性动画却有效果。<br>另一个区别是，视图动画如果使用startAnimation方法开始动画的时候，他会不管View的动画运行在什么地方了，而是直接重新开始运行该动画。但是属性动画不一样，如果属性动画没有设置开始值，则属性动画运行结束，无论你怎么开始动画，他都不会重新运行。除非你设置的动画值，包含开始值和结束值。</p>
+<p>还有一个比较小的区别，不知道大家注意到没有，视图动画的后缀是Animation,而属性动画的后缀则为Animator</p>
+<h2 id="ObjectAnimator"><a href="#ObjectAnimator" class="headerlink" title="ObjectAnimator"></a>ObjectAnimator</h2><p>首先查看示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ObjectAnimator objA = ObjectAnimator.ofFloat(myView,&quot;translationX&quot;,300);</div><div class="line">objA.setDuration(1000);</div><div class="line">objA.start();</div></pre></td></tr></table></figure></p>
+<p>首先通过静态工厂方法返回一个ObjectAnimator对象，其中第一个参数是targetView，第二个参数是属性名，其中属性名是需要该View中有相应的set和get方法，安卓会通过反射机制找到相应的方法给其设置相应值的，如果没有，是运行不成功的，第三个属性则为属性值。</p>
+<p>以下为常用的可以直接使用的属性值：</p>
+<ul>
+<li>translationX和translationY：这个就是坐标值</li>
+<li>rotation,rotationX,rotationY：旋转角度，第一个rotation是在2D画面上进行旋转，而rotationX,rotationY比较神奇，是在3D图形上进行的旋转，比如rotationX是绕着X进行旋转。</li>
+<li>scaleX,scaleY:控制图形的缩放</li>
+<li>pivotX,pivotY:控制View的支点位置，默认情况，View的旋转缩放等都是围绕着该支点进行处理的。</li>
+<li>x，y：这两个值与translationX,translationY很相似，但是x,y描述的是最终坐标值，计算方法如下：x = View的最初x坐标 + translationX</li>
+<li>alpha:透明值，1是默认值，0是完全透明<br>以上是View自带有get,set方法的情况下可以使用的属性值，但是如果没有get,set方法怎么用呢?答案是，我们可以使用包装类，为该类添加get,set方法。如下所示：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">private static class WrapperMyView</div><div class="line">&#123;</div><div class="line">    View target;</div><div class="line">    public WrapperMyView(View view)</div><div class="line">    &#123;</div><div class="line">        target = view;</div><div class="line">    &#125;</div><div class="line">    public int getWidth()</div><div class="line">    &#123;</div><div class="line">        return target.getLayoutParams().width;</div><div class="line">    &#125;</div><div class="line">    public void setWidth(int width)</div><div class="line">    &#123;</div><div class="line">        target.getLayoutParams().width = width;</div><div class="line">        target.requestLayout();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意在setXX方法中使用requestLayout方法重绘。这里说明下invalidate和requestLayout方法的区别，invalidate方法是重新调用onDraw方法，而requestLayout方法重新调用onMeasure,onLayout,onDraw方法，这个才是真正意义上的重绘。</p>
+<p>这样，想要使用动画，就可以使用如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">WrapperMyView wrapper = new WrapperMyView(targetView);</div><div class="line">ObjectAnimator.ofInt(wrapper,&quot;width&quot;,200).setDuration(5000).start();</div><div class="line">我们也可以不使用这种方法，还有一种方法是使用ValueAnimator，后边会有介绍。</div></pre></td></tr></table></figure>
+<h2 id="ValueAnimator"><a href="#ValueAnimator" class="headerlink" title="ValueAnimator"></a>ValueAnimator</h2><p>ObjectAnimator就是继承自ValueAnimator，ValueAnimator本身不产生任何动画效果，只是一个数值发生器，类似Scroller，只是定期产生某一种有规律的数字，就是因为这些数字，我们可以使用监听方法来给view设置这些不断变化的值，从而达到动画的效果。</p>
+<p>使用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ValueAnimator valueAnimator = ValueAnimator.ofInt(0,100);</div><div class="line">valueAnimator.setTarget(targetView);</div><div class="line">valueAnimator.setDuration(1000).start();</div><div class="line">valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() &#123;</div><div class="line">    @Override</div><div class="line">    public void onAnimationUpdate(ValueAnimator animation) &#123;</div><div class="line">        int value = (int) animation.getAnimatedValue();</div><div class="line">        //拿到改变的值来做其他操作</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="动画的监听事件"><a href="#动画的监听事件" class="headerlink" title="动画的监听事件"></a>动画的监听事件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">ObjectAnimator anim = ObjectAnimator.ofFloat(view,&quot;alpha&quot;,0.5f);</div><div class="line">anim.addListener(new AnimatorListener()&#123;</div><div class="line">	@Override</div><div class="line">    public void onAnimationStart(Animator animation)</div><div class="line">    &#123;</div><div class="line">    </div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onAnimationRepeat(Animator animation)</div><div class="line">    &#123;</div><div class="line">    </div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onAnimationEnd(Animator animation)</div><div class="line">    &#123;</div><div class="line">    </div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onAnimationCancel(Animator animation)</div><div class="line">    &#123;</div><div class="line">    </div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>我们也可以添加监听适配器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">anim.addListener(new AnimatorListenerAdapter()&#123;</div><div class="line">	@Override</div><div class="line">    public void onAnimationEnd(Animator animation)</div><div class="line">    &#123;</div><div class="line">	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="PropertyValuesHolder"><a href="#PropertyValuesHolder" class="headerlink" title="PropertyValuesHolder"></a>PropertyValuesHolder</h2><p>如果我们想要使用视图动画中类似AnimationSet的效果怎么办呢？其实PropertyValuesHolder实现的效果就类似AnimationSet实现的效果。</p>
+<p>直接看代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PropertyValuesHolder p1 = PropertyValuesHolder.ofFloat(&quot;translationX&quot;,300f);</div><div class="line">PropertyValuesHolder p2 = PropertyValuesHolder.ofFloat(&quot;scaleX&quot;,1f,0,1f);</div><div class="line">PropertyValuesHolder p3 = PropertyValuesHolder.ofFloat(&quot;scaleY&quot;,1f,0,1f);</div><div class="line">ObjectAnimator.ofPropertyValuesHolder(myView,p1,p2,p3).setDuration(1000).start();</div></pre></td></tr></table></figure>
+<p>可以看到，<code>PropertyValuesHolder</code>不用设置目标View，初始化只需要属性名，和属性值，第一种传入一个值，则默认开始值为当前目标View的值，而第二种方式，传入多个值，第一个为动画开始属性值，后边为属性值的过度值。接着使用<code>ObjectAnimator.ofPropertyValuesHolder(target,p1,p2,p3)</code>,第一个参数为View，后边加上<code>PropertyValuesHolder</code>对象即可，有多少加多少。</p>
+<h2 id="AnimatorSet"><a href="#AnimatorSet" class="headerlink" title="AnimatorSet"></a>AnimatorSet</h2><p>类似<code>AnimationSet</code>的效果，不仅可以使用<code>PropertyValueHolder</code>来实现，也可以使用<code>AnimatorSet</code>,注意，不是<code>AnimationSet</code>哦。</p>
+<p>使用<code>AnimatorSet</code>的好处是，我们可以控制动画集中动画的展示顺序，展示时间，从而对动画达到一种精确的控制。<br>如上边的<code>PropertyValuesHolder</code>，使用<code>AnimatorSet</code>的实现方式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">ObjectAnimator anim1 = ObjectAnimator.ofFloat(target,&quot;translationX&quot;,300F);</div><div class="line">ObjectAnimator anim2 = ObjectAnimator.ofFloat(target,&quot;scaleX&quot;,1F,0F,1F);</div><div class="line">ObjectAnimator anim2 = ObjectAnimator.ofFloat(target,&quot;scaleY&quot;,1F,0F,1F);</div><div class="line">AnimatorSet set = new AnimatorSet();</div><div class="line">set.setDuration(1000);</div><div class="line">set.playTogether(ani1,anim2,anim3);</div><div class="line">set.start();</div></pre></td></tr></table></figure>
+<p>AnimatorSet的使用方式与AnimationSet略有不同，他可以设置动画的展示方式，如playTogether表示动画同时间开始展示，当然还有其他设置方式，如palySequentially则为按顺序执行，而play只传入一个动画，但是如果我们要使用play()方法，一般还会在后边跟上with()，或者after(),before等方法，这几种方式可以使用于只有两个动画效果的时候。</p>
+<h2 id="属性动画简写方式"><a href="#属性动画简写方式" class="headerlink" title="属性动画简写方式"></a>属性动画简写方式</h2><p>Android3.0以后，View中增加了animate方法直接操作属性动画。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">myView.animate()</div><div class="line">    .alpha(0)</div><div class="line">    .y(300)</div><div class="line">    .setDuration(300)</div><div class="line">    .start();</div></pre></td></tr></table></figure>
+<h2 id="插值器"><a href="#插值器" class="headerlink" title="插值器"></a>插值器</h2><p>直接参考文档:<a href="https://my.oschina.net/banxi/blog/135633" target="_blank" rel="external">Interpolator</a></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>更多知识请参考Hongyang大神文章:<br><a href="http://blog.csdn.net/lmj623565791/article/details/38067475" target="_blank" rel="external">Android 属性动画（Property Animation） 完全解析 （上）</a><br><a href="http://blog.csdn.net/lmj623565791/article/details/38092093" target="_blank" rel="external">Android 属性动画（Property Animation） 完全解析 （下）</a></p>
+<p>其中第二篇文章涉及内容有：<br>1、xml文件创建属性动画<br>2、布局动画<br>3、View的animate方法等。<br>如果对以上感兴趣的直接点进去即可。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/09/对Scroller的理解/" rel="next" title="对Scroller的理解">
+                <i class="fa fa-chevron-left"></i> 对Scroller的理解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/09/PopupWindow用法/" rel="prev" title="PopupWindow用法">
+                PopupWindow用法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/09/Android动画学习/"
+           data-title="Android动画学习" data-url="http://yoursite.com/2017/01/09/Android动画学习/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#视图动画"><span class="nav-number">1.</span> <span class="nav-text">视图动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AlphaAnimation"><span class="nav-number">1.1.</span> <span class="nav-text">AlphaAnimation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RotateAnimation"><span class="nav-number">1.2.</span> <span class="nav-text">RotateAnimation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TranslateAnimation"><span class="nav-number">1.3.</span> <span class="nav-text">TranslateAnimation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ScaleAnimation"><span class="nav-number">1.4.</span> <span class="nav-text">ScaleAnimation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AnimationSet"><span class="nav-number">1.5.</span> <span class="nav-text">AnimationSet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画的监听"><span class="nav-number">1.6.</span> <span class="nav-text">动画的监听</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性动画"><span class="nav-number">2.</span> <span class="nav-text">属性动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ObjectAnimator"><span class="nav-number">2.1.</span> <span class="nav-text">ObjectAnimator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ValueAnimator"><span class="nav-number">2.2.</span> <span class="nav-text">ValueAnimator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画的监听事件"><span class="nav-number">2.3.</span> <span class="nav-text">动画的监听事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PropertyValuesHolder"><span class="nav-number">2.4.</span> <span class="nav-text">PropertyValuesHolder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AnimatorSet"><span class="nav-number">2.5.</span> <span class="nav-text">AnimatorSet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性动画简写方式"><span class="nav-number">2.6.</span> <span class="nav-text">属性动画简写方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插值器"><span class="nav-number">2.7.</span> <span class="nav-text">插值器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后"><span class="nav-number">3.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

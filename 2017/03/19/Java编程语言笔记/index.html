@@ -1,0 +1,755 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="有幸得知Java四大名著,所以来尝试阅读一下,肯定会从中发现自身知识的漏洞,这里记录的是,读书后我所不知道的知识.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java编程语言笔记">
+<meta property="og:url" content="http://yoursite.com/2017/03/19/Java编程语言笔记/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="有幸得知Java四大名著,所以来尝试阅读一下,肯定会从中发现自身知识的漏洞,这里记录的是,读书后我所不知道的知识.">
+<meta property="og:updated_time" content="2017-03-23T03:31:01.083Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java编程语言笔记">
+<meta name="twitter:description" content="有幸得知Java四大名著,所以来尝试阅读一下,肯定会从中发现自身知识的漏洞,这里记录的是,读书后我所不知道的知识.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/19/Java编程语言笔记/"/>
+
+
+
+
+
+  <title> Java编程语言笔记 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/19/Java编程语言笔记/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java编程语言笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-19T10:18:45+08:00">
+                2017-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/19/Java编程语言笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/19/Java编程语言笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>有幸得知Java四大名著,所以来尝试阅读一下,肯定会从中发现自身知识的漏洞,这里记录的是,读书后我所不知道的知识.</p>
+<a id="more"></a>
+<p>类修饰符:public,abstract,final,static只能修饰嵌套类.还有一个比较特殊的是<strong>strictfp</strong> ,这个关键字的含义是,如果被strictfp修饰,该类中的所有运算都会进行精确运算,符合某某标准.</p>
+<p>一个域既可以是final,也可以是volatile.</p>
+<p>域可以通过类中方法或者其他类中的方法进行初始化,这里不用捕获异常.而一旦创建该实例的时候,创建者处会捕获异常,所以不用担心异常这个问题.</p>
+<p>如果域没有被初始化,就会根据类型赋予默认的初始值.</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>初始值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>char</td>
+<td>‘\u0000’</td>
+</tr>
+<tr>
+<td>byte,short,int,long</td>
+<td>0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>+0.0f</td>
+</tr>
+<tr>
+<td>double</td>
+<td>+0.0</td>
+</tr>
+<tr>
+<td>对象引用</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<p>以下演示初始代码块,静态代码块的执行顺序:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public class Car &#123;</div><div class="line">    char a = g();</div><div class="line"></div><div class="line">    &#123;</div><div class="line">        System.out.println(&quot;初始化块&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    static&#123;</div><div class="line">        System.out.println(&quot;静态代码块&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Car()&#123;</div><div class="line">        System.out.println(&quot;构造方法块&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public char g()&#123;</div><div class="line">        System.out.println(&quot;域初始化&quot;);</div><div class="line">        return &apos;a&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>打印结果:</p>
+<blockquote>
+<p>静态代码块<br>初始化块<br>域初始化<br>构造方法块</p>
+</blockquote>
+<p>注意初始化代码块就是用<code>{}</code>包裹的代码.</p>
+<p>而如果把域和初始化块调换位置,如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class Car &#123;</div><div class="line">    &#123;</div><div class="line">        System.out.println(&quot;初始化块&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    char a = g();</div><div class="line"></div><div class="line">    static&#123;</div><div class="line">        System.out.println(&quot;静态代码块&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public Car()&#123;</div><div class="line">        System.out.println(&quot;构造方法块&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public char g()&#123;</div><div class="line">        System.out.println(&quot;域初始化&quot;);</div><div class="line">        return &apos;a&apos;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>打印结果是:</p>
+<blockquote>
+<p>静态代码块<br>初始化块<br>域初始化<br>构造方法块</p>
+</blockquote>
+<p>可以看到,其初始化代码块和域的初始化是同等级别的,谁先谁后是按照从上到下的执行顺序.而static是类加载首先执行的,构造方法最后才会执行.<br>注意,静态初始化块,只能引用该类中的静态域.如果定义一个final属性,可以在初始化块中或者构造方法中进行初始化.</p>
+<p>如果是子类继承父类的时候,首先会调用父类的构造方法,接着才会调用自身的初始化块,以及构造方法,这个一定要注意.</p>
+<p>abstact方法不能是staic,final,syn,native,strictfp的.</p>
+<p>参数中传入的对象引用时,参数的引用将会指向同一个对象,此时该对象就会存在两条被引用链.注意不是传入的对象,所以将对象=null完全不影响外部对象.</p>
+<p>子类覆盖超类方法时,不可降低权限.</p>
+<p>覆盖的时候,也可以改变其他修饰符:syn,native,strictfp等.</p>
+<p>覆盖抛异常要比父类的少,不能比父类多.</p>
+<p>对于引用类型,父类引用指向子类,这个时候调用方法时,会调用真是对象的方法,而调用域时,会根据引用来调用域,如下示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">public class Car &#123;</div><div class="line"></div><div class="line">    public String str = &quot;Car&quot;;</div><div class="line"></div><div class="line">    public void show()&#123;</div><div class="line">        System.out.println(&quot;show Car&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">public  class ExtendsCar extends Car &#123;</div><div class="line"></div><div class="line">    public String str = &quot;ExtendsCar&quot;;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void show() &#123;</div><div class="line">        System.out.println(&quot;show ExtendsCar&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"> public static void main(String[] args)&#123;</div><div class="line">        ExtendsCar extendsCar = new ExtendsCar();</div><div class="line">        Car car = extendsCar;</div><div class="line"></div><div class="line">        extendsCar.show();</div><div class="line">        car.show();</div><div class="line"></div><div class="line">        System.out.println(extendsCar.str);</div><div class="line">        System.out.println(car.str);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>其打印日志为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">show ExtendsCar</div><div class="line">show ExtendsCar</div><div class="line">ExtendsCar</div><div class="line">Car</div></pre></td></tr></table></figure></p>
+<p>可以看到,其方法是调用的实际对象的方法,而属性值却是引用对象类型的属性,但是前提是子类覆盖了父类的属性,如果未覆盖,即子类中没有str这个String类型属性值,那么打印结果是一样的.</p>
+<p>final类的所有方法实际上都是final,注意是方法.</p>
+<p>对于强转,强转时两者的类对象必须有联系,比如一个是父类,一个是子类,又比如,一个是父类实现的接口,一个是子类等等.</p>
+<p>同样对于instanceof也是如此,如果两者没有一点联系,编译都通不过.</p>
+<p>克隆的默认实现是浅克隆.即不对引用进行克隆,其传递的引用还是指向原对象.</p>
+<p>接口内部方法和域默认是public,而方法默认是abstract,这个关键字被省略了.所以实现接口时,方法只能是public,不能是其他权限,而在接口的方法中,不能有其他实现特征的修饰符如:syn,native,strictfp等.</p>
+<p>对于接口默认的修饰符是abstract.如果没有使用public修饰接口,只能被其所在的包的成员访问.</p>
+<p>考虑这么一种情况,在第一个接口中,定义了方法<code>void tmp();</code>,第二个接口中定义了方法<code>int tmp()</code>,而第三个接口继承了第一个和第二个接口,这样继承会出现问题么?答案是会的,除非两者接口中同名同参方法返回相同才不会报错.</p>
+<p>静态内部类可以访问外部类的所有成员,包括私有成员.</p>
+<p>内部接口总是静态的,定义内部接口习惯上省略了static,注意内部接口默认不是public</p>
+<p>内部类继承:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Outer &#123;</div><div class="line">    class Inner&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class T extends Outer &#123;</div><div class="line">    class InnerT extends Outer.Inner&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果非静态内部类,只能先继承外部类.</p>
+<p>接口中允许有嵌套类,且嵌套类默认就是public static,所以省略public static也可以.</p>
+<p>Java的注释不允许嵌套.</p>
+<p>Java的符号化器非常”贪婪”,<code>j+++++i</code>将被解析为<code>j++ ++ +i</code></p>
+<p>Java标识符必须以字母或$以及<em>开头,后跟字母数字串,而Java中的字母因为是用的unicode编写的,所以字母的范围很宽泛,也可以是中文,或者其他拉丁文啦等等等,当然也包括货币符号<code>$,¥</code>,以及`</em><code>等等.所以对于</code>int 变量 = 1;`这样是合法的.</p>
+<p>Java标识符可以有任意长度.</p>
+<p>没有任何办法对数组元素添加修饰符(<code>final</code>和<code>volatile</code>)</p>
+<p>对于以下数组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int[][] a = &#123;</div><div class="line">          &#123;1&#125;,</div><div class="line">          &#123;1, 2&#125;,</div><div class="line">          &#123;1, 3, 4&#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
+<p>在Java中是合法的,并且,a数组长度为3,a[1]长度为1,a[2]为2,a[3]为3.</p>
+<p>数组是Object的隐式子类.</p>
+<p>strictfp是不具备继承性的,一个声明为strictfp的类或接口不会导致他们的继承类或接口为strictfp的.</p>
+<p><code>x = y = z = 3;</code>Java中是合法的.</p>
+<p>java中有标号,通常和break,continue结合使用<br>如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">int cnt = 0;</div><div class="line">Label:&#123;</div><div class="line">    for(int i=0;i&lt;10;i++)&#123;</div><div class="line">        for(int j=0;j&lt;10;j++)&#123;</div><div class="line">           cnt++;</div><div class="line">           if(i==5 &amp;&amp; j==9)break Label;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">System.out.println(cnt);</div></pre></td></tr></table></figure></p>
+<p>输出为60,break Label的意思是,退出Label指定的循环块.</p>
+<p>同样continue就不举例了.</p>
+<p>Throwable是类而不是接口.</p>
+<p>String 里面有一个方法是intern();,该方法的含义是:当调用 intern 方法时，如果池已经包含一个等于此 String 对象的字符串（该对象由 equals(Object) 方法确定），则返回池中的字符串。否则，将此 String 对象添加到池中，并且返回此 String 对象的引用。具体内容可查看:<a href="http://www.cnblogs.com/wanlipeng/archive/2010/10/21/1857513.html" target="_blank" rel="external">http://www.cnblogs.com/wanlipeng/archive/2010/10/21/1857513.html</a></p>
+<p>对每个线程只能调用一次start()方法,再次调用将会抛出IllegalThreadStateException异常.<br>线程的中止可以通过interrput方法来中止.<br>main方法本身就是通过运行时系统创建的线程来执行的.</p>
+<p>sychronized忘记释放锁是不可能的,不论是抛异常还是return还是正常结束都会释放锁.<br>之所以不用直接存取而使用setter,getter的方法的原因之一是可以同步对所取数据的访问.<br>当一个继承类覆盖同步方法时,新方法既可以是同步方法也可以不是,但是调用超类的方法时,依然是同步方法</p>
+<p>wait调用的时候,必须在while循环中,如果将while改成if,wait被唤醒的时候可能状态又一次被改变,这个时候再向下运行会导致出错.另外,notify,notifyAll如果被调用的时候没有等待线程,则通知就会被忽略<br>wait,notify,notifyAll一般是和sychronized配合使用.</p>
+<p>线程Thread,可以通过setPriority来改变线程的优先级.<br>一般来说,用户程序的线程优先级低于稀有事件,如用户键盘输入,点击Esc希望程序退出等.</p>
+<p>Thread.sleep()方法休眠的事件并不是精确的,其休眠时间至少是所指定的毫秒数.注意是至少,即无法保证是准确的传入的时间.<br>调用线程的destroy()方法是比较极端的,它终止线程的执行,不管任务是什么,也不释放任何锁,所以使用该方法可能会导致其他线程永远等待.<br>线程中的join()方法,意为等待该线程任务结束,类似wait()但不是wait.查看源码可知道其内部是通过wait()来实现的.</p>
+<p>包装类中的Byte,Short,Integer,Long,Float,Doublde等都是继承于Number类型<br>Boolean类型是不能比较的。</p>
+<p>ClassLoader中的defineClass方法返回Class对象，仅仅表示一个被载入的类，但是它还没有被链接。可以通过显示调用resolveClass来进行链接。<br>类的准备一般经过三步：</p>
+<ol>
+<li>载入：得到类实现的字节码，并创建Class对象</li>
+<li>链接：验证类的字节码是否遵循语言规范，让虚拟机为类的静态域分配空间，并且解析出类中的全部引用(可选)，必要时载入被引用的类。</li>
+<li>初始化：先初始化父类(必要时)再执行所有的静态初始化函数和类的静态初始化块。</li>
+</ol>
+<p>System.gc()和Runtime.getRuntime().gc()是等效的。也就是说，gc是Runtime中的方法。<br>Runtime中有freeMemory()方法，用来返回系统中可用内存字节数的估计值，而totalMemory()返回系统全部内存资源的字节值。</p>
+<p>IO字节流中的read方法是读取一个字节，虽然返回的是int值，其原因在于需要其他数据来标记文件末尾或者其他标记。<br>当然字符流中也是返回int，但是其有效值是最后16位char值。<br>InputStream中的available()方法返回能够读到的字节。<br>Reader中的ready()方法告诉你是否有数据。</p>
+<p>InputStreamReader构造方法可以指定字节编码格式。</p>
+<p>SequenceInputStream可以将多个InputStream连接读入</p>
+<p>write(int b)只有最后8位能够被写入。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/16/Fragment和Activity嵌套的生命周期/" rel="next" title="Fragment和Activity嵌套的生命周期">
+                <i class="fa fa-chevron-left"></i> Fragment和Activity嵌套的生命周期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/19/JAVA编程思想读书笔记/" rel="prev" title="JAVA编程思想读书笔记">
+                JAVA编程思想读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/19/Java编程语言笔记/"
+           data-title="Java编程语言笔记" data-url="http://yoursite.com/2017/03/19/Java编程语言笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

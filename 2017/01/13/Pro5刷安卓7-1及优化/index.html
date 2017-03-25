@@ -1,0 +1,687 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="魅族的系统用着虽然安心，但是老是升级来升级去，一会这卡一会那卡，特别不舒服，之前装过安卓7.1用着比较流畅，所以记录下教程，方便以后重装。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pro5刷安卓7.1及优化">
+<meta property="og:url" content="http://yoursite.com/2017/01/13/Pro5刷安卓7-1及优化/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="魅族的系统用着虽然安心，但是老是升级来升级去，一会这卡一会那卡，特别不舒服，之前装过安卓7.1用着比较流畅，所以记录下教程，方便以后重装。">
+<meta property="og:updated_time" content="2017-01-13T04:42:50.406Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pro5刷安卓7.1及优化">
+<meta name="twitter:description" content="魅族的系统用着虽然安心，但是老是升级来升级去，一会这卡一会那卡，特别不舒服，之前装过安卓7.1用着比较流畅，所以记录下教程，方便以后重装。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/13/Pro5刷安卓7-1及优化/"/>
+
+
+
+
+
+  <title> Pro5刷安卓7.1及优化 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/13/Pro5刷安卓7-1及优化/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Pro5刷安卓7.1及优化
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-13T12:37:20+08:00">
+                2017-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/13/Pro5刷安卓7-1及优化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/13/Pro5刷安卓7-1及优化/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>魅族的系统用着虽然安心，但是老是升级来升级去，一会这卡一会那卡，特别不舒服，之前装过安卓7.1用着比较流畅，所以记录下教程，方便以后重装。</p>
+<a id="more"></a>
+<p>以下资料来自：<br><a href="http://tieba.baidu.com/p/4466914828" target="_blank" rel="external">PRO5变身国际版&gt;解BL锁&gt;刷入TWRP3.0教程-来自xda神</a><br><a href="http://forum.xda-developers.com/meizu-pro-5/how-to/tutorial-unlock-bootloader-meizu-pro-5-t3303127" target="_blank" rel="external">Unlock the bootloader of Meizu PRO 5</a><br><a href="http://forum.xda-developers.com/meizu-pro-5/development/rom-aicp-nougat-12-0-unofficial-t3478872" target="_blank" rel="external">[ROM][7.1.][MEIZU PRO5][20161107] crDroid 7.1 UNOFFICIAL</a></p>
+<p>注意：<br>刷机有风险，手机可能会变砖，一切风险自行承担！一切风险自行承担！一切风险自行承担！重要的事情说三遍。</p>
+<h1 id="变身国际版"><a href="#变身国际版" class="headerlink" title="变身国际版"></a>变身国际版</h1><p>首先，国外论坛已经有人把pro5升级到安卓7.1，而刷这个包的前提是手机是国际版的，其中使用的方法对大陆版的无效，所以首先就要把大陆版的变身为国际版本。</p>
+<p>以下内容是复制的上方的第一个连接里的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">如果不知道我在说什么，请不要尝试！任何后果自负！！如果不知道我在说什么，请不要尝试！任何后果自负！！如果不知道我在说什么，请不要尝试！任何后果自负！！重要事情说三遍，百分百原创，谢绝转载</div><div class="line">第一步，把中国版切换成国际版</div><div class="line">首先root手机然后安装supersu pro 一定要是Pro版本！如果你已经安装了free版本就点重新安装 然后网上找个pro版本装上</div><div class="line">安装“Seu.chainfire.supersu.256.apk”选择常规方式安装然后重启</div><div class="line">安装 “ru.meefik.busybox.apk”打开，授予权限</div><div class="line">安装“com.jrummy.root.browserfree.apk”打开授予权限，然后到[/dev/block/platform/15570000.ufs/by-name/proinfo] 点 “proinfo”然后 “open as” 然后 “text file”然后 “RB Text Editor” 把 “M576_mobile_public”切换到 “M576_intl_official”一定要按照这个来，然后保存重启</div><div class="line">看一下proinfo file看下现在是不是 intl_official状态</div><div class="line">如果是的话说明已经成功切换成国际版了</div><div class="line">第一步所需软件：链接：http://pan.baidu.com/s/1c1KUJmS 密码：iabu</div><div class="line"></div><div class="line">第二步：在国际版的情况下解锁</div><div class="line">首先下载一个基带包，坑爹啊快800M，不过没事我已经用小水管从国外网盘搬运回来了链接：http://pan.baidu.com/s/1ge5V6UJ 密码：twhv</div><div class="line">然后备份数据，虽说一般不会清空数据但是万一呢</div><div class="line">官方系统升级的方式刷入这个update包</div><div class="line">关机长按开机键加音量下键进入 fastboot模式</div><div class="line">电脑上安装adb驱动跟fastboot，确保电脑可以识别PRO 5</div><div class="line">再输入命令：fastboot devices</div><div class="line">再次输入命令：fastboot oem unlock</div><div class="line">确认是不是解锁成功的话重启再次进入fastboot看一下是不是下面的画面</div><div class="line"></div><div class="line">第三步：刷入TWRP3.0</div><div class="line">下载img文件，链接：http://pan.baidu.com/s/1qXWH624 密码：ebob</div><div class="line">进入fastboot跟第二步一样输入fastboot flash recovery TWRP_3.0_m86.img</div></pre></td></tr></table></figure>
+<p>注意如果当前flyme系统版本是最新的话，上述中的修改文件内容会失败，正确做法是首先将系统版本降到5.1.2，接着再采用上述方法进行操作。</p>
+<h1 id="开始刷机"><a href="#开始刷机" class="headerlink" title="开始刷机"></a>开始刷机</h1><p>到上述第三个连接中下载安卓包<br>本人下载的是crDroidAndroid-7.1-20161115-m86.zip，接着就是进入TWRP进行三清,自行查看三清方法<br>TWRP的使用方法&amp;双清、三清、四清解释，刷机必看</p>
+<p><a href="http://www.oneplusbbs.com/thread-942394-1-1.html" target="_blank" rel="external">进入TWRP的方法是同时按着音量上键和电源键</a></p>
+<p>三清必须要清的是data数据，本人第一次刷的时候没有清除数据，所以一直失败。</p>
+<p>清除完毕后，TWRP上边会有sucessful的提示。</p>
+<p>接着返回选择setting，去掉第一个选项:Zip signature verification并保存，然后返回，选择install，进入文件夹中，选择你下载好的安装包，即：crDroidAndroid-7.1-20161115-m86.zip，然后有个选项是Zip signature verification,这个选项不用勾选，接着滑动即可开始刷机。</p>
+<p>刷机完成即大功告成。</p>
+<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>首先更新基带，因为刷完安卓7.1后无法使用移动4G,需要使用035基带，基带在百度云里，刷入方法跟刷系统一样，使用TWRP刷入即可。</p>
+<p>接着使用软件，将信号上的xx去掉。</p>
+<p>最后就是刷黑域，同样在百度云里，一键刷入即可。</p>
+<p>以上。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/10/StringBuilder和StringBuffer的区别/" rel="next" title="StringBuilder和StringBuffer的区别">
+                <i class="fa fa-chevron-left"></i> StringBuilder和StringBuffer的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/16/Android重新学习/" rel="prev" title="Android重新学习">
+                Android重新学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/13/Pro5刷安卓7-1及优化/"
+           data-title="Pro5刷安卓7.1及优化" data-url="http://yoursite.com/2017/01/13/Pro5刷安卓7-1及优化/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变身国际版"><span class="nav-number">1.</span> <span class="nav-text">变身国际版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始刷机"><span class="nav-number">2.</span> <span class="nav-text">开始刷机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优化"><span class="nav-number">3.</span> <span class="nav-text">优化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

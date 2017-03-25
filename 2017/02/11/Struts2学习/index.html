@@ -1,0 +1,796 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="j2ee学习三—-Struts2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Struts2学习">
+<meta property="og:url" content="http://yoursite.com/2017/02/11/Struts2学习/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="j2ee学习三—-Struts2">
+<meta property="og:updated_time" content="2017-02-14T13:17:02.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Struts2学习">
+<meta name="twitter:description" content="j2ee学习三—-Struts2">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/11/Struts2学习/"/>
+
+
+
+
+
+  <title> Struts2学习 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/11/Struts2学习/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Struts2学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-11T23:44:07+08:00">
+                2017-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/11/Struts2学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/11/Struts2学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>j2ee学习三—-Struts2</p>
+<a id="more"></a>
+<h1 id="action"><a href="#action" class="headerlink" title="action"></a>action</h1><p>首先需要一个简单的例子</p>
+<ol>
+<li>创建一个Web project,起名为Strust2_first</li>
+<li>接着将自己下载的strust2里面的示例包解压，将来WEB-INF下的lib复制到Strust2_first项目的lib下</li>
+<li><p>将示例文件里的web.xml中的两个filter开头的标签复制到自己的web.xml中如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;filter&gt;</div><div class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</div><div class="line">    &lt;filter-class&gt;org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt;</div><div class="line">&lt;/filter&gt;</div><div class="line"></div><div class="line">&lt;filter-mapping&gt;</div><div class="line">    &lt;filter-name&gt;struts2&lt;/filter-name&gt;</div><div class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</div><div class="line">&lt;/filter-mapping&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>将示例文件下的WEB-INF下的classes下的 strus.xml复制到Strust2_first项目的src下，然后修改后如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</div><div class="line">&lt;!DOCTYPE struts PUBLIC</div><div class="line">	&quot;-//Apache Software Foundation//DTD Struts Configuration 2.3//EN&quot;</div><div class="line">	&quot;http://struts.apache.org/dtds/struts-2.3.dtd&quot;&gt;</div><div class="line"></div><div class="line">&lt;struts&gt;</div><div class="line"></div><div class="line">&lt;!--  </div><div class="line">    &lt;constant name=&quot;struts.enable.DynamicMethodInvocation&quot; value=&quot;false&quot; /&gt;</div><div class="line"></div><div class="line">--&gt;</div><div class="line">    &lt;!-- Add packages here --&gt;</div><div class="line">    &lt;constant name=&quot;struts.devMode&quot; value=&quot;true&quot; /&gt;    &lt;!-- 该选项配置的意思是启用开发模式，修改文件后，tomcat服务器可以立即响应 --&gt;</div><div class="line"></div><div class="line">   &lt;package name=&quot;default&quot; namespace=&quot;/&quot; extends=&quot;struts-default&quot;&gt;</div><div class="line">        &lt;action name=&quot;hello&quot;&gt;</div><div class="line">        	&lt;result&gt;/index.jsp&lt;/result&gt;</div><div class="line">        &lt;/action&gt;</div><div class="line">    &lt;/package&gt;</div><div class="line">&lt;/struts&gt;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样配置就完成了，然后开启服务器运行项目，地址栏输入<a href="http://localhost:8080/Strust_first/hello" target="_blank" rel="external">http://localhost:8080/Strust_first/hello</a> 就会发现显示的是index.jsp页面</p>
+<h2 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h2><p>action中的namespace决定action的访问路径，默认为””，可以接受所有路径的action,如上述中的struts.xml中的配置，package中有个属性是namespace，他的值是”/“,该namespcae也可以写作/xxx/yyy，则此时对应hello访问的方式就是/xxx/yyy/hello。</p>
+<p>如果namespcae为默认值””或者”/“，则无论在地址栏输入/xxx/yyy/hello,还是/hello,还是/xxx/hello，则都会由该package处理，都会返回index.jsp.</p>
+<h2 id="action执行流程"><a href="#action执行流程" class="headerlink" title="action执行流程"></a>action执行流程</h2><ol>
+<li>客户端敲入地址</li>
+<li>服务端首先读取web.xml，web.xml读取到strust2的配置，然后交给相应的类处理</li>
+<li>该类需要读取strus.xml，读取到对应的package，找到package对应action的class,执行相应的方法execute()后取得返回值</li>
+<li>找到返回值和resutl标签值相对应的值，比如返回为”sucess”则<result name="sucess">/index.jsp</result>，则就会访问index.jsp文件。</li>
+</ol>
+<p>比如访问locahost:8080/Strust2_first/hello，则服务器执行流程为，首先访问web.xml，接着访问strust.xml,在strust.xml找到一个package,该package的namespace为”/“跟当前的路径匹配，接着找到一个name为hello的action,访问该action对应的class类，如果没有指定方法，则执行该类中的execute()方法，该方法返回一个字符串，然后通过该字符串找到对应的result，去访问对应的jsp文件。</p>
+<h2 id="action属性"><a href="#action属性" class="headerlink" title="action属性"></a>action属性</h2><ol>
+<li>name,表示访问的时候书写的名字，比如name=”hello”，则访问该action,就是/hello</li>
+<li>class，表示访问到该action后，执行该类，比如class=”org.xxx.yyy.ActionTmp”,则会找到该ActionTmp类</li>
+<li>method，表示匹配到该action后，执行class类中的某个方法</li>
+</ol>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;action name=&quot;hello&quot; class=&quot;com.tmp.xxx.TmpAction&quot; method =&quot;add&quot;&gt;</div><div class="line">  &lt;result name=&quot;sucess&quot;&gt;/index.jsp&lt;result&gt;</div><div class="line">&lt;/action&gt;</div></pre></td></tr></table></figure></p>
+<p>如果我想要指定执行class对应的add方法，可以用以上方式，还有一种方式，不用指定method,在访问该action的时候，在后边加上!add，如：locahost8080/Strust2_first/hello!add,这样就能执行对应的add方法了。一般推荐第二种，第二种就叫做DMI，动态方法调用</p>
+<p>但是注意，如果在struts.xml中配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;constant name=&quot;struts.enable.DynamicMethodInvocation&quot; value=&quot;false&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>这一项后，DMI即动态方法调用会关闭，即使用！将无法调用相应的方法，会显示出错</p>
+<h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><p>使用通配符可以将配置量降到最低，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;action name=&quot;Hello*&quot; class=&quot;com.tmp.TmpAction&quot; method=&quot;&#123;1&#125;&quot;&gt;</div><div class="line">  &lt;result&gt;/Hello&#123;1&#125;.jsp&lt;/result&gt;</div><div class="line">&lt;/action&gt;</div></pre></td></tr></table></figure>
+<p>其中{1}表示第1个<em>，这个</em>就是通配符，如果访问HelloWorld,则*就会对应World,则此时{1}的值就是World,那么method的方法就是World()，同时返回的是HelloWorld.jsp。</p>
+<p>同理如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;action name=&quot;*_*&quot; class=&quot;com.tmp.&#123;1&#125;Action&quot; method=&quot;&#123;2&#125;&quot;&gt;</div><div class="line">  &lt;result&gt;/&#123;1&#125;_&#123;2&#125;.jsp&lt;/result&gt;</div><div class="line">&lt;/action&gt;</div></pre></td></tr></table></figure>
+<p>该种方法对应的则比较灵活。<br>比如访问Student_add，则对应的类为StudentAction,同时对应的方法是add()方法，那么返回的结果是Student_add.jsp，<br>同样的访问Teacher_delete，则对应的类为TeacherAction,同时对应的方法是delete()方法，那么返回的结果是Teacher_delete.jsp</p>
+<h2 id="action传参数"><a href="#action传参数" class="headerlink" title="action传参数"></a>action传参数</h2><p>action传参接收参数有三种方式</p>
+<p>比如访问locahost:8080/Strust2_first/hello?name=a&amp;age=2</p>
+<h3 id="第一种，用的最多"><a href="#第一种，用的最多" class="headerlink" title="第一种，用的最多"></a>第一种，用的最多</h3><p>在action对应的class文件中，添加两个私有类型变量，并且设置对应的set,get方法，如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">public class FirstAction extends ActionSupport&#123;</div><div class="line"></div><div class="line">	private String name;</div><div class="line">	private int age;</div><div class="line"></div><div class="line">	public int getAge() &#123;</div><div class="line">		return age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setAge(int age) &#123;</div><div class="line">		this.age = age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public String execute() throws Exception &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		return super.execute();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意，其中private String name，这种变量的名字是可以改的，但是setName()以及getName()方法名字是不可以改的，因为获取name变量，是一定会调用setName，getName方法的。</p>
+<h3 id="第二种DomainModel"><a href="#第二种DomainModel" class="headerlink" title="第二种DomainModel"></a>第二种DomainModel</h3><p>首先要设置bean对象，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class User&#123;</div><div class="line">  private String name;</div><div class="line">  private int age;</div><div class="line"></div><div class="line">  public int getAge() &#123;</div><div class="line">    return age;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  public void setAge(int age) &#123;</div><div class="line">    this.age = age;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  public String getName() &#123;</div><div class="line">    return name;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  public void setName(String name) &#123;</div><div class="line">    this.name = name;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着修改FirstAction,注意也要加上set,get方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public class FirstAction extends ActionSupport&#123;</div><div class="line"></div><div class="line">	private User user;</div><div class="line"></div><div class="line">	public int getUser() &#123;</div><div class="line">		return user;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setUser(User user) &#123;</div><div class="line">		this.user = user;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public String execute() throws Exception &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		return super.execute();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样访问的方式就变为:locahost:8080/Strust2_first/hello?user.name=a&amp;user.age=2</p>
+<h3 id="第三种，不常用"><a href="#第三种，不常用" class="headerlink" title="第三种，不常用"></a>第三种，不常用</h3><p>ModelDriven<br>该方式是使Action类实现ModelDriven，如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class FirstAction extends ActionSupport implements ModelDriven&lt;User&gt;&#123;</div><div class="line"></div><div class="line">	private User user = new User(); //注意这里要自己new,系统不会自动给你new的</div><div class="line"></div><div class="line">  @Override</div><div class="line">	public User getModel() &#123;</div><div class="line">		return user;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public String execute() throws Exception &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		return super.execute();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>访问方式为：locahost:8080/Strust2_first/hello?name=a&amp;age=2<br>注意这种方式的执行流程是struts会判断Action是否实现了ModelDriven接口，实现的话就会调用getModel返回对应Model,然后执行Model中对应的set,get方法。</p>
+<h2 id="简单数据校验"><a href="#简单数据校验" class="headerlink" title="简单数据校验"></a>简单数据校验</h2><p>在Action中只能返回String字符串，但是我想要再Action的方法中传递给JSP一些错误信息的时候怎么办呢？</p>
+<p>此时需要一个方法this.addFiledError(“name”,”this is why name is error”);<br>这个时候跳转到的jsp怎么获取到错误信息呢？<br>首先指定标签库，注意其中前缀名是可改的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%@taglib url=&quot;/strust-tags&quot; prefix=&quot;s&quot; %&gt;</div></pre></td></tr></table></figure></p>
+<p>接着获取方法为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:fielderror filedName=&quot;name&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p><code>&lt;s:debug&gt;&lt;/s:debug&gt;</code>该标签可以进行debug，常用<br><code>&lt;s:property value=&quot;errors&quot; /&gt;</code>常用，取出debug中的ValueStack中的值</p>
+<h2 id="访问Web元素，request-session-application"><a href="#访问Web元素，request-session-application" class="headerlink" title="访问Web元素，request,session,application"></a>访问Web元素，request,session,application</h2><p>简单来说这个问题就是，如何在Action类中，取得request,session,application对象呢？</p>
+<h3 id="取得map型对象"><a href="#取得map型对象" class="headerlink" title="取得map型对象"></a>取得map型对象</h3><p>在Action中写下面代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">private Map request;</div><div class="line">private Map session;</div><div class="line">private Map application;</div><div class="line"></div><div class="line">public MyFirstAction()&#123;</div><div class="line">    request = (Map) ActionContext.getContext().get(&quot;request&quot;);</div><div class="line">    session = ActionContext.getContext().getSession();</div><div class="line">    application = ActionContext.getContext().getApplication();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>即在构造函数中，使用ActionContext类来取得上下文并获取request,session,application等Map对象，注意因为获取的是Map对象，所以给某一个对象赋参，就是使用put方法，如request.put(“name”,”msg”);</p>
+<p>之后，再在.jsp文件中，如何获取在Action中给request传递的参数呢，方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;%@taglib url=&quot;/strust-tags&quot; prefix=&quot;s&quot; %&gt;</div><div class="line"></div><div class="line">&lt;s:property value=&quot;#request.name&quot; /&gt;</div><div class="line">或</div><div class="line">&lt;%=request.getAttribute(&quot;name&quot;) %&gt;</div></pre></td></tr></table></figure>
+<hr>
+<p>另一种方式是使用的依赖注入的方式，即不需要自己去获取，而是别人获取后给自己注入进来，需要实现RequestAware,SessionAware,ApplicationAware等接口，并实现其中的setRequest,setSession,setApplication等方法。如代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public class MyFirstAction extends ActionSupport implements RequestAware,SessionAware,ApplicationAware&#123;</div><div class="line"></div><div class="line">    private Map&lt;String,Object&gt; request;</div><div class="line">    private Map&lt;String,Object&gt; session;</div><div class="line">    private Map&lt;String,Object&gt; application;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void setApplication(Map&lt;String, Object&gt; map) &#123;</div><div class="line">        this.application = map;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void setRequest(Map&lt;String, Object&gt; map) &#123;</div><div class="line">        this.request = map;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void setSession(Map&lt;String, Object&gt; map) &#123;</div><div class="line">        this.session  map;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute() throws Exception &#123;</div><div class="line">        return &quot;add&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>利用依赖注入方式是比较好的，降低耦合，俗称解耦，所以一般建议使用的时候只用该种方式。</p>
+<h3 id="取得HttpServletRequest，HttpSession-ServletContext等对象方式"><a href="#取得HttpServletRequest，HttpSession-ServletContext等对象方式" class="headerlink" title="取得HttpServletRequest，HttpSession,ServletContext等对象方式"></a>取得HttpServletRequest，HttpSession,ServletContext等对象方式</h3><p>其实需要拿到HttpServletRequest,然后通过该对象获取其他两个，如代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class MyFirstAction extends ActionSupport &#123;</div><div class="line"></div><div class="line"></div><div class="line">    private HttpServletRequest request;</div><div class="line">    private HttpSession session;</div><div class="line">    private ServletContext application;</div><div class="line"></div><div class="line">    public MyFirstAction()&#123;</div><div class="line">        request = ServletActionContext.getRequest();</div><div class="line">        session = request.getSession();</div><div class="line">        application = session.getServletContext();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute() throws Exception &#123;</div><div class="line">        return &quot;add&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>同样使用DI的方式是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class MyFirstAction extends ActionSupport implements ServletRequestAware&#123;</div><div class="line"></div><div class="line"></div><div class="line">    private HttpServletRequest request;</div><div class="line">    private HttpSession session;</div><div class="line">    private ServletContext application;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute() throws Exception &#123;</div><div class="line">        return &quot;add&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void setServletRequest(HttpServletRequest request) &#123;</div><div class="line">        this.request = request;</div><div class="line">        session = request.getSession();</div><div class="line">        application = session.getServletContext();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当然，依然是建议使用第二种DI的方式。</p>
+<h2 id="默认Action"><a href="#默认Action" class="headerlink" title="默认Action"></a>默认Action</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;package name=&quot;default&quot; namespace=&quot;/&quot; extends=&quot;struts-default&quot;&gt;</div><div class="line">    &lt;default-action-ref name=&quot;hello&quot;&gt;&lt;/default-action-ref&gt;</div><div class="line">    &lt;action name=&quot;hello&quot; class=&quot;com.qxg.action.MyFirstAction&quot; &gt;</div><div class="line">        &lt;result name=&quot;me&quot;&gt;/index.jsp&lt;/result&gt;</div><div class="line">        &lt;result name=&quot;add&quot;&gt;/add.jsp&lt;/result&gt;</div><div class="line">    &lt;/action&gt;</div><div class="line">&lt;/package&gt;</div></pre></td></tr></table></figure>
+<p>在上述代码中出现了<default-action-ref name="hello"></default-action-ref><br>这句话表示的意思是，如果在地址栏中敲入了一个不存在的地址，或者没有敲下任何的action，这个时候就会交给默认的action处理，在这个地方name=”hello”，即会交给hello这个action去处理，或者是说，相当于在地址栏中敲下了/hello</p>
+<h2 id="result配置"><a href="#result配置" class="headerlink" title="result配置"></a>result配置</h2><p>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;result name=&quot;sucess&quot;&gt;/index.jsp&lt;/result&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="result类型"><a href="#result类型" class="headerlink" title="result类型"></a>result类型</h3><p>什么是result类型呢，其实就是 <result type="“dispatcher”">/index.jsp</result>中的type，如果不写的话默认就是dispatcher，意思就是服务器跳转。<br>大致分为如下：</p>
+<ol>
+<li>dispatcher，服务器跳转，只能跳转.jsp，不能跳转到action，但是地址栏上显示的是action的内容</li>
+<li>redirect ,客户端跳转，同上，但是地址栏上显示.jsp的内容</li>
+<li>chain， 访问action，服务器跳转</li>
+<li>redirectAction 访问action,客户端跳转</li>
+</ol>
+<p>前两个常用,后两个不常用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 跳转r1.jsp页面，地址栏显示的是/r1 --&gt;	</div><div class="line">       &lt;action name=&quot;r1&quot;&gt;</div><div class="line">           &lt;result type=&quot;dispatcher&quot;&gt;/r1.jsp&lt;/result&gt;</div><div class="line">       &lt;/action&gt;</div><div class="line">	</div><div class="line">&lt;!-- 跳转r2.jsp页面，地址栏显示的是/r2.jsp --&gt;	</div><div class="line">       &lt;action name=&quot;r2&quot;&gt;</div><div class="line">           &lt;result type=&quot;redirect&quot;&gt;/r2.jsp&lt;/result&gt;</div><div class="line">       &lt;/action&gt;</div><div class="line"></div><div class="line">&lt;!-- 跳转r1.jsp页面，地址栏显示的是/r3 --&gt;</div><div class="line">       &lt;action name=&quot;r3&quot;&gt;</div><div class="line">           &lt;result type=&quot;chain&quot;&gt;/r1&lt;/result&gt;</div><div class="line">       &lt;/action&gt;</div><div class="line"></div><div class="line">&lt;!-- 跳转r2.jsp页面，地址栏显示的是/r2.jsp --&gt;</div><div class="line">       &lt;action name=&quot;r4&quot;&gt;</div><div class="line">           &lt;result type=&quot;redirectAction&quot;&gt;/r2&lt;/result&gt;</div><div class="line">       &lt;/action&gt;</div></pre></td></tr></table></figure>
+<h2 id="GlobalResult"><a href="#GlobalResult" class="headerlink" title="GlobalResult"></a>GlobalResult</h2><p>顾名思义，全局result，如果很多action公用一个result，那么就可以把这个result写到global-results标签内：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;global-results&gt;</div><div class="line">	&lt;result name=&quot;global&quot;&gt;/global.jsp&lt;/result&gt;</div><div class="line">&lt;/global-results&gt;</div></pre></td></tr></table></figure>
+<p>这个是对于相同包的情况，但是如果另一个包也想访问global型的result呢？</p>
+<p>这个时候，我们就可以让这个包继承于一个包含global-results的包，即：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;package extends=&quot;xxx&quot;&gt;&lt;/package&gt;</div></pre></td></tr></table></figure>
+<h2 id="DynamicResult（用的不多）"><a href="#DynamicResult（用的不多）" class="headerlink" title="DynamicResult（用的不多）"></a>DynamicResult（用的不多）</h2><p>根据Action类文件中赋值的变量不同而跳转到不同页面，直接来看代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public class MyFirstAction extends ActionSupport&#123;</div><div class="line"></div><div class="line">    private String r;</div><div class="line"></div><div class="line">    public String getR() &#123;</div><div class="line">        return r;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setR(String r) &#123;</div><div class="line">        this.r = r;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute() throws Exception &#123;</div><div class="line">        r = &quot;/add.jsp&quot;;</div><div class="line">        return &quot;success&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着是struts.xml配置文件中的action<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;action name=&quot;hello&quot; class=&quot;com.qxg.action.MyFirstAction&quot;&gt;</div><div class="line">     &lt;result&gt;$&#123;r&#125;&lt;/result&gt;</div><div class="line">&lt;/action&gt;</div></pre></td></tr></table></figure></p>
+<p>如上，即要在Action，设置String 变量，并设置set,get方法，这时候，表示此action的属性中有了r，那么在struts.xml中就可以通过${r}来把r值给取出来，可以通过<s:debug></s:debug>可以看到堆栈中存在r的值。</p>
+<p>假设地址栏中传入action一些参数，如：hello?name=a,类似这样的方式，传入name参数，然后在Action类中使用set,get方法来取得name,然后就可以在struts.xml中通过${name}，来取得其值。</p>
+<h1 id="OGNL（Object-graph-navigation-language）"><a href="#OGNL（Object-graph-navigation-language）" class="headerlink" title="OGNL（Object graph navigation language）"></a>OGNL（Object graph navigation language）</h1><p>我们已经熟知了<s:property value="name">这种取值方式，而OGNL就是value中的内容。<br>其实就是访问对象中的某值，比如一个Cat对象中有一个Dog变量friend,那么访问该friend的名字的方法就是cat.friend.name，这种方式就是ognl，同样，地址栏传值也是使用这种方式<br>在ognl同样可以使用对象中的方法。<br>如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=&quot;xx.toString()&quot; /&gt;</div></pre></td></tr></table></figure></s:property></p>
+<p>XXXXX表示包的全名<br>访问静态方法：@XXXXX@y()<br>访问静态属性：@XXXXX@Y<br>访问Math静态方法：@@max(2,3) ,注意@@就是表示Math类，其他不管。<br>访问构造方法：new XXXXX()<br>访问List：直接写名字就List名字就行，如class中ArrayList<string> list; 那么就写list<br>访问List中某个元素list[1]<br>访问List中某个属性的集合 list.{age}，表示将list所有的元素取出age之后组成的集合<br>访问set和List基本一样，但是取不到单个元素，因为无序<br>访问Map :tmpMap<br>访问Map单个元素：tmpMap.key,或者tmpMap.[‘key’],注意要用单引号<br>访问Map所有的key，tmpMap.keys，同样tmpMap.values，则是所有value的集合</string></p>
+<p>投影，即过滤 ：users.{?#this.age=1}.{age},表示把users里面所有age等于1 的集合，然后再去取出该集合中的所有age的集合。<br>还有一些写法如下：<br>users.{^#this.age=1}.{age} 、users.{$#this.age=1}.{age}<br>其中?#表示所有符合条件的，^#表示第一个符合条件的，$#表示最后一个符合条件的。但是虽然返回一个元素，但是依然是集合。</p>
+<p>利用中括号可以访问<s:debug>中的对象，其中Action类对象永远在第一位，即[0]就是一个自己定义的Action对象，可以通过该方法访问其中的method，或者静态变量等。</s:debug></p>
+<h1 id="struts标签"><a href="#struts标签" class="headerlink" title="struts标签"></a>struts标签</h1><h2 id="通用标签"><a href="#通用标签" class="headerlink" title="通用标签"></a>通用标签</h2><h3 id="property"><a href="#property" class="headerlink" title="property"></a>property</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=&quot;username&quot; /&gt; 表示取出传入的参数username值</div><div class="line">&lt;s:property value=&quot;&apos;username&apos;&quot; /&gt; 表示普通的字符串</div><div class="line">&lt;s:property value=&quot;tmp&quot; default=&quot;管理员&quot; /&gt; 表示tmp取不出值是，该值就为管理员</div><div class="line">&lt;s:property value=&quot;&apos;&lt;hr /&gt;&apos;&quot; escape=&quot;false&quot; /&gt; escape默认为true,如果为false,表示，输出的结果不会转换为字符串，而可以让浏览器去解析。</div></pre></td></tr></table></figure>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;s:set var=&quot;adminName&quot; value=&quot;username&quot; /&gt;表示设定adminName的值为username,默认会放到request，ActionContext里面。注意不会在浏览器中输出。</div><div class="line">取值为：&lt;s:property value=&quot;#request.adminName&quot; /&gt;</div><div class="line">那如果想把值放入其他对象呢，这个时候就要用scope，如：</div><div class="line">&lt;s:set var=&quot;adminName&quot; value=&quot;username&quot; scope=&quot;application&quot; /&gt;这个时候就只能从application中取值</div></pre></td></tr></table></figure>
+<h3 id="bean"><a href="#bean" class="headerlink" title="bean"></a>bean</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;s:bean name=&quot;com.qxg.Dog&quot; var=&quot;myDog&quot;&gt;</div><div class="line">	&lt;s:param name=&quot;name&quot; value=&quot;&apos;hashiqi&apos;&quot; /&gt;</div><div class="line">&lt;/s:bean&gt;</div></pre></td></tr></table></figure>
+<p>表示创建一个叫myDog的Dog对象，其中param是设置属性，通过set方法。</p>
+<h3 id="include-（少用）"><a href="#include-（少用）" class="headerlink" title="include （少用）"></a>include （少用）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">表示包含一个jsp等页面</div><div class="line">&lt;s:include value=&quot;myJsp.jsp&quot;&gt;</div><div class="line">注意，其中的value不论你写什么，都不会被解析，都会当做字符串处理，那么如果是ognl表达式怎么办呢？</div><div class="line">比如，value的值要取request中的某值，那么就需要使用%&#123;&#125;来解析，</div><div class="line">如&lt;s:include value=&quot;%&#123;#request.xxjsp&#125;&quot;&gt;,这样就会把request中的xxjsp值取出来，如果不加%&#123;&#125;,那么就会寻找/#request.xxjsp，这样一定会出错。</div></pre></td></tr></table></figure>
+<h2 id="控制标签"><a href="#控制标签" class="headerlink" title="控制标签"></a>控制标签</h2><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">其中test数据类型是boolean型，可以直接在里面写 xxx &gt; y ,或xxx == y</div><div class="line">&lt;s:if test=&quot;%&#123;false&#125;&quot;&gt;</div><div class="line">    &lt;div&gt;不会显示&lt;/div&gt;</div><div class="line">&lt;/s:if&gt;</div><div class="line">&lt;s:elseif test=&quot;%&#123;true&#125;&quot;&gt;</div><div class="line">    &lt;div&gt;会显示&lt;/div&gt;</div><div class="line">&lt;/s:elseif&gt;</div><div class="line">&lt;s:else&gt;</div><div class="line">    &lt;div&gt;不会显示&lt;/div&gt;</div><div class="line">&lt;/s:else&gt;</div></pre></td></tr></table></figure>
+<p>注意if也可以单独使用</p>
+<h3 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;s:iterator value=&quot;&#123;1,2,3&#125;&quot;&gt;</div><div class="line">	&lt;s:property&gt;</div><div class="line">&lt;s:iterator&gt;</div><div class="line">内部会执行3次，每次的值是1,2,3，所以输出的结果是123</div><div class="line"></div><div class="line">&lt;s:iterator value=&quot;&#123;&apos;aaa&apos;,&apos;bbb&apos;,&apos;ccc&apos;&#125;&quot; var=&quot;x&quot;&gt;</div><div class="line">	&lt;s:property value=&quot;#x.toUpperCase()&quot;/&gt;</div><div class="line">&lt;/s:iterator&gt;</div><div class="line">其中var表示的意思是每次取出来的值的名字都是x，那么就可以拿着x进行各种操作了。 </div><div class="line">如何取得当前遍历的个数呢？</div><div class="line">&lt;s:iterator value=&quot;&#123;&apos;aaa&apos;,&apos;bbb&apos;,&apos;ccc&apos;&#125;&quot; status=&quot;status&quot;&gt;</div><div class="line">	遍历过的元素总数&lt;s:property value=&quot;#status.count&quot;/&gt;</div><div class="line">	遍历的元素索引 &lt;s:property value=&quot;#status.index&quot; /&gt;</div><div class="line">	当前是偶数？ &lt;s:property value=&quot;#status.even&quot; /&gt;</div><div class="line">	...</div><div class="line">&lt;/s:iterator&gt;</div></pre></td></tr></table></figure>
+<h1 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h1><p>我们在写Action类，继承于ActionSupport的时候，重写execute方法，发现该方法会抛出异常，那么抛出的异常由谁类处理呢？这个时候，在配置文件中，某个标签就起到了作用，如代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;action name=&quot;tmp&quot; class=&quot;com.qxg.TmpAction&quot;&gt;</div><div class="line">	&lt;result name=&quot;success&quot;&gt;/index.jsp&lt;/result&gt;</div><div class="line">	&lt;exception-mapping result=&quot;error&quot; exception=&quot;java.sql.SQLException&quot;/&gt;</div><div class="line">	&lt;result name=&quot;error&quot;&gt;/error.jsp&lt;/result&gt;</div><div class="line">&lt;/action&gt;</div><div class="line">表示，如果发生了SQLException异常，就会返回error的结果，然后对应就会返回error.jsp页面。</div><div class="line"></div><div class="line">那么如果要配置全局的异常处理，就需要再exception-mapping写在global-exception-mapping标签下，但是global-exception-mapping要写在package标签下。</div></pre></td></tr></table></figure></p>
+<h1 id="自定义拦截器"><a href="#自定义拦截器" class="headerlink" title="自定义拦截器"></a>自定义拦截器</h1><p>首先自定义拦截器类，并实现Interceptor接口，注意该接口是xwork中的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class MyInterceptor implements Interceptor &#123;</div><div class="line">    @Override</div><div class="line">    public void destroy() &#123;</div><div class="line">        System.out.println(&quot;Interceptor is destroy&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void init() &#123;</div><div class="line">        System.out.println(&quot;Interceptor is init&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String intercept(ActionInvocation actionInvocation) throws Exception &#123;</div><div class="line">        long start = System.currentTimeMillis();</div><div class="line">        String r = actionInvocation.invoke();</div><div class="line">        long end = System.currentTimeMillis();</div><div class="line">        System.out.println(&quot;invoke runnig in &quot; + (end - start) + &quot;ms&quot;);</div><div class="line">        return r;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>接着在struts.xml中进行配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;interceptors&gt;</div><div class="line">    &lt;interceptor name=&quot;my&quot; class=&quot;com.qxg.interceptor.MyInterceptor&quot;/&gt;</div><div class="line">&lt;/interceptors&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;action name=&quot;hello&quot; class=&quot;com.qxg.action.MyFirstAction&quot;&gt;</div><div class="line">    &lt;result&gt;/index.jsp&lt;/result&gt;</div><div class="line">    &lt;interceptor-ref name=&quot;my&quot;/&gt;</div><div class="line">    &lt;interceptor-ref name=&quot;defaultStack&quot;/&gt;</div><div class="line">&lt;/action&gt;</div></pre></td></tr></table></figure></p>
+<p>可以看到，在package中的interceptors中把该interceptor给写出来，名字叫my，然后在action中使用引用把my拦截器引用过来，注意defaultStack拦截器一定要写在下方。</p>
+<h2 id="使用token拦截器解决重复提交问题-很少用"><a href="#使用token拦截器解决重复提交问题-很少用" class="headerlink" title="使用token拦截器解决重复提交问题(很少用)"></a>使用token拦截器解决重复提交问题(很少用)</h2><p>首先说明该问题是什么问题，平常开发的时候经常会碰到，如果通过表单向a.jsp提交数据，然后到a.jsp页面后，我们刷新就会碰到一个提示，说要重新提交数据，是否继续，这个时候，我们就会点继续，然后就会向后台重新提交数据，那么如果碰到网速慢的情况下，后台已经接受到数据，但是因为网速慢，前台一直不显示，这个时候用户就会不停的刷新，不停的提交数据，这个时候，容易导致后台垃圾数据过多，用户阻塞等问题。</p>
+<p>对于form提交问题，如果使用get方法，不停刷新，页面不会提示，而使用post，则刷新过程，页面会进行提示，所以一般form都通过post方式提交，这样可以通过在客户端解决重复提交问题，当然，这个也是要取决于用户。</p>
+<p>token表示令牌，表示客户端传来数据，如果跟令牌不对应，则不允许通过。</p>
+<p>比如下面的例子，在.jsp页面中，写上<s:token></s:token>代码，然后在客户端访问该页面，查看源代码后，就发现客户端多了一处这样的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">  &lt;input type=&quot;hidden&quot; name=&quot;struts.token.name&quot; value=&quot;token&quot; /&gt;</div><div class="line">&lt;input type=&quot;hidden&quot; name=&quot;token&quot; value=&quot;KGMG30A8VTBVQ6X4CIH1COUOQVJ67O4A&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>注意看其中token这个地方有个value,那么这是什么意思呢？</p>
+<p>其实这个token就是解决重复提交的，在客户端访问.jsp界面的时候，服务器会随机生成一个token，然后再写到这个.jsp文件中，当要提交数据时，就会使用该token与服务器进行比较，如果相同，就会将token给删除，表示已提交数据并通过，那么客户端再提交的话，因为token已经没了，就不会再让该客户端提交，这样就防止了重复提交问题。</p>
+<p>那么如何在struts中使用呢？</p>
+<p>因为struts已经实现了TokenInterceptor，所以就可以通过下列形式<br>在action中配置下列代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;action name=&quot;hello&quot; class=&quot;com.qxg.action.MyFirstAction&quot;&gt;</div><div class="line">    &lt;result&gt;/index.jsp&lt;/result&gt;</div><div class="line">    &lt;interceptor-ref name=&quot;my&quot;/&gt;</div><div class="line">    &lt;interceptor-ref name=&quot;defaultStack&quot;/&gt;</div><div class="line">    &lt;interceptor-ref name=&quot;token&quot;/&gt;</div><div class="line">&lt;/action&gt;</div></pre></td></tr></table></figure>
+<p>但是注意，如果重复提交数据，因为token拦截了，所以result返回的值就是invalid.token，所以还要配置result，所以完整代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;action name=&quot;hello&quot; class=&quot;com.qxg.action.MyFirstAction&quot;&gt;</div><div class="line">    &lt;result&gt;/index.jsp&lt;/result&gt;</div><div class="line">    &lt;interceptor-ref name=&quot;my&quot;/&gt;</div><div class="line">    &lt;interceptor-ref name=&quot;defaultStack&quot;/&gt;</div><div class="line">    &lt;interceptor-ref name=&quot;token&quot;/&gt;</div><div class="line">    &lt;result name=&quot;invalid.token&quot;&gt;/error.jsp&lt;/result&gt;</div><div class="line">&lt;/action&gt;</div></pre></td></tr></table></figure>
+<p>注意一定要加<s:token><s:token></s:token></s:token></p>
+<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><p>简单说明，比如地址栏中传参：/index.jsp?age=6  这个过程已经发生了类型转换，因为地址栏传入的参数一般是string,那么在后台发生了类型转换，把String转换成了int。</p>
+<h2 id="自定义类型转换器"><a href="#自定义类型转换器" class="headerlink" title="自定义类型转换器"></a>自定义类型转换器</h2><p>如果在地址栏中输入了?p=2,3 我们想在后台通过转换器将他转换为Point对象，那么就可以写为下方代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class MyConverter extends DefaultTypeConverter &#123;</div><div class="line">    @Override</div><div class="line">    public Object convertValue(Object value, Class toType) &#123;</div><div class="line">        if(toType == Point.class)&#123;</div><div class="line">            //如果要转换为Point类型，该怎么写..</div><div class="line">            Point p = new Point();</div><div class="line">            String[] strs = (String[]) value;</div><div class="line">            String[] xy = strs[0].split(&quot;,&quot;);</div><div class="line">            p.x = Integer.parseInt(xy[0]);</div><div class="line">            p.y = Integer.parseInt(xy[1] );</div><div class="line">            return p;</div><div class="line">        &#125;</div><div class="line">        return super.convertValue(value, toType);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么写完注册器，一定要注册，第一种注册方式，是在对应的Action类文件中，创建一个.properties文件<br>比如在MyAction同包下，要创建MyAction-conversion.properties文件，这个是固定写法，前面是Action类名</p>
+<p>然后在该文件中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p=com.qxg.convert.MyConverter</div></pre></td></tr></table></figure>
+<p>这段代码的意思是，如果在地址栏中的参数中碰到了p就交给MyConverter去处理。</p>
+<p>第二种注册方式是全局注册，要在src中创建固定名字的文件 xwork-conversion.properties，在内部写上java.awt.Point=com.qxg.convert.MyConverter。</p>
+<p>注意为什么要写成Point呢，因为在Action中，对应的p就是Point类型的，而在Action中使用setP的时候，并不知道把地址栏中传入的p的值怎么赋值给Point，这个时候就会到MyCOnverter中执行类型转换。 </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/07/servlet学习/" rel="next" title="servlet学习">
+                <i class="fa fa-chevron-left"></i> servlet学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/13/使用intellij开发javaee项目/" rel="prev" title="使用intellij开发javaee项目">
+                使用intellij开发javaee项目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/11/Struts2学习/"
+           data-title="Struts2学习" data-url="http://yoursite.com/2017/02/11/Struts2学习/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#action"><span class="nav-number">1.</span> <span class="nav-text">action</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#namespace"><span class="nav-number">1.1.</span> <span class="nav-text">namespace</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#action执行流程"><span class="nav-number">1.2.</span> <span class="nav-text">action执行流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#action属性"><span class="nav-number">1.3.</span> <span class="nav-text">action属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通配符"><span class="nav-number">1.4.</span> <span class="nav-text">通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#action传参数"><span class="nav-number">1.5.</span> <span class="nav-text">action传参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种，用的最多"><span class="nav-number">1.5.1.</span> <span class="nav-text">第一种，用的最多</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种DomainModel"><span class="nav-number">1.5.2.</span> <span class="nav-text">第二种DomainModel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三种，不常用"><span class="nav-number">1.5.3.</span> <span class="nav-text">第三种，不常用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单数据校验"><span class="nav-number">1.6.</span> <span class="nav-text">简单数据校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问Web元素，request-session-application"><span class="nav-number">1.7.</span> <span class="nav-text">访问Web元素，request,session,application</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#取得map型对象"><span class="nav-number">1.7.1.</span> <span class="nav-text">取得map型对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取得HttpServletRequest，HttpSession-ServletContext等对象方式"><span class="nav-number">1.7.2.</span> <span class="nav-text">取得HttpServletRequest，HttpSession,ServletContext等对象方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#默认Action"><span class="nav-number">1.8.</span> <span class="nav-text">默认Action</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#result配置"><span class="nav-number">1.9.</span> <span class="nav-text">result配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#result类型"><span class="nav-number">1.9.1.</span> <span class="nav-text">result类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GlobalResult"><span class="nav-number">1.10.</span> <span class="nav-text">GlobalResult</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DynamicResult（用的不多）"><span class="nav-number">1.11.</span> <span class="nav-text">DynamicResult（用的不多）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OGNL（Object-graph-navigation-language）"><span class="nav-number">2.</span> <span class="nav-text">OGNL（Object graph navigation language）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#struts标签"><span class="nav-number">3.</span> <span class="nav-text">struts标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通用标签"><span class="nav-number">3.1.</span> <span class="nav-text">通用标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#property"><span class="nav-number">3.1.1.</span> <span class="nav-text">property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">3.1.2.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bean"><span class="nav-number">3.1.3.</span> <span class="nav-text">bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#include-（少用）"><span class="nav-number">3.1.4.</span> <span class="nav-text">include （少用）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制标签"><span class="nav-number">3.2.</span> <span class="nav-text">控制标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if"><span class="nav-number">3.2.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iterator"><span class="nav-number">3.2.2.</span> <span class="nav-text">iterator</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异常处理"><span class="nav-number">4.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义拦截器"><span class="nav-number">5.</span> <span class="nav-text">自定义拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用token拦截器解决重复提交问题-很少用"><span class="nav-number">5.1.</span> <span class="nav-text">使用token拦截器解决重复提交问题(很少用)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型转换"><span class="nav-number">6.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义类型转换器"><span class="nav-number">6.1.</span> <span class="nav-text">自定义类型转换器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

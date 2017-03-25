@@ -1,0 +1,756 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="计算机网络因为在校没有认真学，所以现在需要重新学习一下，记录下学习笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络学习笔记">
+<meta property="og:url" content="http://yoursite.com/2017/03/12/计算机网络学习笔记/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="计算机网络因为在校没有认真学，所以现在需要重新学习一下，记录下学习笔记。">
+<meta property="og:updated_time" content="2017-03-22T02:30:24.369Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络学习笔记">
+<meta name="twitter:description" content="计算机网络因为在校没有认真学，所以现在需要重新学习一下，记录下学习笔记。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/12/计算机网络学习笔记/"/>
+
+
+
+
+
+  <title> 计算机网络学习笔记 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/12/计算机网络学习笔记/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                计算机网络学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-12T12:20:06+08:00">
+                2017-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/12/计算机网络学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/12/计算机网络学习笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<p>计算机网络因为在校没有认真学，所以现在需要重新学习一下，记录下学习笔记。</p>
+<a id="more"></a>
+<h1 id="什么是计算机网路"><a href="#什么是计算机网路" class="headerlink" title="什么是计算机网路"></a>什么是计算机网路</h1><p>定义：计算机网络就是<strong>互连</strong>的、<strong>自治</strong>的的计算机集合。</p>
+<p><strong>协议</strong>:计算机网络中的数据交换必须遵守实现约定好的协议。网络协议，简称为协议，是为进行网络中数据交换而建立的规则、标准或约定。协议规定了通信实体之间所交换消息的格式、意义、顺序以及针对收到的消息或发送的事件所采取的动作。</p>
+<p><strong>协议三要素</strong>:语法、语义、时序</p>
+<h1 id="数据交换"><a href="#数据交换" class="headerlink" title="数据交换"></a>数据交换</h1><p>数据交换分为：电路交换、报文交换、分组交换</p>
+<h2 id="电路交换"><a href="#电路交换" class="headerlink" title="电路交换"></a>电路交换</h2><p>最典型的电路交换网络：电话网络。</p>
+<p>电路交换的三个阶段：建立连接、通信、释放连接。</p>
+<p>其特点是独占资源，就是说当我占用这个资源，即使不通信，不传送数据，那么其他人也不能使用。</p>
+<h3 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h3><p>电路交换中使用多路复用的方式进行复用。</p>
+<p>典型的多路复用有：<em>频分多路复用</em>、<em>时分多路复用</em>、<em>波分多路复用</em>、<em>码分多路复用</em>。</p>
+<p>频分即频路，时分即时间，波分即波长（针对光的传播）。</p>
+<h4 id="码分复用"><a href="#码分复用" class="headerlink" title="码分复用"></a>码分复用</h4><p>码分复用比较复杂，其需要符合以下条件：</p>
+<ul>
+<li>每个用户分配一个唯一的m bit码片序列，其中0用<code>-1</code>表示，1用<code>+1</code>表示，如00011011的码片序列为：<code>-1-1-1+1+1-1+1+1</code>.</li>
+<li>各用户使用相同频率载波</li>
+<li>编码信号 = (原始数据) x (码片序列)，比如发送1，则使用 +1 和码片序列进行积运算，结果还是码片序列。而发送0，则使用 -1 和码片序列进行积运算，结果是码片序列的反码表示</li>
+<li>各用户码片序列相互正交(两两正交)</li>
+</ul>
+<h2 id="报文交换"><a href="#报文交换" class="headerlink" title="报文交换"></a>报文交换</h2><p>报文交换即一次将信息整体发出。</p>
+<h2 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h2><p>将信息整体拆分为一系列相对较小的数据包，其需要在每个分组前加上头数据包。</p>
+<p>分组交换也可被称为统计多路复用。</p>
+<p>报文交换和分组交换，均采用<strong>存储-转发</strong>的交换方式</p>
+<h2 id="报文交换和分组交换时延计算"><a href="#报文交换和分组交换时延计算" class="headerlink" title="报文交换和分组交换时延计算"></a>报文交换和分组交换时延计算</h2><h3 id="报文交换-1"><a href="#报文交换-1" class="headerlink" title="报文交换"></a>报文交换</h3><p>报文长度为<strong>M</strong>bits<br>链路带宽为<strong>R</strong>bps<br>每次传送报文需要M/R秒</p>
+<h3 id="分组交换-1"><a href="#分组交换-1" class="headerlink" title="分组交换"></a>分组交换</h3><p>报文:<strong>M</strong>bits<br>链路带宽:<strong>R</strong>bps<br>分组长度：<strong>L</strong>bits<br>路由器数目：<strong>n</strong></p>
+<p>则:<br>$$<br>T = M/R + nL/R<br>$$</p>
+<p>例题：</p>
+<p>在某个分组交换网络中，所有链路的数据传输速率为100Mbps，分组大小为1000B，其中分组头大小为20B，如果H1主机向H2主机发送一个大小为980000B的文件，不考虑分组拆装事件和传播事延的情况下，则H1发送开始到H2接收完为止，需要多长时间。其中经过路由器个数为2</p>
+<p>答案：<br>根据T = M/R + nL/R</p>
+<p>因为每个组为1000B数据，则每组可以传送980B的数据，一共980000B文件，所以可以拆分为980000/980 = 1000组。而共传送的数据大小为 1000 <em> 1000 = 1000000B<br>所以最终结果为 T = （1 000 000B </em> 8）/（100Mbps<em>1000000） + (2</em>1000<em>8)/(100Mbps</em>1000000) = 80.16ms</p>
+<h1 id="计算机网络性能"><a href="#计算机网络性能" class="headerlink" title="计算机网络性能"></a>计算机网络性能</h1><p><strong>速率</strong>：数据传输速率，即单位时间内传输信息量。<br><strong>带宽</strong>：指传输最高数据传输速率。<br><strong>延迟/时延</strong></p>
+<p>分组交换为什么会发生丢包和时延？<br>原因在于分组在路由器中进行排队，而缓存队列满了的时候，再传输过来的分组数据就会被丢掉，这就是丢包。而时延通常包含节点处理延迟，排队延迟，传输延迟以及传播延迟。</p>
+<p>注意传输延迟和传播延迟的区别，传播延迟是传播过程的延迟。</p>
+<p><strong>时延带宽积</strong>： = 传播时延 <em> 带宽 。单位是bit。 说白了，就是某段链路有多少个bit长度。<br><em>*吞吐量</em></em>：类比InputStream,Reader等，吞吐量就是总体链路上的传播速率，假设A1链路传播速率是R1,A2传播速率是R2，如果R1&lt;R2，那么结果是以R1为标准的。</p>
+<h1 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h1><h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><p>1984年由于<strong>国际标准化组织(ISO)</strong>提出的分层网络体系结构模型</p>
+<p>划分7层：<strong>物理层</strong>、<strong>数据链路层</strong>、<strong>网络层</strong>、<strong>传输层</strong>、<strong>会话层</strong>、<strong>表示层</strong>、<strong>应用层</strong>。</p>
+<p>那么对于计算机之间传输数据时，主机要完成<strong>7</strong>层所有协议，而对于路由器来讲，只需要完成<strong>3</strong>层协议，即<strong>物理层</strong>、<strong>数据链路层</strong>、<strong>网络层</strong>。</p>
+<p>物理层：定义接口特性（机械、电气、功能、规程），比特编码，数据率，比特同步（时钟同步），传输模式（单工[如电视]，半双工[同一时间只能一方发送数据，如对讲机]，全双工[电话]）。 俗：发比特数据。<br>数据链路层：负责结点间的数据传输，封装成帧，<strong>物理寻址</strong>(在帧头增加物理地址表示数据发送端/接受端)，流量控制,差错控制，接入控制等。俗：封装成帧并寻址。<br>网络层：逻辑寻址(全局地址唯一：<strong>IP</strong>)，<strong>路由</strong>,分组转发。</p>
+<p>注意逻辑寻址和物理寻址的差别，物理寻址是寻找下个介质的地址，逻辑寻址是寻找目的主机的地址，其中逻辑寻址的地址是不变的，而物理地址在每次传送到中间介质后都要改变。</p>
+<p>传输层：负责端到端完整报文传输(<strong>TCP</strong>,<strong>UDP</strong>)，SAP寻址(确保数据交给正确的端口号)<br>会话层：负责会话控制如同步等功能。<br>表示层：数据如何表示，对应用层的数据进行加密解密等<br>应用层：HTTP,SMTP，FTP等。</p>
+<h2 id="TCP-IP参考模型"><a href="#TCP-IP参考模型" class="headerlink" title="TCP/IP参考模型"></a>TCP/IP参考模型</h2><p>四层参考模型：网际接口层、网络层、传输层、应用层</p>
+<p>而结合TCP和OSI参考模型后，生成了5层参考模型：物理层、数据链路层、网络层、传输层、应用层。</p>
+<p>对于五层模型，主机要实现5层模型，而交换器需要实现2层[物理层，数据链路层]，路由器需要实现3层[物理层、数据链路层、网络层]</p>
+<h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><h2 id="网络应用体系结构"><a href="#网络应用体系结构" class="headerlink" title="网络应用体系结构"></a>网络应用体系结构</h2><p><strong>客户机/服务器:C/S</strong><br><strong>点对点:P2P</strong>:没有永久在线的服务器,任意节点间都可以直接通讯,提供服务又使用服务.如:BT.缺点是<strong>难于管理</strong>.优点是<strong>高度可伸缩</strong><br><strong>混合结构:上述两种的混合</strong>:比如文件传输用P2P,文件搜索用C/S.</p>
+<h2 id="网络应用进程间通信"><a href="#网络应用进程间通信" class="headerlink" title="网络应用进程间通信"></a>网络应用进程间通信</h2><p>同一主机上进程间通信机制由操作系统提供.</p>
+<p>而不同主机间的进程通信:<strong>消息交换</strong><br>进程间通信利用<strong>socket</strong>发送/接受消息实现.网络开发API就是Socket.</p>
+<p>进程的寻址是通过IP+端口号的方式.</p>
+<h2 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h2><p>交互的软件是要遵循应用层协议.<br>公开的协议由RFC定义.保证了软件间可以相互操作.<br>如果要仔细的研究某个协议,就可以去读取RFC文档.<br>比如公开的协议有:HTTP,SMTP,FTP等.</p>
+<p>还有私有协议,就是非公开的,比如很多P2P文件共享协议都是私有的.</p>
+<p>应用层协议会规定:消息类型(请求消息or响应消息),消息的语法(字段,描述),消息的语义(字段信息含义),规则等.</p>
+<h2 id="网络应用对传输服务的要求"><a href="#网络应用对传输服务的要求" class="headerlink" title="网络应用对传输服务的要求"></a>网络应用对传输服务的要求</h2><ul>
+<li>数据丢失/可靠性:某些网络应用能够容忍数据丢失,如网络电话,而某些要求100%数据传输,如文件传输</li>
+<li>延迟:某些应用在延迟足够低时才有效</li>
+<li>带宽:email可以适应任何带宽,但是实时的软件是带宽必须达到某一要求才能顺利工作.</li>
+</ul>
+<p>Internet提供两类传输服务:<strong>TCP</strong>,<strong>UDP</strong></p>
+<p>TCP:C/S间需要建立链接,可靠的传输,流量控制,拥塞控制等.<br>UDP:不需要建立链接,不可靠的数据传输.</p>
+<p>比如:网络电话使用的UDP</p>
+<h2 id="WEB应用"><a href="#WEB应用" class="headerlink" title="WEB应用"></a>WEB应用</h2><p>遵循的协议:HTTP<br>采用C/S结构<br>使用TCP传输服务</p>
+<p>HTTP协议是无状态协议,即服务器并不会例会你的请求状态,你之前访问过我也不会记录,访问1000次我也会返回某一同一类型的内容.</p>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p>HTTP有两种连接方式:非持久性连接(HTTP1.0)和持久性连接(HTTP1.1).<br>非持久性连接:每个TCP连接最多允许传输一个对象.<br>持久性连接:每个TCP连接允许传输多个对象</p>
+<p>那么两者有何区别?<br>比如要访问www.qxgzone.com,假设该域名内包含十张图片,那么非持久连接其执行步骤如下:</p>
+<ol>
+<li>客户端发送TCP请求建立连接.服务端在80端口等待TCP连接请求.</li>
+<li>客户端将Socket套接字发出.服务端收到后解析并将要请求的数据通过套接字返回给客户端</li>
+<li>服务端关闭TCP连接.</li>
+<li>客户端收到返回的数据开始解析.解析后发现还需要10张图片,那么就重复执行上述1,2,3,4步骤</li>
+</ol>
+<p>其缺点可见:执行需要消耗很多时间,每个TCP需要开销</p>
+<p>而持久性连接，其发送响应后服务器保持TCP连接，后续的HTTP消息可以通过该连接发送。</p>
+<p>持久性连接又包含了无流水的持久性连接和带有流水机制的持久性连接。<br>无流水的持久性连接是客户端收到服务端的响应后才发送下一个请求，而流水机制的持久性连接是客户端一旦遇到一个需要请求的对象就会发送连接。<br>HTTP1.1默认选项是带有流水机制的持久性连接。</p>
+<h4 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h4><p>HTTP有两类消息，请求消息(request)和响应消息(response).<br>请求消息的通用格式包含：请求行(request line)，请求头行(header line,主要是header中的一系列key-value值)以及消息体(POST的数据放入该结构中)等。</p>
+<p>HTTP1.0版本中请求消息有：GET,POST,HEAD(请服务器不要将所请求的对象放入响应消息中)等方式<br>HTTP1.1增加了两种方法：PUT(将消息体中的文件上传到URL字段所指定的路径)，DELETE（删除URL字段所指定的文件）</p>
+<p>响应消息包含：状态行，header line,以及返回的数据</p>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>HTTP是无状态的，但是很多服务器需要掌握用户的状态，所以就出现了Cookie。</p>
+<p>某些网站为辨别用户身份，进行Session跟踪而存储在用户本地终端上的数据。</p>
+<p>Cookie可用于身份认证，购物车，应用推荐…</p>
+<p>而其也有缺点，用户的一举一动都是被监测的。</p>
+<p>现各大巨头公司正在研究代替Cookie的技术。</p>
+<h4 id="Web缓存-代理服务器"><a href="#Web缓存-代理服务器" class="headerlink" title="Web缓存/代理服务器"></a>Web缓存/代理服务器</h4><p>在不访问服务器的前提下满足客户端的HTTP请求。</p>
+<p>在客户端和服务器之间架设一台代理服务器，请求发送给代理服务器，代理服务器从缓存中取数据。</p>
+<p>一台代理服务器可以代理多台服务器。</p>
+<p>一般由ISP架设。</p>
+<p>但是缓存如何实时和服务器的数据保持一致呢？</p>
+<p>其使用的条件性GET，其中有个参数是If-modified-since:<data>，代理服务器向服务器发送该条数据，如果数据没改变，就仅仅只返回一个状态码(304 Not Modified)数据，其他都不返回，减少流量的浪费。</data></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/06/安卓有关面试题/" rel="next" title="安卓有关面试题">
+                <i class="fa fa-chevron-left"></i> 安卓有关面试题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/13/操作系统笔记/" rel="prev" title="操作系统笔记">
+                操作系统笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/12/计算机网络学习笔记/"
+           data-title="计算机网络学习笔记" data-url="http://yoursite.com/2017/03/12/计算机网络学习笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是计算机网路"><span class="nav-number">1.</span> <span class="nav-text">什么是计算机网路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据交换"><span class="nav-number">2.</span> <span class="nav-text">数据交换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#电路交换"><span class="nav-number">2.1.</span> <span class="nav-text">电路交换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多路复用"><span class="nav-number">2.1.1.</span> <span class="nav-text">多路复用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#码分复用"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">码分复用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文交换"><span class="nav-number">2.2.</span> <span class="nav-text">报文交换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分组交换"><span class="nav-number">2.3.</span> <span class="nav-text">分组交换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文交换和分组交换时延计算"><span class="nav-number">2.4.</span> <span class="nav-text">报文交换和分组交换时延计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报文交换-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">报文交换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组交换-1"><span class="nav-number">2.4.2.</span> <span class="nav-text">分组交换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络性能"><span class="nav-number">3.</span> <span class="nav-text">计算机网络性能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络体系结构"><span class="nav-number">4.</span> <span class="nav-text">计算机网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI参考模型"><span class="nav-number">4.1.</span> <span class="nav-text">OSI参考模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP参考模型"><span class="nav-number">4.2.</span> <span class="nav-text">TCP/IP参考模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用层"><span class="nav-number">5.</span> <span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络应用体系结构"><span class="nav-number">5.1.</span> <span class="nav-text">网络应用体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络应用进程间通信"><span class="nav-number">5.2.</span> <span class="nav-text">网络应用进程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层协议"><span class="nav-number">5.3.</span> <span class="nav-text">应用层协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络应用对传输服务的要求"><span class="nav-number">5.4.</span> <span class="nav-text">网络应用对传输服务的要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB应用"><span class="nav-number">5.5.</span> <span class="nav-text">WEB应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">5.5.1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#格式"><span class="nav-number">5.5.1.1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number">5.5.1.2.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web缓存-代理服务器"><span class="nav-number">5.5.1.3.</span> <span class="nav-text">Web缓存/代理服务器</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

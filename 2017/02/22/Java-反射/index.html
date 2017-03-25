@@ -1,0 +1,741 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="很早之前就接触过反射，当时觉得反射还挺神奇的，最近因为学习一些新知识要用到反射，所以再来巩固一下。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 反射">
+<meta property="og:url" content="http://yoursite.com/2017/02/22/Java-反射/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="很早之前就接触过反射，当时觉得反射还挺神奇的，最近因为学习一些新知识要用到反射，所以再来巩固一下。">
+<meta property="og:updated_time" content="2017-02-28T02:27:49.416Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 反射">
+<meta name="twitter:description" content="很早之前就接触过反射，当时觉得反射还挺神奇的，最近因为学习一些新知识要用到反射，所以再来巩固一下。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/22/Java-反射/"/>
+
+
+
+
+
+  <title> Java 反射 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/22/Java-反射/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java 反射
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-22T21:01:11+08:00">
+                2017-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/22/Java-反射/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/22/Java-反射/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>很早之前就接触过反射，当时觉得反射还挺神奇的，最近因为学习一些新知识要用到反射，所以再来巩固一下。</p>
+<a id="more"></a>
+<h1 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h1><ol>
+<li>Class是一个类，</li>
+<li>对于每个类而言，JRE都为其保留一个不变的Class类型的对象，一个Class对象包含了特定某个类的有关信息，比如该类的数据成员名、方法和构造器、实现了什么接口等。</li>
+<li>Class对象由系统创建</li>
+<li>一个类在JVM中只有一个Class实例</li>
+</ol>
+<h2 id="取得Class对象的方式"><a href="#取得Class对象的方式" class="headerlink" title="取得Class对象的方式"></a>取得Class对象的方式</h2><ul>
+<li>通过类.class 如:<code>Person.class</code></li>
+<li>通过对象获取，如：<code>person.getClass()</code></li>
+<li>通过全类名(常用)，如:<code>Class.forName(&quot;com.qxg.bean.Person&quot;)</code></li>
+</ul>
+<p>注意通过对象来获取这个方法，引用不论是否是多态，最终返回的都是实际类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Object obj = new Person();</div><div class="line">System.out.println(obj.getClass().toString());  //打印的是Person类的全类名</div></pre></td></tr></table></figure></p>
+<h2 id="Class的方法"><a href="#Class的方法" class="headerlink" title="Class的方法"></a>Class的方法</h2><p>比较重要的方法是：<code>newInstance()</code>，一般会通过该方法来创建某类的实例，其调用的是无参的构造器，如果没有无参构造器会抛异常。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Class personClasss = Class.forName(&quot;con.qxg.bean.Person&quot;);</div><div class="line">Object object = personClass.newInstance();</div></pre></td></tr></table></figure></p>
+<p>那么看到这，我们就应该注意，如果要编写类的时候，定义有参构造器，一定要定义一个无参构造器，主要用于反射。</p>
+<h3 id="getMethods"><a href="#getMethods" class="headerlink" title="getMethods"></a>getMethods</h3><p>获取类的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Class clazz = Class.forName(&quot;com.qxg.bean.Person&quot;);</div><div class="line">Method[] methods = clazz.getMethods();</div></pre></td></tr></table></figure></p>
+<p>注意不能获取私有方法。</p>
+<h3 id="getDeclaredMethods"><a href="#getDeclaredMethods" class="headerlink" title="getDeclaredMethods"></a>getDeclaredMethods</h3><p>和getMethods用法一样，能获取私有方法，且只获取当前类声明的方法。</p>
+<h3 id="获取指定方法"><a href="#获取指定方法" class="headerlink" title="获取指定方法"></a>获取指定方法</h3><p>getDeclaredMethod(String name,Class Class&lt;?&gt;… parameterTypes)<br>第一个为方法名，第二个为重载参数<br>如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Method method = clazz.getDeclaredMethod(&quot;setName&quot;,String.class); //获取setName(String);</div><div class="line"></div><div class="line">method = clazz.getDeclaredMethod(&quot;setName&quot;,String.class,int.class);//获取setName(String,int);</div><div class="line"></div><div class="line">method = clazz.getDeclaredMethod(&quot;setName&quot;,String.class,int.class，boolean.class);//获取setName(String,int,boolean);</div></pre></td></tr></table></figure></p>
+<h3 id="获取到方法后如何还行"><a href="#获取到方法后如何还行" class="headerlink" title="获取到方法后如何还行"></a>获取到方法后如何还行</h3><p>通过Method的invoke方法，第一个参数是某个对象，第二个是该方法的参数<code>public Object invoke(Object obj, Object... args)</code><br>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">method = clazz.getDeclaredMethod(&quot;setName&quot;,String.class,int.class);</div><div class="line"></div><div class="line">method.invoke(person,&quot;one&quot;,1);</div><div class="line">//就相当于</div><div class="line">person.setrName(&quot;one&quot;,1);</div></pre></td></tr></table></figure></p>
+<p>如果想要执行私有方法，还需要将其私有类型改为公有类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setAccessible(true);</div></pre></td></tr></table></figure>
+<p>但是一定要注意，使用这个方法来改变方法为公有的话，以后都是公有的。<br>就是因为反射的这种特性，java中的代码可能就会被别人攻击。</p>
+<h3 id="获取当前类的父类"><a href="#获取当前类的父类" class="headerlink" title="获取当前类的父类"></a>获取当前类的父类</h3><p>clazz.getSuperClass(）</p>
+<h3 id="getFiled"><a href="#getFiled" class="headerlink" title="getFiled()"></a>getFiled()</h3><ul>
+<li>getField(String name) 获取单个字段</li>
+<li>getFields(); //获取所有字段，包括私有类型</li>
+<li>getDeclaredField() 获取该类的单个字段</li>
+<li>getDeclaredFields() 获取该类的所有字段，包括私有类型</li>
+</ul>
+<p>获取到Filed对象后，可以通过该对象，设置其值：field.set(person,”name”) 就类似于 person.name = “name” ，假设field代表String name这个字段。</p>
+<p>而如果字段是私有的，就要setAccessible来使其设置为公有，然后在为其设置值。</p>
+<h3 id="getConstructor"><a href="#getConstructor" class="headerlink" title="getConstructor()"></a>getConstructor()</h3><p>和方法以及字段的套路基本一样，用到的不多</p>
+<ul>
+<li>Constructor<t> getConstructor(Class&lt;?&gt;… parameterTypes) 获取指定的构造器</t></li>
+<li>Constructor&lt;?&gt;[] getConstructors() 获取所有的构造器</li>
+</ul>
+<p>通过构造器来实例化<code>T newInstance(Object ... initargs)</code>，看到这就明白前面的为什么用泛型了。</p>
+<h3 id="getAnnotation"><a href="#getAnnotation" class="headerlink" title="getAnnotation"></a>getAnnotation</h3><p>通过method的getAnnotation来获取指定的注解，这个注解也可以通过Class对象来获取，但是一般都是通过某个字段，某个方法来获取，比如下面的例子：</p>
+<p>注解<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@Retention(RetentionPolicy.RUNTIME)   //表示运行期也会保留注解，这样反射就可以获取其值</div><div class="line">@Target(value = ElementType.METHOD)   //表示针对方法的注解</div><div class="line">public @interface MyAnnotation &#123;</div><div class="line">    public int min();  //表示设置的值的最小值</div><div class="line">    public int max();  //表示设置的值的最大值</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后将这个注解放在Person类的setAge中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@MyAnnotation(min = 10,max = 30)</div><div class="line">public void setAge(int age) &#123;</div><div class="line">    this.age = age;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>接着进行测试：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">Class clazz = Class.forName(&quot;con.qxg.bean.Person&quot;);</div><div class="line">Method method = clazz.getDeclaredMethod(&quot;setAge&quot;,int.class);</div><div class="line"></div><div class="line">//假设age是将要设置进去的值</div><div class="line">int age = 10;</div><div class="line"></div><div class="line">// 通过方法来获取注解</div><div class="line">MyAnnotation annotation = method.getAnnotation(MyAnnotation.class);</div><div class="line">if(annotation != null)&#123;</div><div class="line">    //通过注解来取得最小值最大值</div><div class="line">    int min = annotation.min();</div><div class="line">    int max = annotation.max();</div><div class="line">    if(min &gt; age || age &gt; max)&#123;</div><div class="line">        //不符合就抛异常</div><div class="line">        throw new Exception(&quot;age is ille&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//如果符合条件，就调用方法来设置值</div><div class="line">Person person = new Person();</div><div class="line">method.invoke(person,age);</div><div class="line"></div><div class="line">System.out.println(person);</div></pre></td></tr></table></figure></p>
+<p>如果age设置为9，就会抛出异常。</p>
+<h1 id="ClassLoader"><a href="#ClassLoader" class="headerlink" title="ClassLoader"></a>ClassLoader</h1><p>类加载器，是用来把类装载进JVM的。JVM规范定义了两种类型的类加载器：bootstrap和userdefined。运行时会产生3个：</p>
+<ul>
+<li>Bootstrap ClassLoader:引导类加载器：用C++编写，是JVM自带的类加载器，负责Java平台核心库，用来装载核心类库。因为C++编写，所以无法通过引用来取得该类加载器</li>
+<li>Extension ClassLoader:扩展类加载器：负责jdk_home/lib/ext目录下的jar包或-D java.ext.dirs指定目录下的jar包装入工作库。</li>
+<li>System ClassLoader:系统类加载器:负责java-classpath或java.class.path所指定的目录下的类与jar包装入工作。</li>
+</ul>
+<p>获取System ClassLoader:<code>ClassLoader.getSystemClassLoader();</code><br>获取Extension ClassLoader:<code>systemClassLoader.getParent()</code><br>测试当前类由哪个类加载器加载:<code>Class.forName(&quot;com.qxg.bean.Test&quot;).getClassLoader()</code></p>
+<p>类加载器之间的父子关系由组合实现，而不是继承。顶层父加载器是Bootstrap ClassLoader,一次类推</p>
+<h2 id="类加载器的一个主要方法"><a href="#类加载器的一个主要方法" class="headerlink" title="类加载器的一个主要方法"></a>类加载器的一个主要方法</h2><p>调用getResourceAsStream()方法来获取src某目录下的输入流。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.getClass().getClassLoader().getResourceAsStream(&quot;com/qxg/Class/TestClass.java&quot;);</div></pre></td></tr></table></figure></p>
+<h1 id="泛型与反射"><a href="#泛型与反射" class="headerlink" title="泛型与反射"></a>泛型与反射</h1><p>如果使用泛型的时候，可能就会出现很多问题，比如以下的一个问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public class Dao&lt;T&gt; &#123;</div><div class="line"></div><div class="line">    Map&lt;String,T&gt; map = new HashMap&lt;String,T&gt;();</div><div class="line"></div><div class="line">    T get(String name)&#123;</div><div class="line">        return map.get(name);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>比如以上情形，我想在get该泛型的时候，对该泛型做一些事情，也就是通过该T对象，来调用该对象中的一些方法，如果按通常的情形的话，可以这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">T t = map.get(name);</div><div class="line">t.xxxx();</div></pre></td></tr></table></figure>
+<p>但是我们都不知道T对象中的任何方法，所以这个时候就要用到反射了，但是通过t如何获取Class对象呢？</p>
+<p>首先看下面例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">class UserDao extends Dao&lt;User&gt;&#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>默认UserDao有无参构造器，并调用了父类的无参构造器，那么在Dao的构造器中打印这么一条记录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public Dao()&#123;</div><div class="line">    System.out.println(this);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么创建UserDao的时候，看其打印什么：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UserDao userDao = new UserDao();</div></pre></td></tr></table></figure></p>
+<p>打印结果是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">con.qxg.Class.UserDao@816f27d</div></pre></td></tr></table></figure>
+<p>也就是说，Dao中的this指向的并不是Dao，而是UserDao</p>
+<p>那么使用this.getClass().getSuperclass()又打印什么呢？<br>打印的是：class con.qxg.Class.Dao</p>
+<p>这时问题来了，如果我想要其打印Dao<user>，这个时候应该怎么办？</user></p>
+<p>方法就是通过this.getClass().getGenericSuperclass()来获取继承有泛型的那个类，不过返回的是Type类型，其打印结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">con.qxg.Class.Dao&lt;con.qxg.Class.User&gt;</div></pre></td></tr></table></figure></p>
+<p>那么如何获取传入的T泛型呢？需要做如下操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Type type = this.getClass().getGenericSuperclass();</div><div class="line">//判断是否是带参数的Type类型</div><div class="line">if(type instanceof ParameterizedType)&#123;</div><div class="line">    //如果是就强转</div><div class="line">    ParameterizedType parameterizedType = (ParameterizedType) type;</div><div class="line">    //获取参数</div><div class="line">    Type[] args = parameterizedType.getActualTypeArguments();</div><div class="line"></div><div class="line">    //如果参数不空且有效，那么第一个参数就是对应的泛型，如果泛型是2个，那么args[0]是第一个，args[1]是第二个。</div><div class="line">    if(args!=null &amp;&amp; args.length&gt;0)&#123;</div><div class="line">        强转后，就是对应的T的Class对象</div><div class="line">        clazz = (Class&lt;T&gt;) args[0];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样就OK。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/20/JAVA获取昨天，前天等等的日期/" rel="next" title="JAVA获取昨天，前天等等的日期">
+                <i class="fa fa-chevron-left"></i> JAVA获取昨天，前天等等的日期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/28/Android开发艺术探索读书笔记/" rel="prev" title="Android开发艺术探索读书笔记">
+                Android开发艺术探索读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/22/Java-反射/"
+           data-title="Java 反射" data-url="http://yoursite.com/2017/02/22/Java-反射/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Class"><span class="nav-number">1.</span> <span class="nav-text">Class</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#取得Class对象的方式"><span class="nav-number">1.1.</span> <span class="nav-text">取得Class对象的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class的方法"><span class="nav-number">1.2.</span> <span class="nav-text">Class的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#getMethods"><span class="nav-number">1.2.1.</span> <span class="nav-text">getMethods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getDeclaredMethods"><span class="nav-number">1.2.2.</span> <span class="nav-text">getDeclaredMethods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取指定方法"><span class="nav-number">1.2.3.</span> <span class="nav-text">获取指定方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取到方法后如何还行"><span class="nav-number">1.2.4.</span> <span class="nav-text">获取到方法后如何还行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取当前类的父类"><span class="nav-number">1.2.5.</span> <span class="nav-text">获取当前类的父类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getFiled"><span class="nav-number">1.2.6.</span> <span class="nav-text">getFiled()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getConstructor"><span class="nav-number">1.2.7.</span> <span class="nav-text">getConstructor()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getAnnotation"><span class="nav-number">1.2.8.</span> <span class="nav-text">getAnnotation</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ClassLoader"><span class="nav-number">2.</span> <span class="nav-text">ClassLoader</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载器的一个主要方法"><span class="nav-number">2.1.</span> <span class="nav-text">类加载器的一个主要方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#泛型与反射"><span class="nav-number">3.</span> <span class="nav-text">泛型与反射</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
