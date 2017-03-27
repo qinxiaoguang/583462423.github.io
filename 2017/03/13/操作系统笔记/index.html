@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/13/操作系统笔记/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="= =">
-<meta property="og:updated_time" content="2017-03-27T04:18:49.290Z">
+<meta property="og:updated_time" content="2017-03-27T04:24:27.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统笔记">
 <meta name="twitter:description" content="= =">
@@ -376,7 +376,53 @@
 <p>如果系统中所有进程存在一个可完成的执行序列P1,…Pn，则称为系统处于安全状态</p>
 <p>也就是说银行家算法，就是寻找一个可以完美执行的序列P1,…Pn</p>
 <p>例：</p>
-<p>|–|–|–|–|<br>|进程|Allocation|Need|Avaiable|<br>| |A B C|A B C|A B C|<br>|P0|0 1 0|7 4 3|2 3 0|<br>|P1|3 0 2|0 2 0||<br>|P2|3 0 2|6 0 0||<br>|P3|2 1 1|0 1 0||<br>|P4|0 0 2|4 3 1||</p>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>Allocation</th>
+<th>Need</th>
+<th>Avaiable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>A B C</td>
+<td>A B C</td>
+<td>A B C</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>0 1 0</td>
+<td>7 4 3</td>
+<td>2 3 0</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>3 0 2</td>
+<td>0 2 0</td>
+<td></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>3 0 2</td>
+<td>6 0 0</td>
+<td></td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2 1 1</td>
+<td>0 1 0</td>
+<td></td>
+</tr>
+<tr>
+<td>P4</td>
+<td>0 0 2</td>
+<td>4 3 1</td>
+</tr>
+</tbody>
+</table>
 <p>求一个可执行序列。</p>
 <p>其字母的含义是<br>Allocation:该进程被分配的资源个数(是该进程自带的，不是系统分配的)，比如P0执行的时候，A会分配0个资源，B会分配1个资源，C会分配0个资源。<br>Need:该进程执行时需要的资源数<br>Avaiable:当前系统中可以被分配的资源个数</p>
 <p>其计算过程是：首先查看资源分配给谁时是可执行的，比如分配给P0,因其需要的资源个数是7 4 3，而可分配的是2 3 0 ，即P0不可执行，那么分配给P1时，是可执行的，那么P1执行完毕后，释放其自带的资源，那么可分配的资源数从2 3 0变为(2,3,0) + (3,0,2) = (5,3,2)，那么以此计算下去，找到一个可执行序列即可。</p>
