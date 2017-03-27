@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/13/操作系统笔记/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="= =">
-<meta property="og:updated_time" content="2017-03-23T02:44:47.605Z">
+<meta property="og:updated_time" content="2017-03-27T04:18:49.290Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统笔记">
 <meta name="twitter:description" content="= =">
@@ -345,7 +345,45 @@
 <p>原因在于多线程切换的时候只需要切换PC地址(可能还有其他内容),但是不会切换内存资源,或者是内存映射表,也不用切换其他寄存器地址,所以线程切换代价不大,并且切换速度快.</p>
 <p>多线程分为用户级线程和内核级线程,用户级线程也有缺点,如果多线程中任何一个线程都触发了任务等待,比如IO操作,那么内核中就会进行进程切换,那么之前的进程中的所有线程都不会再执行.<br>而内核级线程就跟进程很相似,在切换的时候,可以对内核级线程进行切换.</p>
 <h1 id="CPU调度："><a href="#CPU调度：" class="headerlink" title="CPU调度："></a>CPU调度：</h1><p>调度算法：先来先服务(First come first Served)，短作业优先(可缩短平均周转时间，且平均周转时间最短，但是响应时间比较长)，时间片轮转调度(RR,时间片分为固定时间如T，则T时间后就交换另一个进程执行)</p>
-<p>优先级调度(给进程一个优先级，优先级高的先调度，可能会出现饥饿现象)，</p>
+<p>优先级调度(给进程一个优先级，优先级高的先调度，可能会出现饥饿现象)</p>
+<h1 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h1><p>单独的信号只能记录线程的true or false,也就是只能有两种信号，那么如果想要通过一个信号记录很多的信息，比如睡眠线程的个数等，所以就引入了信号量。</p>
+<p>比如用信号量中的sem变量来记录当前sleep线程的个数，其值为负值，绝对值为sleep线程个数，所以sem = -2时，表明当前有两个睡眠的线程。</p>
+<p>如下例子,sem初始化是0，如果sem初始为正值n，表明缓冲区中有n个资源，如果为负值-m,表明有m个进程在等待。P表示生产者，C表示消费者：</p>
+<ol>
+<li>P1 sleep, sem = -1;</li>
+<li>P2 sleep, sem = -2;</li>
+<li>C wakeup() ,sem = -1;//唤醒阻塞队列的头部</li>
+<li>C wakeup() , sem = 0;</li>
+</ol>
+<p>如果执行完毕后，sem为0，但是sem为正数的情况下表明资源的数量，所以再次执行C程序的时候(注意，不会再调用wakeup方法，因为sem已经不是负值，表明当前没有睡眠进程)，sem++,接着P来消费的时候，sem–.</p>
+<p>那么对于一种信号量的实现，通过一种结构体：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">struct semaphore&#123;</div><div class="line">	int value; //记录资源个数，或等待进程个数</div><div class="line">	PCB *queue; //等待进程队列</div><div class="line">&#125;</div><div class="line"></div><div class="line">P(semaphore s)&#123;</div><div class="line">	//消费资源</div><div class="line">	s.value--;</div><div class="line">	//我消费资源的前提是资源的个数&gt;=1,而如果资源个数为0或者小于0，那么我就需要等待，其实这个地方写的不够好理解，可以将其修改为下面的P操作，容易理解</div><div class="line">	if(s.value&lt;0)&#123;</div><div class="line">		//s.value&lt;0时，表明当前没有我所需要的资源，则把当前进程放入等待队列</div><div class="line">		sleep(s.queue);	</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">等价于：</div><div class="line">P(semaphore s)&#123;</div><div class="line">   	//我消费前先判断是否有资源，如果没有，就等待</div><div class="line">	if(s.value &lt;= 0)&#123;</div><div class="line">		s.value--;</div><div class="line">		sleep(s.queue);</div><div class="line">		return;</div><div class="line">	&#125;</div><div class="line">	//如果有资源，那么就将资源减1</div><div class="line">	s.value--;</div><div class="line">&#125;</div><div class="line"></div><div class="line">V(semaphore s)&#123;</div><div class="line">	//生产资源</div><div class="line">	s.value++;</div><div class="line">	//我生产资源的目的就是为了让消费进程使用，那么如果消费进程在等待，我就唤醒他们，所以调用以下方法，即判断是否有等待进程，如果有就唤醒</div><div class="line">	if(s.value &lt;= 0)&#123;</div><div class="line">		//s.value &lt;= 0 表明等待队列中有睡眠的进程，则唤醒进程，为什么==0的时候也唤醒？因为s.value之前的值为-1，即队列中有一个进程，需要唤醒。注意唤醒后，一定可以拿到资源，因为V操作生产了一个资源</div><div class="line">		//如果s.value&gt;0表明资源足够，并且等待队列中并没有需要唤醒的进程，所以根本就不用调用wakeup()，这里一定要搞清楚。</div><div class="line">		wakeup(s.queue);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>为什么P是消费资源呢，其名称来源于荷兰语的proberen,即test,而V为verhogen(increment)</p>
+<p>那么对于生产者消费者模式，如果使用信号量实现，可以通过以下代码，在看代码前，考虑这么一个问题，生产者可以进行sleep,消费者也可以sleep，就是说，两者是互斥的，那么应该使用几个信号量操作呢？<br>答案是两个，一个是生产者唤醒消费者的信号量，一个是消费者唤醒生产者的信号量。<br>所以定义两个信号量 一个是full的标识，一个是empty标识<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">semphore full = 0; //使用资源个数，full + empty  = Buffer_SIZE</div><div class="line">semphore empty = BUFFER_SIZE;//空资源个数</div><div class="line">semphore mutex = 1; //初始为1时，表明资源同时只能一个进程访问</div><div class="line"></div><div class="line">Producer(item)&#123;</div><div class="line">	P(emtpy); //empty-1,表明当前空闲位置的个数，如果空闲位置为0，则当前生产者等待</div><div class="line">	P(mutex); //mutex为0时，说明Consumer在执行操作，则当前进程等待，从这里可以看出，信号量初始为1时，可以创建一个互斥访问的资源</div><div class="line">	produce(); //生产</div><div class="line">	V(mutex); //mutex++</div><div class="line">	V(full); //full++ 生产结束，要把full标识资源个数+1，表明当前生产的资源个数</div><div class="line">&#125;</div><div class="line"></div><div class="line">Consumer()&#123;</div><div class="line">	P(full); //full--,表明消费资源，如果full为0，则没资源，当前进程等待</div><div class="line">	P(mutex);//同上</div><div class="line">	consume();//消费</div><div class="line">	V(mutex);//同上</div><div class="line">	V(empty);//消费完毕，empty+1,即表明空闲位置个数 + 1</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>对于以上信号量，需要认真的查看，其实PV操作就是对0的操作，慢慢体会，说实话这些东西如果要自己去设计，真的设计不出来，天才的脑洞是真的大啊。</p>
+<h1 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h1><p>死锁的4个必要条件，以十字路口举例</p>
+<ol>
+<li>首先一个条件就是<strong>互斥</strong>，我访问的时候你不能访问，也就是说一条道路，只能有一列车辆进行行驶</li>
+<li>接着就是<strong>不可剥夺</strong>，我访问的时候，你没法把我挤出去，对于十字路口就是，只有我开走的时候，你才能过来</li>
+<li>然后就是<strong>保持请求</strong>，我在自己的资源中，还能申请别的资源，就如十字路口，我占用了我的道路，想要右拐，那么就是申请右拐的道路。</li>
+<li>最后就是<strong>循环等待</strong>，环路等待，即我等你，你等他，他等我。</li>
+</ol>
+<p>记忆的话就是 互斥，剥夺，请求，等待。</p>
+<p>互斥，剥夺是一条道路固有的属性，也就是进程自带的属性，一条道路不允许两列车同时行驶，并且其他车辆不能在有车的情况下剥夺其他车的使用权。</p>
+<p>请求，就是我拐弯的时候需要申请其他道路的资源，而等待，就是等待其他道路的车辆开走。</p>
+<p>这样记忆就没有问题了～</p>
+<h2 id="死锁预防"><a href="#死锁预防" class="headerlink" title="死锁预防"></a>死锁预防</h2><p>一次性申请所有资源<br>对资源类型进行排序，资源申请按虚进行，不会造成环路等待</p>
+<h2 id="死锁避免"><a href="#死锁避免" class="headerlink" title="死锁避免"></a>死锁避免</h2><p>判断请求是否会引起死锁，使用<strong>银行家算法</strong></p>
+<p>如果系统中所有进程存在一个可完成的执行序列P1,…Pn，则称为系统处于安全状态</p>
+<p>也就是说银行家算法，就是寻找一个可以完美执行的序列P1,…Pn</p>
+<p>例：</p>
+<p>|–|–|–|–|<br>|进程|Allocation|Need|Avaiable|<br>| |A B C|A B C|A B C|<br>|P0|0 1 0|7 4 3|2 3 0|<br>|P1|3 0 2|0 2 0||<br>|P2|3 0 2|6 0 0||<br>|P3|2 1 1|0 1 0||<br>|P4|0 0 2|4 3 1||</p>
+<p>求一个可执行序列。</p>
+<p>其字母的含义是<br>Allocation:该进程被分配的资源个数(是该进程自带的，不是系统分配的)，比如P0执行的时候，A会分配0个资源，B会分配1个资源，C会分配0个资源。<br>Need:该进程执行时需要的资源数<br>Avaiable:当前系统中可以被分配的资源个数</p>
+<p>其计算过程是：首先查看资源分配给谁时是可执行的，比如分配给P0,因其需要的资源个数是7 4 3，而可分配的是2 3 0 ，即P0不可执行，那么分配给P1时，是可执行的，那么P1执行完毕后，释放其自带的资源，那么可分配的资源数从2 3 0变为(2,3,0) + (3,0,2) = (5,3,2)，那么以此计算下去，找到一个可执行序列即可。</p>
+<p>如果没有可执行序列，那么就会造成死锁，就不会进行资源分配。</p>
+<p>银行家算法虽然很好，但是执行的代价比较大，其计算序列需要O(m <em> n^2)，n是进程的个数，m是每个进程中需要分配资源的个数，如上述ABC，m = 3.<br>n^2的计算方法是其序列首先要分配给P1，然后计算P1之后的安全序列，接着再首先分配给P2，再计算P2开头的安全序列，所以时间复杂度是n^2,那么综合一下，总的时间复杂度就是O(m </em> n^2)</p>
+<p>##死锁检测＋恢复<br>发现问题再处理<br>当资源利用率低时进行检测，检测的方法和银行家算法一样，如果发现死锁就进行回滚，回滚的选择也需要进行选择，是选择优先级高的？占用资源多的？回滚的机制有很多，这里不再赘述(其实就是不知道嘛！)</p>
+<h2 id="死锁忽略"><a href="#死锁忽略" class="headerlink" title="死锁忽略"></a>死锁忽略</h2><p>如果出现死锁就忽略，可以重启等。效率高，并且出现的概率比较低，如果使用其他死锁的预防检测恢复等方法，代价会比较高，并造成编程等困难。所以Windows,Linux等大多都采用了死锁忽略的方法。</p>
 
       
     </div>
@@ -504,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多进程"><span class="nav-number">2.</span> <span class="nav-text">多进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU调度："><span class="nav-number">3.</span> <span class="nav-text">CPU调度：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多进程"><span class="nav-number">2.</span> <span class="nav-text">多进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU调度："><span class="nav-number">3.</span> <span class="nav-text">CPU调度：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信号量"><span class="nav-number">4.</span> <span class="nav-text">信号量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#死锁"><span class="nav-number">5.</span> <span class="nav-text">死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁预防"><span class="nav-number">5.1.</span> <span class="nav-text">死锁预防</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁避免"><span class="nav-number">5.2.</span> <span class="nav-text">死锁避免</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁忽略"><span class="nav-number">5.3.</span> <span class="nav-text">死锁忽略</span></a></li></ol></li></ol></div>
             
 
           </div>

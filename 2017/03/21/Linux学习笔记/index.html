@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/21/Linux学习笔记/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="Bash">
-<meta property="og:updated_time" content="2017-03-21T04:50:18.598Z">
+<meta property="og:updated_time" content="2017-03-26T14:36:28.082Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux学习笔记">
 <meta name="twitter:description" content="Bash">
@@ -340,6 +340,13 @@
 <p><strong>mkdir</strong><br>创建一个目录</p>
 <p><strong>redir</strong><br>删除一个目录,不能删除非空目录,如果要删除非空目录,可以使用<code>rm -r</code></p>
 <p><strong>pwd</strong><br>用于显示当前执行的目录文件,print work directionry</p>
+<h1 id="服务器相关"><a href="#服务器相关" class="headerlink" title="服务器相关"></a>服务器相关</h1><p>最近买了一个Ubuntu的服务器，发现没有图形界面，只能敲命令。<br>从本机连接到服务器的方式是：ssh name@ip  比如我的是ssh ubuntu@118.89.<em>.*</em>，之后输入密码即可</p>
+<p>而如果要装tomcat就必须有tar.gz文件，也就是说从本机传送文件过去，传送方法是：scp:<br>scp root@192.168.1.155:1.txt 2.txt （把服务器的1.txt下载到本地，并且重命名为2.txt）<br>scp 2.txt root@192.168.1.155:3.txt （把本地2.txt文件上传到服务器的root目录下，并且命名为3.txt）</p>
+<p>如果要传送文件夹，加上参数-r即可</p>
+<h1 id="VIM相关"><a href="#VIM相关" class="headerlink" title="VIM相关"></a>VIM相关</h1><p>首先vim的ctrl + s是锁定屏幕而不是保存，需要使用ctrl+q解锁</p>
+<p>然后如果要进入插入模式，需要按i键，或者直接打字等。</p>
+<p>要退出编辑模式，需要先按照ESC键</p>
+<p>保存退出命令是<code>:wq</code>或<code>:w</code>第一个是保存并退出，第二个是仅保存</p>
 
       
     </div>
@@ -494,7 +501,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Bash"><span class="nav-number">1.</span> <span class="nav-text">Bash</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Bash"><span class="nav-number">1.</span> <span class="nav-text">Bash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器相关"><span class="nav-number">2.</span> <span class="nav-text">服务器相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VIM相关"><span class="nav-number">3.</span> <span class="nav-text">VIM相关</span></a></li></ol></div>
             
 
           </div>
