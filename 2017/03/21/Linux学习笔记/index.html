@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/21/Linux学习笔记/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="Bash">
-<meta property="og:updated_time" content="2017-03-26T14:36:28.082Z">
+<meta property="og:updated_time" content="2017-03-29T08:14:38.158Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux学习笔记">
 <meta name="twitter:description" content="Bash">
@@ -340,6 +340,42 @@
 <p><strong>mkdir</strong><br>创建一个目录</p>
 <p><strong>redir</strong><br>删除一个目录,不能删除非空目录,如果要删除非空目录,可以使用<code>rm -r</code></p>
 <p><strong>pwd</strong><br>用于显示当前执行的目录文件,print work directionry</p>
+<h1 id="系统目录"><a href="#系统目录" class="headerlink" title="系统目录"></a>系统目录</h1><p>-bin : 可执行缩写，所有敲的命令，都是在bin中。<br>-boot : 引导目录，操作系统引导启动都在boot里面，其中有一个vmlinuz开头的无后缀的文件，操作系统第一个加载的就是这个内核文件。<br>-dev : device的缩写，保存计算机的所有设备，如网卡，硬盘等，每个设备都被抽象为一个文件，如cdrom光驱，sda就是硬盘等。<br>-etc : 几乎所有相关的配置文件，基本上是纯文本，以及以.conf结尾的文件<br>-home : 每个用户都有自己的文件夹，每个用户都在home存在与自己同名的文件夹，比如我的是qxg，所以home里面有个qxg文件夹，保存自己的私有文件或文档。<br>-lib : 所有相关的库文件，基以so结尾<br>-media : 插入优盘等会挂载里面<br>-mnt : 同上，但是mnt一定有，media不一定有<br>-opt : 通常用来装大型软件，但不是强制的<br>-proc : 不存在硬盘上，虚拟文件夹，存在内存中，显示系统实时信息。数字命名的文件夹，每个进程对应一个文件夹。<br>-sbin : super bin，只有root用户才能执行的命令<br>-sys : 包含底层硬件信息<br>-tmp: 临时目录，会自动删除。<br>-usr : 保存装的应用软件，软件默认装在usr里面<br>-var : 保存经常变化的东西，比如log,log需要经常往里写。</p>
+<h1 id="系统常用命令"><a href="#系统常用命令" class="headerlink" title="系统常用命令"></a>系统常用命令</h1><p>时间命令：<br><strong>date</strong>:查看系统时间，格式化方式：+%Y–%m–%d,即：<code>date +%Y--%m--%d</code>.设置当前时间可以通过date -s命令，如：date -s “20:20:20”,注意是修改时间，不是年月份。<br><strong>hwclock（或clock）</strong>:查看硬件时钟时间<br><strong>cal</strong>:查看日历<br><strong>uptime</strong>:查看系统运行的时间</p>
+<p>输入查看命令：<br><strong>echo</strong>:显示输入的内容，可以通过echo sth &gt;&gt; file，这样可以将sth内容输入到对应的file中<br><strong>cat</strong>:查看一个纯文本内容<br><strong>less</strong>:查看文件文本，空格翻页，上下键回退翻页<br><strong>more</strong>:查看文件文本，只能向下翻页<br><strong>head</strong>:仅显示前十行文本，-n 可以指定显示几行<br><strong>tail</strong>:显示末尾10行，-n指定显示几行，-f可显示实时的更新内容。</p>
+<p>查看硬件信息：<br><strong>lspci</strong>:查看PCI设备，-v查看详细信息<br><strong>lsusb</strong>:查看USB设备,-v查看详细信息<br><strong>lsmod</strong>:查看设备驱动</p>
+<p>关机重启：<br><strong>shutdown</strong>: -h关闭计算机 -r重新启动，如立即关机：<code>shutdown -h now</code>,10分钟后关机:<code>shutdown -h +10</code>,23:30分关机:<code>shutdown -h 23:30</code>.而将-h换成-r就是重启。<br>为了方便关机重启，还有<code>reboot</code>,<code>poweroff</code>等命令，表示立即关机或重启。</p>
+<p>归档，压缩：<br><strong>zip</strong>:压缩文件，如：<code>zip test.zip myfile</code>将myfile压缩到test.zip中。<br><strong>unzip</strong>:解压文件，如：<code>unzip test.zip</code><br><strong>gzip</strong>:压缩文件，更多的情况使用tar命令<br><strong>tar</strong>:归档命令，并不是所谓压缩，比如归档：<code>tar -cvf out.tar myfile</code>将myfile归档，也可归档文件夹，不会对文件进行压缩。而打开一个归档，通过<code>-xvf</code>。<br>如果要压缩，可以通过-z参数，即先把归档的文件归档后，再进行压缩生成.gz文件。所以好多的压缩文件都是.tar.gz<br>命令如下：<code>tar -cvzf test.tar.gz /myDir</code>。-cvzf最常用</p>
+<p>查找：<br><strong>locate</strong>:用来快速查找文件，文件夹，类似window中的索引文件，只是查找索引,而如果要查找新建的文件，是不可能找到的，因为索引的数据库并没有更新，可以通过updatedb命令，来更新索引数据库。<br><strong>find</strong>:老牌查找，可以定义规则进行查找，语法：find 查找位置 查找参数，但是其查找速度比较慢。<br>比如：<code>find . -name *linux*</code>意思为在当前目录查找所有包含linux为名字的文件<br><code>find / -name *.conf</code>,查找所有文件，名字是.conf结尾的文件<br><code>find / -perm 777</code>,查找权限为777的文件<br><code>find / -type d</code>,查找类型为目录的文件<br><code>find . -name &quot;a*&quot; -exec ls -l {} \</code>，查找文件以a开头的文件，-exec表示执行命令，就是查找到的文件作为参数发送给-exec后面跟随的命令 {}\是固定结尾。</p>
+<h1 id="磁盘相关"><a href="#磁盘相关" class="headerlink" title="磁盘相关"></a>磁盘相关</h1><p>柱面：盘片中有一圈圈的轨道，比如有5个盘片，那么5个盘片相同的轨道，就是一个柱面，类似垂直的一个柱子。<br>扇区：由中心到边缘的一个扇子形状区域<br>磁头：读取数据的零件<br>为什么要以柱面为单位，因为磁头在读取的时候，是要转圈。</p>
+<p>磁盘在Linux中系统的表示。</p>
+<p>Linux中所有的设备都被抽象为文件，保存在/dev目录下。<br>一般命如有:hd[a-z]或sd[a-z],根据不同的接口进行命名，其中a标识第一块硬盘，b标识第二块硬盘。<br>比如SATA接口的命名就是sda,sdb等，一般现代计算机基本上都是sd,比如sda,sdb,sdc等。</p>
+<p>一般分区分为MBR,GPT。<br>MBR一般应用于绝大多数使用BIOS的PC设备。<br>GPT一般应用于使用EFI的PC设备。<br>EFI是要取代BIOS的，但是现代计算机，基本上都会支持EFI和BIOS。</p>
+<p>MBR不支持2T硬盘，并且最多支持4个主分区。如果要再创建分区，就需要逻辑分区。<br>GPT支持超过2T的硬盘，向后兼容MBR，但是必须在支持EFI(UEFI)的硬件上才能使用，必须使用64位系统。</p>
+<h1 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h1><p>用户用来限制使用者对资源的使用。</p>
+<ul>
+<li>每个用户都有一个UserID(uid)，操作系统实际使用的是用户ID标识用户,而非用户名。</li>
+<li>每个用户属于一个主组，属于一个或多个附属组</li>
+<li>每个组拥有一个GroupID(gid)</li>
+<li>每个进程以一个用户身份运行，并受该用户可访问的资源限制。</li>
+<li>每个可登录的用户，拥有一个制定的shell。</li>
+</ul>
+<p>用户ID为32位，虽然是32位，但因为老系统16位，所以ID限制在6W以下。</p>
+<p>用户又分为：root用户(ID为0)，系统用户(1-499),普通用户(500以上)。</p>
+<p>系统用户一般是为一些服务或者程序进行创建，不需要登录等。<br>使用<strong>id</strong>可以显示当前用户的信息。使用<strong>passwd</strong>可以修改用户密码。</p>
+<p>相关文件：<br>/etc/passwd : 保存用户信息<br>/etc/shadow : 保存用户密码(加密的)<br>/etc/group : 保存组信息</p>
+<p><strong>whoami</strong>：显示当前用户<br><strong>who</strong>:显示登录用户<br><strong>w</strong>:显示用户并显示在干什么</p>
+<p>创建一个用户：<br><strong>useradd</strong>，后跟一个用户名即可。<br>这个命令背后执行很多操作：在/etc/passwd中添加用户信息，如果创建密码，则在/etc/shadow添加密码数据，然后为用户创建一个新的home目录，在/home下。将/etc/skel中的文件复制到/home/下的新用户目录中，如果想要创建用户的时候，自动分配一些文件，就可以把这个文件放到/etc/skel中。接着建立同名组。<br>参数:-d 指定家目录， -s登录shell, -u 制定用户id，-g制定组，-G附属组。</p>
+<p><strong>usermod</strong>:对已创建的用户进行修改<br>-I 新用户名<br>-u 新用户id<br>-d 用户家目录位置<br>-g 用户所属组<br>-G 附属组<br>-L 锁定用户使其不能登录<br>-U 解除锁定</p>
+<p><strong>userdel</strong>：用来删除制定用户<br>没有参数时，只是删除用户，但是不删除家目录，而加上-r参数才会删除家目录。</p>
+<h1 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h1><p>每个文件拥有三种权限</p>
+<p>|权限|对文件的影响|对目录的影响|</p>
+<p>|–|–|–|<br>|r(读取)|可读取文件内容|可列出目录内容|<br>|w(写入)|可修改文件内容|可在目录中创建删除文件|<br>|x(执行)|可作为命令执行|可访问目录内容|</p>
+<p>目录必须拥有x权限，否则无法查看其内容。</p>
+<p>Linux权限都是基于UGO进行设计，U是user,G是group，O是other，并且权限三个一组(rwx)，所以一般对于一个文件的权限是9个字符,但是开头还有额外的一个字符d,表示文件类型，d是dir即文件夹。</p>
+<p><strong>chown</strong>修改文件的所属用户，<strong>chgrp</strong>修改文件所属组</p>
+<p><strong>chmod</strong>修改文件权限，其首先指ugo,然后通过+,-号来增加或删除权限，如：<br>chmod u+rw myfile //将myfile添加user的rw权限<br>chmod g-x myfile //将myfile的g的权限的x删去<br>如果要对目录下所有文件都修改权限，则需要加入参数-R。</p>
+<p>还可以用数字修改权限，比如r=4，w=2,x=1,rw = 4+2 =6 ,rwx = 4+2+1=7, r-x = 4+1=5<br>所以chmod 777 myfile,后myfile的权限为-rwxrwxrwx权限。</p>
 <h1 id="服务器相关"><a href="#服务器相关" class="headerlink" title="服务器相关"></a>服务器相关</h1><p>最近买了一个Ubuntu的服务器，发现没有图形界面，只能敲命令。<br>从本机连接到服务器的方式是：ssh name@ip  比如我的是ssh ubuntu@118.89.<em>.*</em>，之后输入密码即可</p>
 <p>而如果要装tomcat就必须有tar.gz文件，也就是说从本机传送文件过去，传送方法是：scp:<br>scp root@192.168.1.155:1.txt 2.txt （把服务器的1.txt下载到本地，并且重命名为2.txt）<br>scp 2.txt root@192.168.1.155:3.txt （把本地2.txt文件上传到服务器的root目录下，并且命名为3.txt）</p>
 <p>如果要传送文件夹，加上参数-r即可</p>
@@ -347,6 +383,10 @@
 <p>然后如果要进入插入模式，需要按i键，或者直接打字等。</p>
 <p>要退出编辑模式，需要先按照ESC键</p>
 <p>保存退出命令是<code>:wq</code>或<code>:w</code>第一个是保存并退出，第二个是仅保存</p>
+<p>Vim拥有三种模式，命令模式，插入模式，ex模式。</p>
+<p>命令模式，可以通过命令完成选择复制粘贴等功能。命令模式下，按很多键都不会有响应。<br>而如果要输入内容，在命令模式中按i键，就进入插入模式。<br>命令模式下按:，就会进入ex模式，该模式可以保存修改，或者退出。</p>
+<p>命令模式：<br>i 在当前光标前插入文本<br>o 在当前行下插入新行<br>dd 删除整行<br>yy 将当前行的内容放入缓冲区(复制当前行)<br>n+yy 将n行的内容放入缓冲区(光标下的n行)<br>p 将缓冲区的内容移出放入光标后<br>u 撤销上一个操作<br>r 替换当前字符<br>/ 查找关键字，查找到后，按n键，就可以在查找的内容间进行切换。</p>
+<p>ex模式：<br>:w 保存当前修改<br>:q 退出<br>:q! 强制退出，不保存修改<br>:x 保存并退出，和:wq一样。<br>:set nu 显示行号<br>:! 系统命令 =&gt;执行系统命令，并显示结果，如<code>:! ls</code><br>:sh 切换到命令行，使用ctrl+d切换到vim</p>
 
       
     </div>
@@ -501,7 +541,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Bash"><span class="nav-number">1.</span> <span class="nav-text">Bash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器相关"><span class="nav-number">2.</span> <span class="nav-text">服务器相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VIM相关"><span class="nav-number">3.</span> <span class="nav-text">VIM相关</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Bash"><span class="nav-number">1.</span> <span class="nav-text">Bash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统目录"><span class="nav-number">2.</span> <span class="nav-text">系统目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统常用命令"><span class="nav-number">3.</span> <span class="nav-text">系统常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#磁盘相关"><span class="nav-number">4.</span> <span class="nav-text">磁盘相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户"><span class="nav-number">5.</span> <span class="nav-text">用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#权限"><span class="nav-number">6.</span> <span class="nav-text">权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器相关"><span class="nav-number">7.</span> <span class="nav-text">服务器相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VIM相关"><span class="nav-number">8.</span> <span class="nav-text">VIM相关</span></a></li></ol></div>
             
 
           </div>
