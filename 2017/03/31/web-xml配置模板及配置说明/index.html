@@ -1,0 +1,780 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="web.xml," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在做j2ee应用的时候，经常要上网搜web.xml的模板，其实模板基本上长一样，但是内部的一些参数确实不知道什么意思，所以上网搜了一个说明，看完后恍然大悟。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web.xml配置模板及配置说明">
+<meta property="og:url" content="http://yoursite.com/2017/03/31/web-xml配置模板及配置说明/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="在做j2ee应用的时候，经常要上网搜web.xml的模板，其实模板基本上长一样，但是内部的一些参数确实不知道什么意思，所以上网搜了一个说明，看完后恍然大悟。">
+<meta property="og:image" content="http://yoursite.com/images/元素顺序表.jpg">
+<meta property="og:updated_time" content="2017-03-31T03:14:25.921Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web.xml配置模板及配置说明">
+<meta name="twitter:description" content="在做j2ee应用的时候，经常要上网搜web.xml的模板，其实模板基本上长一样，但是内部的一些参数确实不知道什么意思，所以上网搜了一个说明，看完后恍然大悟。">
+<meta name="twitter:image" content="http://yoursite.com/images/元素顺序表.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/31/web-xml配置模板及配置说明/"/>
+
+
+
+
+
+  <title> web.xml配置模板及配置说明 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/web-xml配置模板及配置说明/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                web.xml配置模板及配置说明
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-31T11:01:44+08:00">
+                2017-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/31/web-xml配置模板及配置说明/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/31/web-xml配置模板及配置说明/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在做j2ee应用的时候，经常要上网搜web.xml的模板，其实模板基本上长一样，但是内部的一些参数确实不知道什么意思，所以上网搜了一个说明，看完后恍然大悟。</p>
+<a id="more"></a>
+<h1 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h1><p>最简模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;!DOCTYPE web-app PUBLIC</div><div class="line">        &quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot;</div><div class="line">        &quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot; &gt;</div><div class="line">&lt;web-app&gt;</div><div class="line">&lt;/web-app&gt;</div></pre></td></tr></table></figure></p>
+<p>复杂模板<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line">&lt;!DOCTYPE web-app PUBLIC</div><div class="line">        &quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot;</div><div class="line">        &quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot; &gt;</div><div class="line"></div><div class="line">&lt;!--如果需要上述定义，则web-app里面的标签是一定有顺序的，如把servlet放在filter前面，则会报错--&gt;</div><div class="line"></div><div class="line">&lt;web-app&gt;</div><div class="line">    &lt;icon&gt;</div><div class="line">        &lt;small-icon&gt;&lt;/small-icon&gt;</div><div class="line">        &lt;large-icon&gt;&lt;/large-icon&gt;</div><div class="line">    &lt;/icon&gt;</div><div class="line">    &lt;display-name&gt;应用名称&lt;/display-name&gt;</div><div class="line">    &lt;description&gt;应用描述&lt;/description&gt;</div><div class="line"></div><div class="line">    &lt;context-param&gt;</div><div class="line">        &lt;!--在jsp或servlet中可以获取--&gt;</div><div class="line">        &lt;!--jsp中获取方式: $&#123;initParam.param_name&#125;--&gt;</div><div class="line">        &lt;!--servlet中获取方式: getServletContext().getInitParamter(&quot;param_name&quot;) --&gt;</div><div class="line">        &lt;param-name&gt;参数名称&lt;/param-name&gt;</div><div class="line">        &lt;param-value&gt;参数值&lt;/param-value&gt;</div><div class="line">    &lt;/context-param&gt;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    &lt;!--过滤器，用来处理Post数据中文乱码问题--&gt;</div><div class="line">    &lt;filter&gt;</div><div class="line">        &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;</div><div class="line">        &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;</div><div class="line">        &lt;init-param&gt;</div><div class="line">            &lt;param-name&gt;encoding&lt;/param-name&gt;</div><div class="line">            &lt;param-value&gt;utf-8&lt;/param-value&gt;</div><div class="line">        &lt;/init-param&gt;</div><div class="line">    &lt;/filter&gt;</div><div class="line">    &lt;filter-mapping&gt;</div><div class="line">        &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;</div><div class="line">        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</div><div class="line">    &lt;/filter-mapping&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;!--</div><div class="line">    如果要配置listener，则listener必须放在servlet前，filter后</div><div class="line">    &lt;listener&gt;</div><div class="line">        &lt;listener-class&gt;&lt;/listener-class&gt;</div><div class="line">    &lt;/listener&gt;</div><div class="line">    --&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;!--配置springMVC的前端处理器--&gt;</div><div class="line">    &lt;servlet&gt;</div><div class="line">        &lt;servlet-name&gt;qxg&lt;/servlet-name&gt;</div><div class="line">        &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;</div><div class="line">        &lt;init-param&gt;</div><div class="line">            &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</div><div class="line">            &lt;param-value&gt;classpath:beansConfig.xml&lt;/param-value&gt;</div><div class="line">        &lt;/init-param&gt;</div><div class="line">        &lt;load-on-startup&gt;1&lt;/load-on-startup&gt; &lt;!--表示启动容器初始化该Servlet--&gt;</div><div class="line">    &lt;/servlet&gt;</div><div class="line">    &lt;servlet-mapping&gt;</div><div class="line">        &lt;servlet-name&gt;qxg&lt;/servlet-name&gt;</div><div class="line">        &lt;url-pattern&gt;/&lt;/url-pattern&gt; &lt;!--哪些请求会交给servlet处理--&gt;</div><div class="line">    &lt;/servlet-mapping&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;!--配置session过期时间，单位30分钟--&gt;</div><div class="line">    &lt;session-config&gt;</div><div class="line">        &lt;session-timeout&gt;30&lt;/session-timeout&gt;</div><div class="line">    &lt;/session-config&gt;</div><div class="line"></div><div class="line">    &lt;!--</div><div class="line">    &lt;mime-mapping&gt;</div><div class="line">        &lt;extension&gt;&lt;/extension&gt;</div><div class="line">        &lt;mime-type&gt;&lt;/mime-type&gt;</div><div class="line">    &lt;/mime-mapping&gt;</div><div class="line">    --&gt;</div><div class="line">    &lt;!--配置欢迎界面，可配置多个weilcome-file，服务器按照顺序查找欢迎界面 --&gt;</div><div class="line">    &lt;welcome-file-list&gt;</div><div class="line">        &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;</div><div class="line">    &lt;/welcome-file-list&gt;</div><div class="line"></div><div class="line">    &lt;!--配置error界面--&gt;</div><div class="line">    &lt;error-page&gt;</div><div class="line">        &lt;error-code&gt;404&lt;/error-code&gt;</div><div class="line">        &lt;location&gt;&lt;/location&gt;</div><div class="line">    &lt;/error-page&gt;</div><div class="line"></div><div class="line">    &lt;error-page&gt;</div><div class="line">        &lt;exception-type&gt;java.lang.Exception&lt;/exception-type&gt;</div><div class="line">        &lt;location&gt;&lt;/location&gt;</div><div class="line">    &lt;/error-page&gt;</div><div class="line">    </div><div class="line"></div><div class="line">&lt;/web-app&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="配置说明"><a href="#配置说明" class="headerlink" title="配置说明"></a>配置说明</h1><p>转自：<a href="http://blog.csdn.net/guihaijinfen/article/details/8363839" target="_blank" rel="external">http://blog.csdn.net/guihaijinfen/article/details/8363839</a></p>
+<p>1、web.xml学名叫部署描述符文件，是在Servlet规范中定义的，是web应用的配置文件。</p>
+<p>2、部署描述符文件就像所有XML文件一样，必须以一个XML头开始。这个头声明可以使用的XML版本并给出文件的字符编码。DOCYTPE声明必须立即出现在此头之后。这个声明告诉服务器适用的servlet规范的版本（如2.2或2.3）并指定管理此文件其余部分内容的语法的DTD(Document Type Definition，文档类型定义)。所有部署描述符文件的顶层（根）元素为web-app。请注意，XML元素不像HTML，他们是大小写敏感的。因此，web-App和WEB-APP都是不合法的，web-app必须用小写。</p>
+<p>web.xml样例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  </div><div class="line">&lt;!DOCTYPE web-app PUBLIC &quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot; &quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot;&gt;  </div><div class="line">&lt;web-app&gt;  </div><div class="line">&lt;/web-app&gt;</div></pre></td></tr></table></figure></p>
+<p>3、web.xml中XML 元素不仅是大小写敏感的，而且它们还对出现在其他元素中的次序敏感。例如，XML头必须是文件中的第一项，DOCTYPE声明必须是第二项，而web- app元素必须是第三项。在web-app元素内，元素的次序也很重要。服务器不一定强制要求这种次序，但它们允许（实际上有些服务器就是这样做的）完全拒绝执行含有次序不正确的元素的Web应用。这表示使用非标准元素次序的web.xml文件是不可移植的。</p>
+<p>元素顺序列表：<br><img src="/images/元素顺序表.jpg" alt="/images/元素顺序表.jpg"></p>
+<p>元素标签详解：<br><strong>元素1：<icon></icon></strong><br>含义</p>
+<p>icon元素包含small-icon和large-icon两个子元素.用来指定web站台中小图标和大图标的路径.<br><small-icon>/路径/smallicon.gif</small-icon><br>small-icon元素应指向web站台中某个小图标的路径,大小为16 X 16 pixel,但是图象文件必须为GIF或JPEG格式,扩展名必须为:.gif或.jpg.</p>
+<p><large-icon>/路径/largeicon-jpg</large-icon><br>large-icon元素应指向web站台中某个大图表路径,大小为32 X 32 pixel,但是图象文件必须为GIF或JPEG的格式,扩展名必须为; gif或jpg.</p>
+<p>范例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;icon&gt;</div><div class="line">   &lt;small-icon&gt;/images/small.gif&lt;/small-icon&gt;</div><div class="line">   &lt;large-icon&gt;/images/large.gif&lt;/large-icon&gt;</div><div class="line">&lt;/icon&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>元素2、3：<display-name>，<description></description></display-name></strong><br>含义</p>
+<p><display-name>应用名称</display-name><br>定义应用的名称。</p>
+<p><description>应用描述<br>对应用做出描述。</description></p>
+<p>范例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;display-name&gt;test&lt;/display-name&gt;</div><div class="line"></div><div class="line">&lt;description&gt;测试应用V1.0&lt;/discription&gt;</div></pre></td></tr></table></figure>
+<p><strong>元素4：<context-param></context-param></strong></p>
+<p>含义</p>
+<p>context-param 元素用来设定web应用的环境参数(context),它包含两个子元素:<br>param-name和param-value.</p>
+<p><param-name>参数名称</param-name><br>设定Context名称</p>
+<p><param-value>值</param-value><br>设定Context名称的值</p>
+<p>范例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;context-param&gt;</div><div class="line">   &lt;param-name&gt;param_name&lt;/param-name&gt;</div><div class="line">   &lt;param-value&gt;param_value&lt;/param-value&gt;</div><div class="line">&lt;/context-param&gt;</div></pre></td></tr></table></figure></p>
+<p>此所设定的参数,在JSP网页中可以使用下列方法来取得:<br><code>${initParam.param_name}</code><br>若在Servlet可以使用下列方法来获得:<br><code>String param_name=getServletContext().getInitParamter(&quot;param_name&quot;);</code></p>
+<p><strong>元素5，6：<filter>，<filter-mapping></filter-mapping></filter></strong></p>
+<p>含义</p>
+<p>filter元素用来设定web应用的过滤器，它的两个主要子元素filter-name和filter-class用来定义Filter所对应的class</p>
+<p><filter-name>Filter的名称</filter-name><br>定义Filter的名称</p>
+<p><filter-class>Filter的类名称</filter-class><br>定义Filter的类名称</p>
+<p>filter-mapping 元素的两个主要子元素filter-name和url-pattern.用来定义Filter所对应的URL.</p>
+<p><filter-name>Filter的名称</filter-name><br>定义Filter的名称.</p>
+<p><url-pattern>URL</url-pattern><br>Filter所对应的RUL.例如:<url-pattern>/Filter/*</url-pattern></p>
+<p>范例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;filter&gt;</div><div class="line">  &lt;filter-name&gt;Encoding&lt;/filter-name&gt;</div><div class="line">  &lt;filter-class&gt;ghjf.test.filter.SetCharacterEncodingFilter&lt;/filter-class&gt;</div><div class="line">  &lt;init-param&gt;</div><div class="line">     &lt;param-name&gt;encoding&lt;/param-name&gt;</div><div class="line">     &lt;param-value&gt;GBK&lt;/param-value&gt;</div><div class="line">  &lt;/init-param&gt;</div><div class="line">&lt;/filter&gt;</div><div class="line"></div><div class="line">&lt;filter-mapping&gt;</div><div class="line">   &lt;filter-name&gt;Encoding&lt;/filter-name&gt;</div><div class="line">   &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</div><div class="line">&lt;/filter-mapping&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>元素7：<listener></listener></strong></p>
+<p>含义</p>
+<p>listener元素用来定义Listener接口,它的主要子元素为<listener-class></listener-class></p>
+<p><listen-class>Listener的类名称<br>定义Listener的类名称</listen-class></p>
+<listener>
+
+<p>范例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;listener&gt;</div><div class="line">  &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;</div><div class="line">&lt;/listener&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>元素8、9：<servlet>、<servlet-mapping></servlet-mapping></servlet></strong></p>
+<p>含义</p>
+<p>servlet元素的两个主要子元素servlet-name和servlet-class用来定义servlet所对应的class</p>
+<p><servlet-name>servlet的名称</servlet-name><br>定义servlet的名称</p>
+<p><servlet-class>servlet的类名称</servlet-class><br>定义servlet的类名称</p>
+<p>servlet-mapping元素包含两个子元素servlet-name和url-pattern.用来定义servlet所对应URL.</p>
+<p><servlet-name>Servlet的名称</servlet-name><br>定义Servlet的名称.</p>
+<p><url-pattern>Servlet URL</url-pattern><br>定义Servlet所对应的RUL.例如:<url-pattern>/Servlet/*</url-pattern><br></p>
+<p>范例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;servlet&gt;</div><div class="line"> &lt;servlet-name&gt;dwr-invoker&lt;/servlet-name&gt;</div><div class="line"> &lt;display-name&gt;DWR Servlet&lt;/display-name&gt;</div><div class="line"> &lt;description&gt;Direct Web Remoter Servlet&lt;/description&gt;</div><div class="line"> &lt;servlet-class&gt;uk.ltd.getahead.dwr.DWRServlet&lt;/servlet-class&gt;</div><div class="line"> &lt;init-param&gt;</div><div class="line">     &lt;param-name&gt;debug&lt;/param-name&gt;</div><div class="line">     &lt;param-value&gt;true&lt;/param-value&gt;</div><div class="line"> &lt;/init-param&gt;</div><div class="line">&lt;/servlet&gt;</div><div class="line"></div><div class="line">&lt;servlet-mapping&gt;</div><div class="line"> &lt;servlet-name&gt;dwr-invoker&lt;/servlet-name&gt;</div><div class="line"> &lt;url-pattern&gt;/dwr/*&lt;/url-pattern&gt;</div><div class="line">&lt;/servlet-mapping&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>元素10：<session-cofing></session-cofing></strong></p>
+<p>含义</p>
+<p>session-config包含一个子元素session-timeout.定义web应用中的session参数.</p>
+<p><session-timeout>分钟</session-timeout><br>定义这个web站台所有session的有效期限.单位为分钟.</p>
+<p>范例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;session-config&gt;</div><div class="line">   &lt;session-timeout&gt;30&lt;/session-timeout&gt;</div><div class="line">&lt;/session-config&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>元素11：<mime-mapping></mime-mapping></strong></p>
+<p>含义</p>
+<p>mime-mapping包含两个子元素extension和mime-type.定义某一个扩展名和某一MIME Type做对映.</p>
+<p><extension>扩展名名称</extension><br>扩展名称</p>
+<p><mime-type>MIME格式</mime-type><br>MIME格式.</p>
+<p>范例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;mime-mapping&gt;</div><div class="line">   &lt;extension&gt;doc&lt;/extension&gt;</div><div class="line">   &lt;mime-type&gt;application/vnd.ms-word&lt;/mime-type&gt;</div><div class="line">&lt;/mime-mapping&gt;</div><div class="line">&lt;mime-mapping&gt;</div><div class="line">   &lt;extension&gt;xls&lt;/extension&gt;</div><div class="line">   &lt;mime-type&gt;application/vnd.ms-excel&lt;/mime-type&gt;</div><div class="line">&lt;/mime-mapping&gt;</div><div class="line">&lt;mime-mapping&gt;</div><div class="line">   &lt;extension&gt;ppt&lt;/extesnion&gt;</div><div class="line">   &lt;mime-type&gt;application/vnd.ms-powerpoint&lt;/mime-type&gt;</div><div class="line">&lt;/mime-mapping&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>元素12：<welcome-file-list></welcome-file-list></strong></p>
+<p>含义</p>
+<p>welcome-file-list包含一个子元素welcome-file.用来定义首页列单.</p>
+<p><welcome-file>用来指定首页文件名称<br>welcome-file用来指定首页文件名称.我们可以用<welcome-file>指定几个首页,而服务器会依照设定的顺序来找首页.</welcome-file></welcome-file></p>
+<p>范例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;welcome-file-list&gt;</div><div class="line">  &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;</div><div class="line">  &lt;welcome-file&gt;index.htm&lt;/welcome-file&gt;</div><div class="line">&lt;/welcome-file-list&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>元素13：<error-page></error-page></strong></p>
+<p>含义</p>
+<p>error-page元素包含三个子元素error-code,exception-type和location.将错误代码(Error Code)或异常(Exception)的种类对应到web应用资源路径.</p>
+<p><error-code>错误代码</error-code><br>HTTP Error code,例如: 404、403</p>
+<p><exception-type>Exception</exception-type><br>一个完整名称的Java异常类型</p>
+<p><location>/路径</location><br>在web应用内的相关资源路径</p>
+<p>范例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;error-page&gt;</div><div class="line">   &lt;error-code&gt;404&lt;/error-code&gt;</div><div class="line">   &lt;location&gt;/error404.jsp&lt;/location&gt;</div><div class="line">&lt;/error-page&gt;</div><div class="line">&lt;error-page&gt;</div><div class="line">   &lt;exception-type&gt;java.lang.Exception&lt;/exception-type&gt;</div><div class="line">   &lt;location&gt;/exception.jsp&lt;/location&gt;</div><div class="line">&lt;/error-page&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>元素14：<jsp-config></jsp-config></strong><br>在测试的时候，并没有这个标签，应该是舍弃了。<br>含义</p>
+<p>jsp-config元素主要用来设定JSP的相关配置,<jsp:config>包括<taglib>和<jsp-property-group>两个子元素.其中<taglib>元素<br>在JSP 1.2时就已经存在了;而<jsp-property-group>是JSP 2.0新增的元素.</jsp-property-group></taglib></jsp-property-group></taglib></jsp:config></p>
+<taglib><br>taglib元素包含两个子元素taglib-uri和taglib-location.用来设定JSP网页用到的Tag Library路径.<br><taglib-uri>URI</taglib-uri><br>   taglib-uri定义TLD文件的URI,JSP网页的taglib指令可以经由这个URI存取到TLD文件.<br><taglib-location>/WEB-INF/lib/xxx.tld<br>   TLD文件对应Web站台的存放位置.<br></taglib-location></taglib>
+
+<p><jsp-property-group><br>jsp-property-group元素包含8个元素,分别为:</jsp-property-group></p>
+<p><description>Description<br>此设定的说明</description></p>
+<p><display-name>Name</display-name><br>此设定的名称</p>
+<p><url-pattern>URL</url-pattern><br>设定值所影响的范围,如:/CH2 或者/*.jsp</p>
+<p><el-ignored>true|false</el-ignored><br>若为true,表示不支持EL语法.</p>
+<p><scripting-invalid>true|false</scripting-invalid><br>若为true表示不支持&lt;%scription%&gt;语法.</p>
+<p><page-encoding>encoding</page-encoding><br>设定JSP网页的编码</p>
+<p><include-prelude>.jspf</include-prelude><br>设置JSP网页的抬头,扩展名为.jspf</p>
+<p><include-coda>.jspf</include-coda><br>设置JSP网页的结尾,扩展名为.jspf<br><br></p>
+<p>范例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;jsp-config&gt;</div><div class="line">&lt;taglib&gt;</div><div class="line">   &lt;taglib-uri&gt;Taglib&lt;/taglib-uri&gt;</div><div class="line">   &lt;taglib-location&gt;/WEB-INF/tlds/MyTaglib.tld&lt;/taglib-location&gt;</div><div class="line">&lt;/taglib&gt;</div><div class="line">&lt;jsp-property-group&gt;</div><div class="line">   &lt;description&gt;</div><div class="line">      Special property group for JSP Configuration JSP example.</div><div class="line">   &lt;/description&gt;</div><div class="line">   &lt;display-name&gt;JSPConfiguration&lt;/display-name&gt;</div><div class="line">   &lt;uri-pattern&gt;/*&lt;/uri-pattern&gt;</div><div class="line">   &lt;el-ignored&gt;true&lt;/el-ignored&gt;</div><div class="line">   &lt;page-encoding&gt;GB2312&lt;/page-encoding&gt;</div><div class="line">   &lt;scripting-inivalid&gt;true&lt;/scripting-inivalid&gt;</div><div class="line">&lt;/jsp-property-group&gt;</div><div class="line">&lt;/jsp-config&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>元素15：<resource-env-ref></resource-env-ref></strong></p>
+<p>含义</p>
+<p>resource-env-ref有两个子元素：</p>
+<p><resource-env-ref-name>资源名</resource-env-ref-name><br>资源的名称 相对于java:comp/env</p>
+<p><resource-env-ref-type>查找资源时返回的资源类名</resource-env-ref-type><br>当web应用查找该资源的时候，返回的Java类名的全称</p>
+<p>范例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;resource-env-ref&gt;  </div><div class="line"> &lt;resource-env-ref-name&gt;jdbc/mssql&lt;/resource-env-ref-name&gt;  </div><div class="line"> &lt;resource-env-ref-type&gt;javax.sql.DataSource&lt;/resource-env-ref-type&gt;  </div><div class="line">&lt;/resource-env-ref&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>元素16：<resource-ref></resource-ref></strong></p>
+<p>含义</p>
+<p>resource-ref元素包括五个子元素description,res-ref-name,res-type,res-auth,res-sharing-scope.利用JNDI取得应用可利用资源.</p>
+<p><description>说明</description><br>资源说明</p>
+<p><rec-ref-name>资源名称</rec-ref-name><br>资源名称</p>
+<p><res-type>资源种类</res-type><br>资源种类</p>
+<p><res-auth>Application|Container</res-auth><br>资源由Application或Container来许可</p>
+<p><res-sharing-scope>Shareable|Unshareable</res-sharing-scope><br> 资源是否可以共享.默认值为 Shareable</p>
+<p>范例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;resource-ref&gt;</div><div class="line">   &lt;description&gt;JNDI JDBC DataSource&lt;/description&gt;</div><div class="line">   &lt;res-ref-name&gt;jdbc/data&lt;/res-ref-name&gt;</div><div class="line">   &lt;res-type&gt;javax.sql.DataSoruce&lt;/res-type&gt;</div><div class="line">   &lt;res-auth&gt;Container&lt;/res-auth&gt;</div><div class="line">&lt;/resource-ref&gt;</div></pre></td></tr></table></figure></p>
+</listener>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web-xml/" rel="tag"># web.xml</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/21/Linux学习笔记/" rel="next" title="Linux学习笔记">
+                <i class="fa fa-chevron-left"></i> Linux学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/01/springMVC学习/" rel="prev" title="springMVC学习">
+                springMVC学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/31/web-xml配置模板及配置说明/"
+           data-title="web.xml配置模板及配置说明" data-url="http://yoursite.com/2017/03/31/web-xml配置模板及配置说明/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模板"><span class="nav-number">1.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置说明"><span class="nav-number">2.</span> <span class="nav-text">配置说明</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

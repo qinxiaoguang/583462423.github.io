@@ -1,0 +1,835 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="学习文档http://7xvpsh.com1.z0.glb.clouddn.com/publish/21-2/3-dispatcherservlet-processing-sequence.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springMVC学习">
+<meta property="og:url" content="http://yoursite.com/2017/04/01/springMVC学习/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="学习文档http://7xvpsh.com1.z0.glb.clouddn.com/publish/21-2/3-dispatcherservlet-processing-sequence.html">
+<meta property="og:updated_time" content="2017-04-02T13:25:01.257Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="springMVC学习">
+<meta name="twitter:description" content="学习文档http://7xvpsh.com1.z0.glb.clouddn.com/publish/21-2/3-dispatcherservlet-processing-sequence.html">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/01/springMVC学习/"/>
+
+
+
+
+
+  <title> springMVC学习 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/01/springMVC学习/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                springMVC学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-01T14:52:44+08:00">
+                2017-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/01/springMVC学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/01/springMVC学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="学习文档"><a href="#学习文档" class="headerlink" title="学习文档"></a>学习文档</h1><p><a href="http://7xvpsh.com1.z0.glb.clouddn.com/publish/21-2/3-dispatcherservlet-processing-sequence.html" target="_blank" rel="external">http://7xvpsh.com1.z0.glb.clouddn.com/publish/21-2/3-dispatcherservlet-processing-sequence.html</a><br><a id="more"></a></p>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>1.首先在web.xml中配置DispatcherServlet：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">   &lt;!--配置springMVC的前端处理器DispatcherServlet--&gt;</div><div class="line">   &lt;servlet&gt;</div><div class="line">       &lt;servlet-name&gt;qxg&lt;/servlet-name&gt;</div><div class="line">       &lt;servlet-class&gt;org.springframework.web.servlet.DispatcherServlet&lt;/servlet-class&gt;</div><div class="line"></div><div class="line">&lt;!--初始化beans的配置文件--&gt;</div><div class="line">       &lt;init-param&gt;</div><div class="line">           &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</div><div class="line">           &lt;param-value&gt;classpath:beansConfig.xml&lt;/param-value&gt;</div><div class="line">       &lt;/init-param&gt;</div><div class="line">       &lt;load-on-startup&gt;1&lt;/load-on-startup&gt; &lt;!--表示启动容器初始化该Servlet--&gt;</div><div class="line">   &lt;/servlet&gt;</div><div class="line">   &lt;servlet-mapping&gt;</div><div class="line">       &lt;servlet-name&gt;qxg&lt;/servlet-name&gt;</div><div class="line">       &lt;url-pattern&gt;/&lt;/url-pattern&gt; &lt;!--哪些请求会交给servlet处理--&gt;</div><div class="line">   &lt;/servlet-mapping&gt;</div></pre></td></tr></table></figure></p>
+<p>上面的url-pattern表示，/样式的请求都会交给名为qxg的servlet进行处理。<br>接着创建一个处理器，并配置RequestMapping,其是一个url的映射关系，如果遇到/index.html就会调用该控制器中的对应方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class HelloworldController implements Controller &#123;</div><div class="line"> </div><div class="line">	</div><div class="line">	@RequestMapping(&quot;/index.html&quot;)</div><div class="line">    public String hello()&#123;</div><div class="line">        return &quot;sucess&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后将该控制器配置在上述所说的beansConfig中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 控制器 --&gt;</div><div class="line"> &lt;bean name=&quot;/hello&quot; class=&quot;com.qxg.HelloworldController&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>接着有了处理器返回数据，如何进行解析视图呢？这个时候要用到视图解析器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 专门的试图解析器，会通过prefix + returnVal + suffix得到实际的物理试图，比如上述返回值是sucess，那么其解析为/WEB-INF/jsp/success.jsp,如果使用了该视图解析器，就不会再使用默认的ViewResolver解析器了 --&gt;</div><div class="line">&lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</div><div class="line">    &lt;property name=&quot;viewClass&quot; value=&quot;org.springframework.web.servlet.view.JstlView&quot;/&gt;</div><div class="line">    &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt;</div><div class="line">    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</div><div class="line">&lt;/bean&gt;</div></pre></td></tr></table></figure>
+<p>最后创建一个名为sucess.jsp文件，接着运行，输入localhost:8080/hello即可。</p>
+<p>可以看到，上述的第一步骤就是配置DispatherServlet，不仅仅可以在web.xml中进行配置，也可以在代码中进行配置，其配置使用到的类如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public class InitStartUp implements WebApplicationInitializer &#123;</div><div class="line">    public void onStartup(ServletContext servletContext) throws ServletException &#123;</div><div class="line">        System.out.println(&quot;hahha&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>其中WebApplilcationInitializer接口中的onStartup会在服务开启的时候运行，所以可以将DispatherServlet注册到这个方法中，但是该类还要在beans的配置中自动注册。<br>整体代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class InitStartUp implements WebApplicationInitializer &#123;</div><div class="line">    public void onStartup(ServletContext servletContext) throws ServletException &#123;</div><div class="line">        ServletRegistration.Dynamic registration = servletContext.addServlet(&quot;dispatcher&quot;, new DispatcherServlet());</div><div class="line">        registration.setLoadOnStartup(1);</div><div class="line">        registration.addMapping(&quot;/&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在beans的配置中添加:<code>&lt;bean class=&quot;com.qxg.init.InitStartUp&quot;/&gt;</code></p>
+<p>注意DispatcherServlet会默认寻找/WEB-INF/<servlet-name>-servlet.xml的beans的配置文件，除非指定：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;!--初始化beans的配置文件--&gt;</div><div class="line">&lt;init-param&gt;</div><div class="line">    &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;</div><div class="line">    &lt;param-value&gt;classpath:beansConfig.xml&lt;/param-value&gt;</div><div class="line">&lt;/init-param&gt;</div></pre></td></tr></table></figure></servlet-name></p>
+<h1 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h1><p>@Controller标记一个类为控制器，如果使用该注解，那么可以开启自动扫描，spring扫描到该注解标记的类会自动进行注册，开启自动扫描的方式为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;context:component-scan base-package=&quot;com.qxg.controller&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<p>如果不使用该注解，要注册Controller需要在beans的配置文件中进行指定<code>&lt;bean class=&quot;com.qxg.controller.HelloworldController&quot;/&gt;</code></p>
+<h1 id="RequstMapping"><a href="#RequstMapping" class="headerlink" title="RequstMapping"></a>RequstMapping</h1><p>首先注意的是，如果要使用RequestMapping进行映射，在beans的配置文件中，千万不能配置其他的映射类，比如spring有自带的BeanNameUrlHandlerMapping。所以在beansConfig配置中，只需要以下代码即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;!-- ViewResolver --&gt;</div><div class="line">&lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;</div><div class="line">    &lt;property name=&quot;viewClass&quot; value=&quot;org.springframework.web.servlet.view.JstlView&quot;/&gt;</div><div class="line">    &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt;</div><div class="line">    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;</div><div class="line">&lt;/bean&gt;</div><div class="line"></div><div class="line">&lt;bean class=&quot;com.qxg.Controller.HelloworldController&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<p>RequsetMapping不仅可以修饰方法，也可以修饰类:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@Controller</div><div class="line">@RequestMapping(&quot;springtest&quot;)</div><div class="line">public class HelloworldController &#123;</div><div class="line"></div><div class="line">    @RequestMapping(&quot;/nohello&quot;)</div><div class="line">    public String hello()&#123;</div><div class="line">        return &quot;sucess&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果要成功映射到hello()方法，则必须使用/springtest/nohello，这样才能正确访问。</p>
+<p>首先来看下RequstMapping的接口定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">@Target(&#123;ElementType.METHOD, ElementType.TYPE&#125;)</div><div class="line">@Retention(RetentionPolicy.RUNTIME)</div><div class="line">@Documented</div><div class="line">@Mapping</div><div class="line">public @interface RequestMapping &#123;</div><div class="line">    String name() default &quot;&quot;;</div><div class="line"></div><div class="line">    @AliasFor(&quot;path&quot;)</div><div class="line">    String[] value() default &#123;&#125;;</div><div class="line"></div><div class="line">    @AliasFor(&quot;value&quot;)</div><div class="line">    String[] path() default &#123;&#125;;</div><div class="line"></div><div class="line">    RequestMethod[] method() default &#123;&#125;;</div><div class="line"></div><div class="line">    String[] params() default &#123;&#125;;</div><div class="line"></div><div class="line">    String[] headers() default &#123;&#125;;</div><div class="line"></div><div class="line">    String[] consumes() default &#123;&#125;;</div><div class="line"></div><div class="line">    String[] produces() default &#123;&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>一般来讲，常用的是value,method,params,headers.<br>value是请求时的名字，method是请求方法，params是请求参数，headers就是请求头里的参数。<br>@RequestMapping(“/nohello”)比如这个注解，默认的”/nohello”就是value，其中第一个<code>/</code>可省略。<br>而method可指定GET或者POST。<br>params和headers符合以下规则：<br>加入指定了params = {“username”,”type=1”,”!age”,”sex!=women”}<br>那么表示请求中必须要有username参数，必须要有type参数且值为1，必须没有age参数，有sex但是不能为women，所以对于以下访问是合法的：<br>/springtest/nohello?username=me&amp;type=1&amp;sex=man.<br>该规则同样试用于headers，这样可以通过headers指定某种特定的浏览器才能访问，或者进行其他过滤。</p>
+<p>RequstMapping映射也支持匹配符：<br>?:匹配文件名中的一个字符<br><em>:匹配文件名中的任意字符<br>**:匹配多层路径<br>比如RequestMapping(“/springtest/</em>/abcd”)可以匹配/springtest/hahah/abcd等多种url</p>
+<h1 id="PathVariable"><a href="#PathVariable" class="headerlink" title="PathVariable"></a>PathVariable</h1><p>占位符，通过该注解，可以向RESTful风格url挺近，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(&quot;testPath/&#123;id&#125;&quot;)</div><div class="line">public String haha(@PathVariable(&quot;id&quot;) int id)&#123;</div><div class="line">    System.out.println(id);</div><div class="line">    return &quot;sucess&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在requestMapping中制定id，传到haha()方法中去，这就是PathVariable的作用。</p>
+<p>如果不指定PathVariable的值，其就是通过变量名来查找对应的变量值，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@RequestMapping(value=&quot;test/&#123;id&#125;/&#123;id2&#125;&quot;,method = RequestMethod.GET)</div><div class="line">    public String test(@PathVariable int id,@PathVariable int id2)&#123;</div><div class="line">        System.out.println(id +&quot;,&quot; + id2);</div><div class="line">        return &quot;sucess&quot;;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>@RequestMapping的占位符也可以标记在类上。</p>
+<p>也可以使用正则来表示占位符，其方式为{varname:reg}<br>即使，第一个参数是参数名，第二个是正则表达式，比如<code>@RequestMapping(&quot;springtest/{id3:[a-z]+}&quot;)</code></p>
+<h2 id="MatrixVariable"><a href="#MatrixVariable" class="headerlink" title="MatrixVariable"></a>MatrixVariable</h2><p>如果要允许矩阵变量的使用，你必须把RequestMappingHandlerMapping类的removeSemicolonContent属性设置为false。该值默认是true的。而使用MVC的命名空间配置时，你可以把<mvc:annotation-driven>元素下的enable-matrix-variables属性设置为true。该值默认情况下是配置为false的。<br>在beans的文件下配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;mvc:annotation-driven enable-matrix-variables=&quot;true&quot;/&gt;</div></pre></td></tr></table></figure></mvc:annotation-driven></p>
+<p>其url符合以下模式，就是使用到了矩阵变量：<code>/cars;color=red;year=2012</code>，<code>color=red,green,blue</code>，<code>color=red;color=green;color=blue</code>。<br>取得矩阵变量值的样例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// GET /pets/42;q=11;r=22</div><div class="line"></div><div class="line">@RequestMapping(path = &quot;/pets/&#123;petId&#125;&quot;, method = RequestMethod.GET)</div><div class="line">public void findPet(@PathVariable String petId, @MatrixVariable int q) &#123;</div><div class="line"></div><div class="line">    // petId == 42</div><div class="line">    // q == 11</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>有时候需要矩阵变量的精确定位：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// GET /owners/42;q=11/pets/21;q=22</div><div class="line"></div><div class="line">@RequestMapping(path = &quot;/owners/&#123;ownerId&#125;/pets/&#123;petId&#125;&quot;, method = RequestMethod.GET)</div><div class="line">public void findPet(</div><div class="line">    @MatrixVariable(name=&quot;q&quot;, pathVar=&quot;ownerId&quot;) int q1,</div><div class="line">    @MatrixVariable(name=&quot;q&quot;, pathVar=&quot;petId&quot;) int q2) &#123;</div><div class="line"></div><div class="line">    // q1 == 11</div><div class="line">    // q2 == 22</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当然也可以定义其不是必须出现的，并给一个默认值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// GET /pets/42</div><div class="line"></div><div class="line">@RequestMapping(path = &quot;/pets/&#123;petId&#125;&quot;, method = RequestMethod.GET)</div><div class="line">public void findPet(@MatrixVariable(required=false, defaultValue=&quot;1&quot;) int q) &#123;</div><div class="line"></div><div class="line">    // q == 1</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>对于RequestMapping还有一些其他的过滤规则，比如consumes对应请求头中的content-type,produces对应请求头的中的Accept，可到最开头给出的文档中进行查看。</p>
+<h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><p>HTTP协议里有四个标识操作方式的动词：GET,POST,PUT,DELETE，分别对应数据库中的查询,新建，更新和删除。<br>示例：<br>/order/1 GET :表示查询id=1的order<br>/order/1 DELETE：表示删除id=1的order<br>/order/1 PUT: 表删除id=1的order<br>/order POST:新增order，注意不是表是一条记录。</p>
+<p>一般来讲在网页中只有get,post请求，那么如何将get,post请求转换为get,post,put,delete请求呢？<br>在springMVC有这么一款过滤器叫HiddenHttpMethodFilter，其可以通过过滤请求中的隐藏的input，形式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input type=&quot;hidden&quot; name=&quot;_method&quot; value=&quot;DELETE&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p>该过滤器取得请求中的hidden域后，取得其中的值，然后将post请求转换为对应的DELETE,PUT,POST等请求。<br>如查看该过滤器的源码即可发现，其中的_method是固定的。</p>
+<p>那么如何使用？<br>首先在web.xml中配置该过滤器。<br>然后测试代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1.get请求</div><div class="line">&lt;a href=&quot;springtest/test/1&quot;&gt;get&lt;/a&gt;</div><div class="line">2.post请求</div><div class="line">&lt;form method=&quot;POST&quot; action=&quot;springtest/test/1&quot;&gt;</div><div class="line">	&lt;input type=&quot;submit&quot; value=&quot;post请求&quot;/&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<p>3.delete请求</p>
+<p><form method="POST" action="springtest/test/1"><br>    <input type="hidden" name="_method" value="DELETE"><br>    <input type="submit" value="delete请求"><br></form><br>4.put请求</p>
+<p><form method="POST" action="springtest/test/1"><br>    <input type="hidden" name="_method" value="PUT"><br>    <input type="submit" value="put请求"><br></form><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">在每次访问/*类型的网页的时候，服务器都会调用过滤器，将GET,POST等请求过滤一遍</div><div class="line"></div><div class="line">而对于处理器中的写法如下：</div></pre></td></tr></table></figure></p>
+<p> @RequestMapping(value=”test/{id}”,method = RequestMethod.GET)<br>    public String test(@PathVariable(“id”) int id){<br>        System.out.println(id);<br>        return “sucess”;<br>    }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">其中method通过RequestMethod枚举来指定对应的方法。</div><div class="line"></div><div class="line"></div><div class="line">这里要说明一点，如果一个web.xml要配置多个filter的话，每个filter标签是必须在filter-mapping之上的。否则就会报错，解决方法是将顶头的规则删除，但是不建议，那么正确写法如下：</div></pre></td></tr></table></figure></p>
+<pre><code>&lt;filter&gt;
+    &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.springframework.web.filter.CharacterEncodingFilter&lt;/filter-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;encoding&lt;/param-name&gt;
+        &lt;param-value&gt;utf-8&lt;/param-value&gt;
+    &lt;/init-param&gt;
+&lt;/filter&gt;
+&lt;filter&gt;
+    &lt;filter-name&gt;hiddenFilter&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.springframework.web.filter.HiddenHttpMethodFilter&lt;/filter-class&gt;
+&lt;/filter&gt;
+
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;CharacterEncodingFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+
+&lt;filter-mapping&gt;
+    &lt;filter-name&gt;hiddenFilter&lt;/filter-name&gt;
+    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+&lt;/filter-mapping&gt;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># RequestParam</div><div class="line"></div><div class="line">在前边讲过PathVariable，这个注解是为了和RESTful风格的url相匹配，并不是请求的参数，如果是使用form传递的参数，就可以使用正常的RequestParam来取得参数值，使用方法如下：</div></pre></td></tr></table></figure>
+<p> @RequestMapping(“test”)<br>    public String heihei(@RequestParam(“username”) String username){<br>        System.out.println(username);<br>        return “sucess”;<br>    }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">上述示例获取名叫username的参数，测试url为：/springtest/test?username=haha</div><div class="line">但是这种写法也有坏处，如果不指定参数，就会报错，那么可以这样写：`@RequestParam(value=&quot;username&quot;,required=fasle)`,表示参数不是必须的，如果我必须要参数，没有参数的时候给个默认值怎么弄？那么可以这样写:`@RequestParam(value = &quot;username&quot;,required = false,defaultValue = &quot;0&quot;)`,如果不指定默认值，则默认值为&quot;null&quot;那么如果要传入的对象是基本类型，则必然会报错，这点一定要注意。</div><div class="line"></div><div class="line">不仅仅有RequestParam还有一个注解是RequestHeader是用来处理请求头的，这里就不记录了</div><div class="line"></div><div class="line"></div><div class="line"># CookieValue</div><div class="line"></div><div class="line">用来传递Cookie值</div><div class="line"></div><div class="line">例如`@CookieValue(&quot;JSESIONID&quot;)`用来获取JSESIONID的cookie值,其参数其实也有required,defautlValue等。</div><div class="line"></div><div class="line"># POJO</div><div class="line">使用RequestMapping来进行映射的时候，将传来的参数直接封装为对象，如有以下JavaBean对象：</div></pre></td></tr></table></figure></p>
+<p>public class Car {<br>    private String name;</p>
+<pre><code>public String getName() {
+    return name;
+}
+
+public void setName(String name) {
+    this.name = name;
+}
+
+@Override
+public String toString() {
+    return &quot;Car{&quot; +
+            &quot;name=&apos;&quot; + name + &apos;\&apos;&apos; +
+            &apos;}&apos;;
+}
+</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">以及：</div></pre></td></tr></table></figure>
+<p>public class User {<br>    private String name;<br>    private int age;</p>
+<pre><code>private Car car;
+
+public String getName() {
+    return name;
+}
+
+public void setName(String name) {
+    this.name = name;
+}
+
+public int getAge() {
+    return age;
+}
+
+public void setAge(int age) {
+    this.age = age;
+}
+
+public Car getCar() {
+    return car;
+}
+
+public void setCar(Car car) {
+    this.car = car;
+}
+
+@Override
+public String toString() {
+    return &quot;User{&quot; +
+            &quot;name=&apos;&quot; + name + &apos;\&apos;&apos; +
+            &quot;, age=&quot; + age +
+            &quot;, car=&quot; + car +
+            &apos;}&apos;;
+}
+</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">其中User中有一个Car的引用，那么对于HTML中这样来写：</div></pre></td></tr></table></figure>
+<p><form method="GET" action="/springtest/user"><br>    <input type="text" name="name"><br>    <input type="number" name="age"><br>    <input type="text" name="car.name"><br>    <input type="submit"><br></form><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">接着其映射方法如下：</div></pre></td></tr></table></figure></p>
+<p>  @RequestMapping(“user”)<br>    public String getUser(User user){<br>        System.out.println(user);<br>        return “sucess”;<br>    }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">即使没有制定@RequestParam，也将所传的参数成功封装成了User对象。可以看到其中form中对于级联属性的指定方式为car.name。</div><div class="line"></div><div class="line"># Servlet原生API</div><div class="line">可以向RequestMapping指定的方法中传入Servlet原生的API:HttpServletRequest,HttpServletResponse,HttpSession,java.security.Principal,Locale,InputStream,OutputStream,Reader,Writer.等。如：</div></pre></td></tr></table></figure></p>
+<p> @RequestMapping(“servlet”)<br>    public String servlet(HttpServletResponse response){<br>        System.out.println(response);<br>        return “sucess”;<br>    }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"># 处理模型数据</div><div class="line"></div><div class="line">## ModelAndView</div><div class="line">该对象包含数据信息和模型数据。</div><div class="line"></div><div class="line">可以定义一个ModelAndView,添加数据后将来该对象返回，如：</div></pre></td></tr></table></figure></p>
+<p>   @RequestMapping(“modelAndView”)<br>    public ModelAndView modelAndView(){<br>        ModelAndView mv = new ModelAndView(“sucess”);<br>        mv.addObject(“name”,”qxg”);<br>        return mv;<br>    }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">其构造的时候，要传入返回的试图，比如sucess，那么就会映射到sucess.jsp中，也可以使用mv.setViewName来指定视图。</div><div class="line"></div><div class="line"></div><div class="line">## 传入Map</div><div class="line">如：</div></pre></td></tr></table></figure></p>
+<p>   @RequestMapping(“map”)<br>    public String map(Map<string,string> map){<br>        map.put(“name”,”qxg”);<br>        return “sucess”;<br>    }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">那么其map中的参数，而已在视图中获取到。</div><div class="line"> </div><div class="line"></div><div class="line">## ModelAttribute</div><div class="line"></div><div class="line">ModelAttriibute标记的方法会在@RequestMapping之前被调用。</div><div class="line">@ModelAttribute方法通常被用来填充一些公共需要的属性或数据。</div><div class="line">一个控制器可以拥有数量不限的@ModelAttribute方法。同个控制器内的所有这些方法，都会在@RequestMapping方法之前被调用。</div><div class="line"></div><div class="line"></div><div class="line">如：</div></pre></td></tr></table></figure></string,string></p>
+<pre><code>@ModelAttribute
+public void testModelAttribute(Map&lt;String,Object&gt; map){
+    User user = new User();
+    user.setAge(11);
+    user.setName(&quot;hah&quot;);
+    Car car = new Car();
+    car.setName(&quot;xuefulan&quot;);
+    user.setCar(car);
+
+    System.out.println(&quot;hhh&quot;);
+    map.put(&quot;user&quot;,user);
+}
+
+
+@RequestMapping(&quot;user&quot;)
+public String getUser(User user){
+    System.out.println(user);
+    return &quot;sucess&quot;;
+}
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">在调用getUser()方法的时候，首先会调用testModelAttribute方法，并把其user传入到map中，而在getUser方法调用的时候，其user的来源就是在map中取得的，然后调用set方法，来设置从url取得的参数值。</div><div class="line">所以，如果url中上传的user的字段缺一段，那么对其在数据库中本来的值是没有影响的。</div><div class="line"></div><div class="line">对于user，其来源：</div><div class="line">它可能因为@SessionAttributes注解的使用已经存在于model中</div><div class="line">它可能因为在同个控制器中使用了@ModelAttribute方法已经存在于model中</div><div class="line">它可能是由URI模板变量和类型转换中取得的（下面会详细讲解）</div><div class="line">它可能是调用了自身的默认构造器被实例化出来的</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"># 视图和视图解析器</div><div class="line"></div><div class="line">在Controller调用任何一个方法，其返回值可以是String,ModelAndView,View等对象，但是不论其是什么对象，最终都会被转换为ModelAndView对象。</div><div class="line">SpringMVC通过视图解析器(ViewResolver)得到最终的视图(View)，最终的视图可以是JSP,也可能是Ecel,JFreeChart等各种表现形式的视图。最终调用view的render方法将视图进行渲染。</div><div class="line"></div><div class="line"></div><div class="line">SpringMVC中视图解析器有多种，比如InternalResourceViewResolver,是JSP最常见的视图技术，其配置如下：</div></pre></td></tr></table></figure>
+<pre><code>&lt;!-- ViewResolver --&gt;
+&lt;bean class=&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;&gt;
+    &lt;property name=&quot;prefix&quot; value=&quot;/WEB-INF/jsp/&quot;/&gt;
+    &lt;property name=&quot;suffix&quot; value=&quot;.jsp&quot;/&gt;
+&lt;/bean&gt;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">通过该视图解析器可以制定前缀和后缀。</div><div class="line"></div><div class="line"></div><div class="line">如果不需要将某请求通过一些列的控制器，而是直接转发到某个页面，可以通过&lt;mvc:view-controller&gt;标签，如：</div></pre></td></tr></table></figure>
+<p><mvc:view-controller path="/sucess" view-name="sucess"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果遇到/sucess标签，则直接转发到prefix + &quot;sucess&quot; + suffix视图中。</div><div class="line">但是如果使用了该标签，对于其他的处理器中的映射就会出现问题，那么此时需要&lt;mvc:annotation-driven&gt;标签，所最终的写法应该如下：</div></pre></td></tr></table></figure></mvc:view-controller></p>
+<pre><code>&lt;mvc:view-controller path=&quot;/sucess&quot; view-name=&quot;sucess&quot;/&gt;
+&lt;mvc:annotation-driven&gt;&lt;/mvc:annotation-driven&gt;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 自定义视图解析器</div><div class="line">springMVC有一个自带视图解析器：`BeanNameViewResolver`，该解析的作用是，控制器返回一个视图名后，比如返回&quot;user&quot;，那么BeanNameViewResolver解析器就会去查找一个名叫User的类，该类必须实现View接口。然后通过该User类调用render方法进行视图解析。</div><div class="line"></div><div class="line">如果beans配置中配置了多个视图解析器，那么其优先级是通过order属性进行排序，order值越小，优先级越高，对于InternalResourceViewResolver,它的order值是Integer.MAX_VALUE，所以可想而知，其优先级是最低的。</div><div class="line"></div><div class="line">那么如果beans配置中存在InternalResourceViewResolver和BeanNameViewResolver时，在BeanNameViewResolver没有找到对应的视图的时候，其会通过InternalResourceViewResolver来查找prifix + returnValue + suffix视图。</div><div class="line"></div><div class="line">对于自定义的视图，其写法如下：</div></pre></td></tr></table></figure>
+<p>public class HelloView implements View {<br>    public String getContentType() {<br>        return “text/html”;<br>    }</p>
+<pre><code>public void render(Map&lt;String, ?&gt; model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    response.getWriter().print(&quot;heheh&quot;);
+}
+</code></pre><p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">第一个方法返回视图的类型，第二个就是调用responce来打印输出的内容。</div><div class="line"></div><div class="line">那么自定义视图中的render方法其实做的东西有很多，比如可以通过其他插件来写一个Excel等。</div><div class="line"></div><div class="line">## 视图重定向和转发</div><div class="line">在控制器中调用某一特定的方法后，会通过视图解析器进行解析，如果返回的String是下面这种：</div><div class="line">`redirect:/index.jsp`，那么其就会重定向到根目录下的index.jsp中，同样`forward:/index.jsp`会转发到index.jsp中。</div><div class="line"></div><div class="line"></div><div class="line"># 转换器</div><div class="line">如果想要将String自动转换为自己的User对象，那么就需要使用Convert接口来实现，并且在beans的配置文件中配置。</div><div class="line">如：</div></pre></td></tr></table></figure>
+<p>public class String2UserConvert implements Converter<string,user> {<br>    public User convert(String s) {<br>        User user = new User();<br>        user.setName(“convert”);<br>        user.setAge(18);<br>        return user;<br>    }<br>}</string,user></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">然后在beans的配置文件中进行配置：</div></pre></td></tr></table></figure>
+   <bean class="org.springframework.context.support.ConversionServiceFactoryBean"><br>       <property name="converters"><br>           <set><br>               <bean class="com.qxg.convert.String2UserConvert"><br>           </bean></set><br>       </property><br>   </bean>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># springMVC处理静态资源</div><div class="line">在视图中可能需要一些静态的js文件，但是由于springMVC会拦截请求，并通过控制器等映射到其他请求，所以这些资源无法被正常获取。</div><div class="line"></div><div class="line">解决方法就是配置&lt;mvc:default-servlet-handler /&gt;</div><div class="line">配置方法是：</div></pre></td></tr></table></figure>
+<pre><code>&lt;mvc:default-servlet-handler/&gt;
+&lt;mvc:annotation-driven/&gt; &lt;!--防止RequestMapping失效--&gt;
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">default-servlet-handler会在springMVC上下文中定义一个DefaultServletHttpRequestHandler，它会对进入DispatherServlet的请求进行筛选，如果发现是没有被映射的请求，就会交给服务器默认的Servlet进行处理。</div><div class="line"></div><div class="line">所以对于js文件，DispatherServlet并不会处理。</div><div class="line"># mvc:annotation-driven</div><div class="line">实际开发中，通常要加入该配置。</div><div class="line"></div><div class="line">mvc:annotation-driven会自动注册RequestMappingHandlerMapping,RequestMappingHandlerAdapter,ExceptionHandlerExceptionResolver三个bean.还将提供以下支持：</div><div class="line">* 支持使用`ConversionService`实例对表单参数进行类型转换</div><div class="line">* 支持使用@NumberFormatannotataion,@DateTimeFormat注解完成数据类型的格式化</div><div class="line">* 支持使用@Valid注解对JavaBean实例进行JSR303 验证</div><div class="line">* 支持使用@RequestBody和@ResponseBody注解</div><div class="line"></div><div class="line">如果不加该配置，是没有ConversionService，所以在使用自定义转换器的时候，通常要加上该配置如：</div></pre></td></tr></table></figure>
+  <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean"><br>       <property name="converters"><br>           <set><br>               <bean class="com.qxg.convert.String2UserConvert"><br>           </bean></set><br>       </property><br>   </bean>
+
+<pre><code>&lt;mvc:annotation-driven conversion-service=&quot;conversionService&quot;/&gt;
+</code></pre><p>```</p>
+<h1 id="InitBinder"><a href="#InitBinder" class="headerlink" title="InitBinder"></a>InitBinder</h1><p>由@InitBinder标识的方法，可以对WebDataBinder对象进行初始化。WebDataBinder是DataBinder的子类，用于完成由表单字段到JavaBean属性的绑定。<br>@InitBinder方法不能有返回值，必须为void<br>@InitBinder方法的参数通常是WebDataBinder</p>
+<p>比如WeDataBinder中有一方法是，w.setDisallowedFields(String …)该方法是设置某个表单数据，不会被映射到对应的JavaBean中。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/31/web-xml配置模板及配置说明/" rel="next" title="web.xml配置模板及配置说明">
+                <i class="fa fa-chevron-left"></i> web.xml配置模板及配置说明
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/01/springMVC学习/"
+           data-title="springMVC学习" data-url="http://yoursite.com/2017/04/01/springMVC学习/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#学习文档"><span class="nav-number">1.</span> <span class="nav-text">学习文档</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Controller"><span class="nav-number">3.</span> <span class="nav-text">Controller</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RequstMapping"><span class="nav-number">4.</span> <span class="nav-text">RequstMapping</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PathVariable"><span class="nav-number">5.</span> <span class="nav-text">PathVariable</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MatrixVariable"><span class="nav-number">5.1.</span> <span class="nav-text">MatrixVariable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">5.2.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#REST"><span class="nav-number">6.</span> <span class="nav-text">REST</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#InitBinder"><span class="nav-number">7.</span> <span class="nav-text">InitBinder</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

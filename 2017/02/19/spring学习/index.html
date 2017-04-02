@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/02/19/spring学习/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="j2ee学习之五-spring">
-<meta property="og:updated_time" content="2017-02-25T03:18:23.279Z">
+<meta property="og:updated_time" content="2017-03-31T02:27:48.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring学习">
 <meta name="twitter:description" content="j2ee学习之五-spring">
@@ -434,7 +434,8 @@
 <h2 id="调用静态方法"><a href="#调用静态方法" class="headerlink" title="调用静态方法"></a>调用静态方法</h2><p>通过T()调用一个类的静态方法，它返回一个Class Object,然后再调用相应的方法和属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">value = &quot;#&#123;T(java.lang.Math).PI&#125;&quot;</div></pre></td></tr></table></figure></p>
 <h2 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">value =&quot;#&#123;count&gt;30 ? &apos;呵&apos;:&apos;哈&apos;&#125;&quot;</div></pre></td></tr></table></figure>
 <p>注意其中的字符串值要用单引号或双引号包括起来。</p>
-<h1 id="Bean生命周期"><a href="#Bean生命周期" class="headerlink" title="Bean生命周期"></a>Bean生命周期</h1><p>在bean的配置文件中，制定bean的init-method，和destroy-method，这样bean在初始化的时候会执行init-method，销毁的时候会执行destroy-method,如：</p>
+<h1 id="Bean生命周期"><a href="#Bean生命周期" class="headerlink" title="Bean生命周期"></a>Bean生命周期</h1><p>首先有个lazy-init,指的懒加载。bean配置完成后，在应用启动完成后，所有的bean都会初始化，而如果制定lazy-init后，只有用到的时候才会初始化。一般用不到。</p>
+<p>在bean的配置文件中，制定bean的init-method，和destroy-method，这样bean在初始化的时候会执行init-method，销毁的时候会执行destroy-method,如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;bean id=&quot;car2&quot; init-method=&quot;init&quot; destroy-method=&quot;destroy&quot; class=&quot;con.qxg.bean.Car&quot; p:name=&quot;#&#123;car.name&#125;&quot; p:size=&quot;846&quot;/&gt;</div></pre></td></tr></table></figure>
 <p>在主代码中调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</div><div class="line">Car car = (Car) ctx.getBean(&quot;car2&quot;);</div><div class="line">System.out.println(car);</div><div class="line"></div><div class="line">ctx.close();</div></pre></td></tr></table></figure></p>
 <p>其打印日志为：</p>
@@ -711,7 +712,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -722,7 +723,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
