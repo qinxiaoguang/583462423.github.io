@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/13/操作系统笔记/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="= =">
-<meta property="og:updated_time" content="2017-03-27T04:24:27.102Z">
+<meta property="og:updated_time" content="2017-04-04T05:44:13.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="操作系统笔记">
 <meta name="twitter:description" content="= =">
@@ -430,6 +430,13 @@
 <p>银行家算法虽然很好，但是执行的代价比较大，其计算序列需要O(m <em> n^2)，n是进程的个数，m是每个进程中需要分配资源的个数，如上述ABC，m = 3.<br>n^2的计算方法是其序列首先要分配给P1，然后计算P1之后的安全序列，接着再首先分配给P2，再计算P2开头的安全序列，所以时间复杂度是n^2,那么综合一下，总的时间复杂度就是O(m </em> n^2)</p>
 <p>##死锁检测＋恢复<br>发现问题再处理<br>当资源利用率低时进行检测，检测的方法和银行家算法一样，如果发现死锁就进行回滚，回滚的选择也需要进行选择，是选择优先级高的？占用资源多的？回滚的机制有很多，这里不再赘述(其实就是不知道嘛！)</p>
 <h2 id="死锁忽略"><a href="#死锁忽略" class="headerlink" title="死锁忽略"></a>死锁忽略</h2><p>如果出现死锁就忽略，可以重启等。效率高，并且出现的概率比较低，如果使用其他死锁的预防检测恢复等方法，代价会比较高，并造成编程等困难。所以Windows,Linux等大多都采用了死锁忽略的方法。</p>
+<h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><p>分段：优点是每个段有自己不同的特点，比如第一个段只读第二个段可写，如果把两个段放一起，容易产生差错。<br>那么每个程序就会分成好几个段(比如程序段，数据段等)，但是每个段长度并不是一定相等的。定位物理地址的方式是&lt;段号：段内偏移&gt;，每个段号都对应一个基址，一个长度，和读写权限，这样组成的一张表就是段表。</p>
+<p>分段内存可能存在适配问题，比如当前内存已经分配了n段，且每段的大小不一样，而n段中的某一段在某一时刻被释放，这样就会导致这些段之间产生空闲的内存，如果此时又有一个程序需要分配段内存，如何查找这些空闲分区合适的一个段内存为其分配呢？这个时候就需要一些算法：最先适配(从头开始找，一旦找到就分配),最佳适配(查找最符合需分配内存的段)，最差分配(一直往后找，找到一个最大的段)。</p>
+<p>实际内存并不需要分段进行内存分区，而是采用分页。分段方法是对虚拟内存进行处理。</p>
+<p>分页:分段容易导致内存碎片，如果要分配一个160K的内存，但是当前碎片中只有150K,50K的内存，那么这个时候是无法往里塞的，其中一种方法就是将160K分为120K+40K，分别塞进150K,50K的内存中，这样就引出了分页。</p>
+<p>分页是将内存分为页，每页大小固定，每个段对应有1~n个页。<br>分配内存时，计算当前要分配的内存需要多少页，然后在内存中为其寻找合适的页数，分配页的时候不需要连续，即可以将页分配为离散形的。可将页理解为内存分配的单位。</p>
+<p>页中地址也是逻辑地址，逻辑地址前几位对应页号，后面的位对应页内偏移地址。</p>
+<p>看到这，就能理解了，一个程序由多个段组成，一个段又分为多个页。</p>
 
       
     </div>
@@ -542,7 +549,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -553,7 +560,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -588,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多进程"><span class="nav-number">2.</span> <span class="nav-text">多进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU调度："><span class="nav-number">3.</span> <span class="nav-text">CPU调度：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信号量"><span class="nav-number">4.</span> <span class="nav-text">信号量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#死锁"><span class="nav-number">5.</span> <span class="nav-text">死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁预防"><span class="nav-number">5.1.</span> <span class="nav-text">死锁预防</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁避免"><span class="nav-number">5.2.</span> <span class="nav-text">死锁避免</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁忽略"><span class="nav-number">5.3.</span> <span class="nav-text">死锁忽略</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础知识"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#多进程"><span class="nav-number">2.</span> <span class="nav-text">多进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU调度："><span class="nav-number">3.</span> <span class="nav-text">CPU调度：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信号量"><span class="nav-number">4.</span> <span class="nav-text">信号量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#死锁"><span class="nav-number">5.</span> <span class="nav-text">死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁预防"><span class="nav-number">5.1.</span> <span class="nav-text">死锁预防</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁避免"><span class="nav-number">5.2.</span> <span class="nav-text">死锁避免</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死锁忽略"><span class="nav-number">5.3.</span> <span class="nav-text">死锁忽略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存"><span class="nav-number">6.</span> <span class="nav-text">内存</span></a></li></ol></div>
             
 
           </div>

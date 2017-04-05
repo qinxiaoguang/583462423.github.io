@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/21/Linux学习笔记/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="Bash">
-<meta property="og:updated_time" content="2017-03-29T08:14:38.158Z">
+<meta property="og:updated_time" content="2017-04-05T09:15:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux学习笔记">
 <meta name="twitter:description" content="Bash">
@@ -387,7 +387,72 @@
 <p>命令模式，可以通过命令完成选择复制粘贴等功能。命令模式下，按很多键都不会有响应。<br>而如果要输入内容，在命令模式中按i键，就进入插入模式。<br>命令模式下按:，就会进入ex模式，该模式可以保存修改，或者退出。</p>
 <p>命令模式：<br>i 在当前光标前插入文本<br>o 在当前行下插入新行<br>dd 删除整行<br>yy 将当前行的内容放入缓冲区(复制当前行)<br>n+yy 将n行的内容放入缓冲区(光标下的n行)<br>p 将缓冲区的内容移出放入光标后<br>u 撤销上一个操作<br>r 替换当前字符<br>/ 查找关键字，查找到后，按n键，就可以在查找的内容间进行切换。</p>
 <p>ex模式：<br>:w 保存当前修改<br>:q 退出<br>:q! 强制退出，不保存修改<br>:x 保存并退出，和:wq一样。<br>:set nu 显示行号<br>:! 系统命令 =&gt;执行系统命令，并显示结果，如<code>:! ls</code><br>:sh 切换到命令行，使用ctrl+d切换到vim</p>
-
+<h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><p>IPv4 32位,IPv6 128位</p>
+<p>ifconfig 是 interface config的缩写.<br>查询网络接口信息.</p>
+<p>测试网络连通性:<br><code>ping www.baidu.com</code></p>
+<p>测试DNS解析:<br>host www.baidu.com<br>dig www.baidu.com<br>dig比较专业</p>
+<p>显示路由表<br>ip route</p>
+<p>追踪到达目标地址的网络路径<br>traceroute www.baidu.com</p>
+<p>使用mtr进行网络质量测试<br>mtr www.baidu.com</p>
+<p>修改主机名<br>hostname 查看主机名<br>hostname qxg 修改主机名为qxg,但是重启后就没有了.<br>如果要永久修改,需要修改文件</p>
+<p>故障排查<br>遵循<strong>从底层到高层,从自身到外部</strong><br>首先查看网络配置信息是否正确:ip,子网,网关,DNS<br>再看网关是否联通:ping …<br>查看DNS是否解析正常:host www.xxx.com</p>
+<h1 id="复杂命令"><a href="#复杂命令" class="headerlink" title="复杂命令"></a>复杂命令</h1><table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>定义</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&gt;</td>
+<td>将STDOUT重定向到文件(覆盖)</td>
+<td>echo “something” &gt; outfile.txt</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>将STDOUT重定向到文件(追加)</td>
+<td>echo “something” &gt;&gt; outfile.txt</td>
+</tr>
+<tr>
+<td>2&gt;</td>
+<td>将STDERR重定向的文件(覆盖),当出现错误的时候会显示在屏幕</td>
+<td>echo “err” 2&gt; errfile.txt</td>
+</tr>
+<tr>
+<td>2&gt;&amp;1</td>
+<td>将STDERR和STDOUT结合,输出和出错信息都会重定向</td>
+<td>ls sth 2&gt;&amp;1 outfile</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>重定向STDIN</td>
+<td>grep sth &lt; /etc/file</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>将一个命令的输出作为另一个命令的输入</td>
+<td>ls -l</td>
+<td>grep sth</td>
+</tr>
+</tbody>
+</table>
+<h1 id="命令行文本处理"><a href="#命令行文本处理" class="headerlink" title="命令行文本处理"></a>命令行文本处理</h1><p>cat,more,less,head,tail等可在上边查看.</p>
+<ul>
+<li><p>grep<br>基于关键字进行搜索,如grep ‘sth’ /etc/afile,表示在afile中搜索包含’sth’关键字的一行.<br>-i 忽略大小写<br>-n 显示结果所在行<br>-v 输出不带关键字的行<br>-Ax 在输出的时候包含结果所在行之后的指定x行数(After x)<br>-Bx 在输出的时候包含结果所在行之前的指定x行数(Before x)</p>
+</li>
+<li><p>cut 用于基于列处理文本内容<br>-d 指定分割符<br>-f 指定输出的列号<br>-c 基于字符进行切割 cut -c2-6 /etc/passwd 只显示第2到第6个字符<br>如: cut -d: -f1 /etc/passwd 使用”:”作为分隔符切割成一列一列的信息,之后显示第一列.</p>
+</li>
+<li><p>wc 统计文本信息 word count<br>-l 只统计行数<br>-w 只统计单词数<br>-c 统计字节数<br>-m 统计字符数</p>
+</li>
+<li><p>sort 对文本进行排序,只支持英文和数字<br>-r 倒序<br>-n 数字排序<br>-f 忽略大小写<br>-u 删除重复行</p>
+</li>
+<li><p>diff 文本比较<br>-i 忽略大小写<br>-b 忽略空格数量的变化<br>-u 统一显示比较信息</p>
+</li>
+</ul>
+<h1 id="Linux系统启动"><a href="#Linux系统启动" class="headerlink" title="Linux系统启动"></a>Linux系统启动</h1>
       
     </div>
 
@@ -499,7 +564,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -510,7 +575,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -545,7 +610,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Bash"><span class="nav-number">1.</span> <span class="nav-text">Bash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统目录"><span class="nav-number">2.</span> <span class="nav-text">系统目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统常用命令"><span class="nav-number">3.</span> <span class="nav-text">系统常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#磁盘相关"><span class="nav-number">4.</span> <span class="nav-text">磁盘相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户"><span class="nav-number">5.</span> <span class="nav-text">用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#权限"><span class="nav-number">6.</span> <span class="nav-text">权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器相关"><span class="nav-number">7.</span> <span class="nav-text">服务器相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VIM相关"><span class="nav-number">8.</span> <span class="nav-text">VIM相关</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Bash"><span class="nav-number">1.</span> <span class="nav-text">Bash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统目录"><span class="nav-number">2.</span> <span class="nav-text">系统目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统常用命令"><span class="nav-number">3.</span> <span class="nav-text">系统常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#磁盘相关"><span class="nav-number">4.</span> <span class="nav-text">磁盘相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户"><span class="nav-number">5.</span> <span class="nav-text">用户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#权限"><span class="nav-number">6.</span> <span class="nav-text">权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器相关"><span class="nav-number">7.</span> <span class="nav-text">服务器相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VIM相关"><span class="nav-number">8.</span> <span class="nav-text">VIM相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络"><span class="nav-number">9.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复杂命令"><span class="nav-number">10.</span> <span class="nav-text">复杂命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令行文本处理"><span class="nav-number">11.</span> <span class="nav-text">命令行文本处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux系统启动"><span class="nav-number">12.</span> <span class="nav-text">Linux系统启动</span></a></li></ol></div>
             
 
           </div>

@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/12/计算机网络学习笔记/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="计算机网络因为在校没有认真学，所以现在需要重新学习一下，记录下学习笔记。">
-<meta property="og:updated_time" content="2017-03-27T06:54:16.137Z">
+<meta property="og:updated_time" content="2017-04-04T05:05:12.683Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络学习笔记">
 <meta name="twitter:description" content="计算机网络因为在校没有认真学，所以现在需要重新学习一下，记录下学习笔记。">
@@ -398,7 +398,7 @@
 <p>其缺点可见:执行需要消耗很多时间,每个TCP需要开销</p>
 <p>而持久性连接，其发送响应后服务器保持TCP连接，后续的HTTP消息可以通过该连接发送。</p>
 <p>持久性连接又包含了无流水的持久性连接和带有流水机制的持久性连接。<br>无流水的持久性连接是客户端收到服务端的响应后才发送下一个请求，而流水机制的持久性连接是客户端一旦遇到一个需要请求的对象就会发送连接。<br>HTTP1.1默认选项是带有流水机制的持久性连接。</p>
-<h4 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h4><p>HTTP有两类消息，请求消息(request)和响应消息(response).<br>请求消息的通用格式包含：请求行(request line)，请求头行(header line,主要是header中的一系列key-value值)以及消息体(POST的数据放入该结构中)等。</p>
+<h4 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h4><p>HTTP有两类消息，请求消息(request)和响应消息(response).<br>请求消息的通用格式包含：请求行(request line)，请求头行(header line,主要是header中的一系列key-value值)以及消息体(POST的数据放入该结构中)等。<br>请求行包含:method,url,version，比如:<code>POST http://www.someurl.com HTTP/1.1</code><br>header line就包含一些列参数键值对，比如accept,content-type等<br>请求体(消息体)包含自定义的一些参数等。</p>
 <p>HTTP1.0版本中请求消息有：GET,POST,HEAD(请服务器不要将所请求的对象放入响应消息中)等方式<br>HTTP1.1增加了两种方法：PUT(将消息体中的文件上传到URL字段所指定的路径)，DELETE（删除URL字段所指定的文件）</p>
 <p>响应消息包含：状态行，header line,以及返回的数据</p>
 <h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>HTTP是无状态的，但是很多服务器需要掌握用户的状态，所以就出现了Cookie。</p>
@@ -416,6 +416,17 @@
 <p>应用层的程序由应用进程控制，而应用层以下则由操作系统控制。</p>
 <p>对于一个套接字来说，对外来明确地址时，通过IP地址+ 端口号。</p>
 <p>了解请戳：<a href="http://network.51cto.com/art/201412/459619_all.htm" target="_blank" rel="external">http://network.51cto.com/art/201412/459619_all.htm</a><br>Java socket：<a href="http://www.cnblogs.com/rocomp/p/4790340.html" target="_blank" rel="external">http://www.cnblogs.com/rocomp/p/4790340.html</a></p>
+<h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><p>多路复用/分用,UDP/TCP,不可靠/可靠信息传输,流水线机制和滑动窗口协议.</p>
+<p>RDT3.0是发送数据后等待接受确认码后才能发送下一个数据.这样的缺点是增加了传送时间.<br>解决方式是,连续发送多个分组后再等待确认码.</p>
+<p>那么这个时候就提出问题了,发送多个分组后,发送方或接收方如果存储不了怎么办?这个时候就需要使用缓存.<br>这就是流水线机制,不停的发送分组数据,并不停接受ACK确认码.如果要实现流水线,需要缓存以及滑动窗口协议.</p>
+<p>滑动窗口协议:在发送数据的时候,数据会有序列,比如1~n的序列,而窗口就是为了管理这些等待确认的序列,注意是等待被确认,也就是说这些数据被发送出去了,但是发送方还未接收到接收方发送回来的ACK确认码.那么窗口尺寸为N时,表示最多有N个等待确认的消息.</p>
+<p>而滑动窗口是确认后,窗口向前滑动.</p>
+<p>窗口尺寸是N时,窗口左边是已发送且已确认的,窗口中存在已发送未接受确认的数据序列,也存在未发送的数据序列,窗口的右边就是待发送的数据序列.那么到此就明确了,窗口为N时候,为什么标识最多有N个等待确认的消息,如果发送了N个,但是未接受到确认,那么该窗口只能等待.</p>
+<p>滑动窗口协议要学习GBN,SR,这是两种滑动窗口协议.</p>
+<p>对于GBK协议而言,分组头部的K位标识序列号,也就是2^k个序列，也就说对于任何一个传送的数据，其标识的序列是0~2^k-1,不可能超过该序列，比如序列标识是0~4，那么对于一段数据而言，其整体序列就是012340123401234，也就是说，序列到头的时候，会从0继续开始.ACK确认码确认收到的序列号n,表示n之前的序列包括n都已经正确接受了.<br>当n+1分组发生了超时时间,就会从n+1开始进行重传，无论前边是否已经发送过。<br>所以这种协议潜在的会造成资源浪费。</p>
+<p>例：数据链路层采用后退N帧(GBN)协议，发送方已经发送了编号为0~7的帧，当计时器超时时，若发送方只接受到0,2,3帧的确认，则发送方需要重发的帧数是多少，分别是哪几个帧。<br>答：重发4～7，虽然1确认帧没收到，但是最终收到的是3确认帧，表示3之前包含3都已经被成功接受，所以重发时，只能重发4往后的帧。</p>
+<p>SR(send/receive)协议相对于GBN协议而言，他并不会丢弃已经发送的数据，接收方可以接受乱序到达的序列。接收方会对每个分组进行单独的确认，设置缓存机制，来缓存乱序到达的分组，而发送发只需要重传没收到ACK的分组。<br>注意该协议是发送方和接收方都有窗口，接收方的窗口最左边发送ACK后，整个窗口就开始右移，而发送方窗口最左接受到ACK,整个窗口才会右移。</p>
+<p>SR中可用序列号和窗口尺寸是有要求的，发送方窗口尺寸 + 接受方窗口尺寸 &lt; 序列号总数</p>
 
       
     </div>
@@ -528,7 +539,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -539,7 +550,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -574,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是计算机网路"><span class="nav-number">1.</span> <span class="nav-text">什么是计算机网路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据交换"><span class="nav-number">2.</span> <span class="nav-text">数据交换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#电路交换"><span class="nav-number">2.1.</span> <span class="nav-text">电路交换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多路复用"><span class="nav-number">2.1.1.</span> <span class="nav-text">多路复用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#码分复用"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">码分复用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文交换"><span class="nav-number">2.2.</span> <span class="nav-text">报文交换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分组交换"><span class="nav-number">2.3.</span> <span class="nav-text">分组交换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文交换和分组交换时延计算"><span class="nav-number">2.4.</span> <span class="nav-text">报文交换和分组交换时延计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报文交换-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">报文交换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组交换-1"><span class="nav-number">2.4.2.</span> <span class="nav-text">分组交换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络性能"><span class="nav-number">3.</span> <span class="nav-text">计算机网络性能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络体系结构"><span class="nav-number">4.</span> <span class="nav-text">计算机网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI参考模型"><span class="nav-number">4.1.</span> <span class="nav-text">OSI参考模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP参考模型"><span class="nav-number">4.2.</span> <span class="nav-text">TCP/IP参考模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用层"><span class="nav-number">5.</span> <span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络应用体系结构"><span class="nav-number">5.1.</span> <span class="nav-text">网络应用体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络应用进程间通信"><span class="nav-number">5.2.</span> <span class="nav-text">网络应用进程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层协议"><span class="nav-number">5.3.</span> <span class="nav-text">应用层协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络应用对传输服务的要求"><span class="nav-number">5.4.</span> <span class="nav-text">网络应用对传输服务的要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB应用"><span class="nav-number">5.5.</span> <span class="nav-text">WEB应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">5.5.1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#格式"><span class="nav-number">5.5.1.1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number">5.5.1.2.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web缓存-代理服务器"><span class="nav-number">5.5.1.3.</span> <span class="nav-text">Web缓存/代理服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket套接字"><span class="nav-number">5.6.</span> <span class="nav-text">Socket套接字</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是计算机网路"><span class="nav-number">1.</span> <span class="nav-text">什么是计算机网路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据交换"><span class="nav-number">2.</span> <span class="nav-text">数据交换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#电路交换"><span class="nav-number">2.1.</span> <span class="nav-text">电路交换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多路复用"><span class="nav-number">2.1.1.</span> <span class="nav-text">多路复用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#码分复用"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">码分复用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文交换"><span class="nav-number">2.2.</span> <span class="nav-text">报文交换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分组交换"><span class="nav-number">2.3.</span> <span class="nav-text">分组交换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报文交换和分组交换时延计算"><span class="nav-number">2.4.</span> <span class="nav-text">报文交换和分组交换时延计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报文交换-1"><span class="nav-number">2.4.1.</span> <span class="nav-text">报文交换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组交换-1"><span class="nav-number">2.4.2.</span> <span class="nav-text">分组交换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络性能"><span class="nav-number">3.</span> <span class="nav-text">计算机网络性能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络体系结构"><span class="nav-number">4.</span> <span class="nav-text">计算机网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI参考模型"><span class="nav-number">4.1.</span> <span class="nav-text">OSI参考模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-IP参考模型"><span class="nav-number">4.2.</span> <span class="nav-text">TCP/IP参考模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用层"><span class="nav-number">5.</span> <span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络应用体系结构"><span class="nav-number">5.1.</span> <span class="nav-text">网络应用体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络应用进程间通信"><span class="nav-number">5.2.</span> <span class="nav-text">网络应用进程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用层协议"><span class="nav-number">5.3.</span> <span class="nav-text">应用层协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络应用对传输服务的要求"><span class="nav-number">5.4.</span> <span class="nav-text">网络应用对传输服务的要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB应用"><span class="nav-number">5.5.</span> <span class="nav-text">WEB应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">5.5.1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#格式"><span class="nav-number">5.5.1.1.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number">5.5.1.2.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Web缓存-代理服务器"><span class="nav-number">5.5.1.3.</span> <span class="nav-text">Web缓存/代理服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Socket套接字"><span class="nav-number">5.6.</span> <span class="nav-text">Socket套接字</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传输层"><span class="nav-number">6.</span> <span class="nav-text">传输层</span></a></li></ol></div>
             
 
           </div>
