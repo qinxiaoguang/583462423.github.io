@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/02/07/servlet学习/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="j2ee学习二之 servlet学习">
-<meta property="og:updated_time" content="2017-02-08T14:19:13.223Z">
+<meta property="og:updated_time" content="2017-04-11T03:14:20.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="servlet学习">
 <meta name="twitter:description" content="j2ee学习二之 servlet学习">
@@ -360,6 +360,13 @@
 <li><p>Config —–&gt; getServletConfig</p>
 </li>
 </ol>
+<h1 id="web配置和servlet的部分关系"><a href="#web配置和servlet的部分关系" class="headerlink" title="web配置和servlet的部分关系"></a>web配置和servlet的部分关系</h1><p>servlet有很多类,ServletCofig的实现类是HttpServlet,其中ServletConfig 是一个接口,其对应的操作有:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public interface ServletConfig &#123;</div><div class="line">    String getServletName();</div><div class="line"></div><div class="line">    ServletContext getServletContext();</div><div class="line"></div><div class="line">    String getInitParameter(String var1);</div><div class="line"></div><div class="line">    Enumeration&lt;String&gt; getInitParameterNames();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>最主要的是<code>getServletContext</code>和<code>getInitParameter</code>,<code>getServletContext</code>就是获取应用对象,即application,该对象在工程初始化的时候存在,一个项目工程对应一个该对象,而<code>getInitParameter</code>就与web.xml中的配置相对应,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;servlet&gt;  </div><div class="line">    &lt;servlet-name&gt;name&lt;/servlet-name&gt;  </div><div class="line">    &lt;servlet-class&gt;com.example.MyServlet&lt;/servlet-class&gt;  </div><div class="line">    &lt;init-param&gt;  </div><div class="line">         &lt;param-name&gt;name&lt;/param-name&gt;  </div><div class="line">         &lt;param-value&gt;张无忌&lt;/param-value&gt;  </div><div class="line">    &lt;/init-param&gt;  </div><div class="line">     &lt;init-param&gt;  </div><div class="line">         &lt;param-name&gt;age&lt;/param-name&gt;  </div><div class="line">         &lt;param-value&gt;20&lt;/param-value&gt;  </div><div class="line">    &lt;/init-param&gt;  </div><div class="line">  &lt;/servlet&gt;</div></pre></td></tr></table></figure></p>
+<p>其<code>getInitParameter</code>可以取<code>&lt;init-param&gt;</code>的值.</p>
+<p><code>ServletContext</code>是一个全局对象,代表了一个应用,服务器启动就创建了该对象,每个web应用都有一个唯一的<code>ServletContext</code>对象.获取该对象的方式有多种,一种是通过<code>ServletConfig</code>或<code>HttpServlet</code>来获取,一种是通过<code>HttpRequest</code>来获取<code>HttpSession</code>之后通过<code>HttpSession</code>来获取.</p>
+<p><code>ServletContext</code>接口中有很多内容,不再贴了.其也可以获取一些初始化参数,对应web.xml中的就是:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;context-param&gt;  </div><div class="line">        &lt;param-name&gt;name&lt;/param-name&gt;  </div><div class="line">        &lt;param-value&gt;嘿嘿&lt;/param-value&gt;  </div><div class="line">  &lt;/context-param&gt;  </div><div class="line">   &lt;context-param&gt;  </div><div class="line">        &lt;param-name&gt;age&lt;/param-name&gt;  </div><div class="line">        &lt;param-value&gt;198&lt;/param-value&gt;  </div><div class="line">    &lt;/context-param&gt;</div></pre></td></tr></table></figure></p>
+<p>常用的方法有:<br><code>getAttribute(name)</code>:获取参数值<br><code>setAttribute(String,Object)</code>:设置参数<br><code>getContext(String path)</code>:获得某路径对应的ServletContext<br><code>getContextPath()</code>:获取当前工程的路径<br><code>getInitParameter(String name)</code>:获取初始化参数值<br><code>getInitParameterNames()</code>:获取初始化参数名的集合<br><code>getRealPath(String)</code>:获取在服务器上的路径<br><code>getRequestDispatcher(String path)</code>:获取对应路径的转发器</p>
+<p>对于转发来说,其应用也很简单,如代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">RequestDispatcher rd = sc.getRequestDispatcher(&quot;/servlet/AnotherServlet&quot;) ; </div><div class="line">//转发请求</div><div class="line">rd.forward(request, response) ;</div></pre></td></tr></table></figure></p>
 <h1 id="初始化参数"><a href="#初始化参数" class="headerlink" title="初始化参数"></a>初始化参数</h1><p>在web.xml对应的servlet标签下，添加<init-param>标签,如：</init-param></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;init-param&gt;</div><div class="line">	&lt;param-name&gt;username&lt;/param-name&gt;</div><div class="line">	&lt;param-value&gt;admin&lt;/param-value&gt;</div><div class="line">&lt;/init-param&gt;</div></pre></td></tr></table></figure>
 <p>该配置方式初始化了参数username其值为admin<br>,那么在对应的servlet中取得参数的值的方式为：</p>
@@ -476,7 +483,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -487,7 +494,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -522,7 +529,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是Servlet"><span class="nav-number">1.</span> <span class="nav-text">什么是Servlet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat容器等级"><span class="nav-number">2.</span> <span class="nav-text">Tomcat容器等级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#手工编写第一个Servlet"><span class="nav-number">3.</span> <span class="nav-text">手工编写第一个Servlet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MyEclipse自动创建"><span class="nav-number">4.</span> <span class="nav-text">MyEclipse自动创建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet执行流程"><span class="nav-number">5.</span> <span class="nav-text">Servlet执行流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet生命周期"><span class="nav-number">6.</span> <span class="nav-text">Servlet生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet与JSP内置对象的对应关系"><span class="nav-number">7.</span> <span class="nav-text">Servlet与JSP内置对象的对应关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化参数"><span class="nav-number">8.</span> <span class="nav-text">初始化参数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是Servlet"><span class="nav-number">1.</span> <span class="nav-text">什么是Servlet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat容器等级"><span class="nav-number">2.</span> <span class="nav-text">Tomcat容器等级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#手工编写第一个Servlet"><span class="nav-number">3.</span> <span class="nav-text">手工编写第一个Servlet</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MyEclipse自动创建"><span class="nav-number">4.</span> <span class="nav-text">MyEclipse自动创建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet执行流程"><span class="nav-number">5.</span> <span class="nav-text">Servlet执行流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet生命周期"><span class="nav-number">6.</span> <span class="nav-text">Servlet生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet与JSP内置对象的对应关系"><span class="nav-number">7.</span> <span class="nav-text">Servlet与JSP内置对象的对应关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web配置和servlet的部分关系"><span class="nav-number">8.</span> <span class="nav-text">web配置和servlet的部分关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化参数"><span class="nav-number">9.</span> <span class="nav-text">初始化参数</span></a></li></ol></div>
             
 
           </div>
