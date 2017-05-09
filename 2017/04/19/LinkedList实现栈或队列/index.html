@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/19/LinkedList实现栈或队列/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="今天在做层序遍历的时候,看代码逻辑完全正确,但就是结果不对,最后找到原因是,使用LinkedList实现的队列使用错误.">
-<meta property="og:updated_time" content="2017-04-18T16:57:26.346Z">
+<meta property="og:updated_time" content="2017-04-21T11:14:22.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LinkedList实现栈或队列">
 <meta name="twitter:description" content="今天在做层序遍历的时候,看代码逻辑完全正确,但就是结果不对,最后找到原因是,使用LinkedList实现的队列使用错误.">
@@ -329,7 +329,7 @@
 <a id="more"></a>
 <p>在Java中是有Stack和Queue,Stack是继承的Vector,完全可用,而Queue是接口,Deque同样是接口即双端队列,而LInkedList实现了Deque,所以LinkedLIst是可以通过Deque实现队列,同样,LinkedLIst作为List,通过链表实现,也可以实现栈.</p>
 <p>将链头当做栈顶,那么栈的操作即为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">LinkedList&lt;Integer&gt; stack = new LinkedList&lt;&gt;();</div><div class="line">//添加操作,注意不要用add(),push内部实现就是addFirst(),</div><div class="line">stack.push(1);</div><div class="line">//弹出操作</div><div class="line">stack.pop();</div><div class="line">//栈顶元素</div><div class="line">stack.peek();</div></pre></td></tr></table></figure></p>
-<p>将链头当做队列头,链尾当做队列尾,那么实现的队列操作即为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">LinkedList&lt;Integer&gt; queue = new LinkedList&lt;&gt;();</div><div class="line">//添加操作,add是在队尾加元素,push是在队头加元素</div><div class="line">queue.add(1);</div><div class="line">//弹出操作</div><div class="line">queue.pop();</div><div class="line">//队头元素</div><div class="line">queue.peek();</div><div class="line">//队尾元素</div><div class="line">queue.peekLast();</div></pre></td></tr></table></figure></p>
+<p>将链头当做队列头,链尾当做队列尾,那么实现的队列操作即为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">LinkedList&lt;Integer&gt; queue = new LinkedList&lt;&gt;();</div><div class="line">//添加操作,add/offer是在队尾加元素,`offer`是queue独有的操作,而`add`是列表的操作,同样`poll`是Queue独有的操作.push是在队头加元素</div><div class="line">queue.add(1);</div><div class="line">queue.offer(2);</div><div class="line">//弹出操作</div><div class="line">queue.pop();</div><div class="line">queue.poll();</div><div class="line">//队头元素</div><div class="line">queue.peek();</div><div class="line">//队尾元素</div><div class="line">queue.peekLast();</div></pre></td></tr></table></figure></p>
 <p>也就是说无论栈还是队列,弹出元素都是使用<code>pop()</code>方法,而栈顶或队列顶都是<code>peek()</code>,那么入栈是<code>push</code>,入队列是<code>add</code>.</p>
 <p>其实LinkedList中还有很多很方便的操作,想要了解的可以查看源码.</p>
 
@@ -367,6 +367,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/09/常用Java虚拟机参数/" rel="prev" title="常用Java虚拟机参数">
+                常用Java虚拟机参数 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -431,7 +435,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -442,7 +446,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

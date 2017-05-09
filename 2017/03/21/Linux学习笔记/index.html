@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/21/Linux学习笔记/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="Bash">
-<meta property="og:updated_time" content="2017-04-05T09:15:40.000Z">
+<meta property="og:updated_time" content="2017-04-28T06:44:29.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux学习笔记">
 <meta name="twitter:description" content="Bash">
@@ -379,6 +379,10 @@
 <h1 id="服务器相关"><a href="#服务器相关" class="headerlink" title="服务器相关"></a>服务器相关</h1><p>最近买了一个Ubuntu的服务器，发现没有图形界面，只能敲命令。<br>从本机连接到服务器的方式是：ssh name@ip  比如我的是ssh ubuntu@118.89.<em>.*</em>，之后输入密码即可</p>
 <p>而如果要装tomcat就必须有tar.gz文件，也就是说从本机传送文件过去，传送方法是：scp:<br>scp root@192.168.1.155:1.txt 2.txt （把服务器的1.txt下载到本地，并且重命名为2.txt）<br>scp 2.txt root@192.168.1.155:3.txt （把本地2.txt文件上传到服务器的root目录下，并且命名为3.txt）</p>
 <p>如果要传送文件夹，加上参数-r即可</p>
+<p><strong>安装myql</strong>:<code>sudo apt install mysql-server</code></p>
+<p><strong>Tomcat配置</strong>:<a href="http://jingyan.baidu.com/article/e4d08ffdabb0710fd2f60de9.html" target="_blank" rel="external">http://jingyan.baidu.com/article/e4d08ffdabb0710fd2f60de9.html</a></p>
+<p><strong>JDK配置</strong>:<a href="http://blog.csdn.net/w965440884/article/details/51498556" target="_blank" rel="external">http://blog.csdn.net/w965440884/article/details/51498556</a></p>
+<p><strong>Tomcat部署项目</strong>:部署方法很简单,就是把对应的项目目录发送到服务器的tomcat的webapps目录下即可.</p>
 <h1 id="VIM相关"><a href="#VIM相关" class="headerlink" title="VIM相关"></a>VIM相关</h1><p>首先vim的ctrl + s是锁定屏幕而不是保存，需要使用ctrl+q解锁</p>
 <p>然后如果要进入插入模式，需要按i键，或者直接打字等。</p>
 <p>要退出编辑模式，需要先按照ESC键</p>
@@ -564,7 +568,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">52</span>
+                <span class="site-state-item-count">53</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -575,7 +579,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

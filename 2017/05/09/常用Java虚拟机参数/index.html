@@ -1,0 +1,696 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JVM," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在校可能觉得JVM离我们非常遥远,但是最近看了一篇微信公众号的推送,讲解了一下项目中遇到了频繁FULL GC的问题如何解决,顿时感觉,JVM离我们不是很遥远,只是我们所做的项目没有深度罢了.为了提高自己,遂进行阅读JVM实战一书,颇有感悟,记录之.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用Java虚拟机参数">
+<meta property="og:url" content="http://yoursite.com/2017/05/09/常用Java虚拟机参数/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="在校可能觉得JVM离我们非常遥远,但是最近看了一篇微信公众号的推送,讲解了一下项目中遇到了频繁FULL GC的问题如何解决,顿时感觉,JVM离我们不是很遥远,只是我们所做的项目没有深度罢了.为了提高自己,遂进行阅读JVM实战一书,颇有感悟,记录之.">
+<meta property="og:updated_time" content="2017-05-09T06:34:19.688Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用Java虚拟机参数">
+<meta name="twitter:description" content="在校可能觉得JVM离我们非常遥远,但是最近看了一篇微信公众号的推送,讲解了一下项目中遇到了频繁FULL GC的问题如何解决,顿时感觉,JVM离我们不是很遥远,只是我们所做的项目没有深度罢了.为了提高自己,遂进行阅读JVM实战一书,颇有感悟,记录之.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/09/常用Java虚拟机参数/"/>
+
+
+
+
+
+  <title> 常用Java虚拟机参数 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/09/常用Java虚拟机参数/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                常用Java虚拟机参数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-09T13:04:26+08:00">
+                2017-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/09/常用Java虚拟机参数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/09/常用Java虚拟机参数/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在校可能觉得JVM离我们非常遥远,但是最近看了一篇微信公众号的推送,讲解了一下项目中遇到了频繁FULL GC的问题如何解决,顿时感觉,JVM离我们不是很遥远,只是我们所做的项目没有深度罢了.为了提高自己,遂进行阅读JVM实战一书,颇有感悟,记录之.</p>
+<a id="more"></a>
+<h1 id="GC跟踪"><a href="#GC跟踪" class="headerlink" title="GC跟踪"></a>GC跟踪</h1><p><code>-XX:+PrintGC</code>:使用这个参数启动Java虚拟机之后,只要遇到GC就会打印日志,如:<br>比如下面这段代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">List&lt;Object&gt; list = new ArrayList&lt;Object&gt;();</div><div class="line">//不断创建变量,导致内存不足发生GC</div><div class="line">while(true)&#123;</div><div class="line">    Object o = new Object();</div><div class="line">    list.add(o);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行后,打印日志为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[GC (Allocation Failure)  31744K-&gt;20852K(121856K), 0.0330050 secs]</div><div class="line">[GC (Allocation Failure)  52596K-&gt;45511K(153600K), 0.0467573 secs]</div><div class="line">[GC (Allocation Failure)  96857K-&gt;96119K(160256K), 0.1033293 secs]</div><div class="line">[Full GC (Ergonomics)  96119K-&gt;80500K(260096K), 1.1317846 secs]</div></pre></td></tr></table></figure></p>
+<p>从上可以看出,一共有4次GC,其中FULL GC一次,括号内容是GC的原因,随后内容表示GC后,堆空间的变化,最后的时间表示GC所花费的时间.</p>
+<p>如果要显示更加详细的信息,可以使用<code>-XX:+PrintGCDetails</code>参数.<br>打印日志为下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[GC (Allocation Failure) [PSYoungGen: 31744K-&gt;5116K(36864K)] 31744K-&gt;20844K(121856K), 0.0394304 secs] [Times: user=0.08 sys=0.00, real=0.04 secs] </div><div class="line">[GC (Allocation Failure) [PSYoungGen: 36860K-&gt;5120K(68608K)] 52588K-&gt;40747K(153600K), 0.0428718 secs] [Times: user=0.10 sys=0.00, real=0.04 secs] </div><div class="line">[GC (Allocation Failure) [PSYoungGen: 56466K-&gt;5104K(68608K)] 92093K-&gt;91347K(155136K), 0.0963041 secs] [Times: user=0.27 sys=0.01, real=0.10 secs] </div><div class="line">[Full GC (Ergonomics) [PSYoungGen: 5104K-&gt;0K(68608K)] [ParOldGen: 86243K-&gt;80538K(188928K)] 91347K-&gt;80538K(257536K), [Metaspace: 3267K-&gt;3267K(1056768K)], 1.0248705 secs] [Times: user=1.64 sys=0.01, real=1.03 secs] </div><div class="line">[GC (Allocation Failure) [PSYoungGen: 63488K-&gt;5120K(99840K)] 180081K-&gt;156121K(288768K), 0.1642157 secs] [Times: user=0.40 sys=0.01, real=0.17 secs] </div><div class="line">[Full GC (Ergonomics) [PSYoungGen: 5120K-&gt;0K(99840K)] [ParOldGen: 151001K-&gt;140019K(294912K)] 156121K-&gt;140019K(394752K), [Metaspace: 3268K-&gt;3268K(1056768K)], 0.9482000 secs] [Times: user=1.93 sys=0.00, real=0.94 secs] </div><div class="line">[GC (Allocation Failure) [PSYoungGen: 94720K-&gt;5120K(132096K)] 288822K-&gt;287118K(427008K), 0.2567920 secs] [Times: user=0.95 sys=0.03, real=0.26 secs] </div><div class="line">[Full GC (Ergonomics) [PSYoungGen: 5120K-&gt;0K(132096K)] [ParOldGen: 281998K-&gt;250833K(493056K)] 287118K-&gt;250833K(625152K), [Metaspace: 3268K-&gt;3268K(1056768K)], 1.8197845 secs] [Times: user=4.41 sys=0.00, real=1.82 secs] </div><div class="line">Heap</div><div class="line"> PSYoungGen      total 132096K, used 7604K [0x00000000d6d80000, 0x00000000ea400000, 0x0000000100000000)</div><div class="line">  eden space 126976K, 5% used [0x00000000d6d80000,0x00000000d74ed350,0x00000000de980000)</div><div class="line">  from space 5120K, 0% used [0x00000000de980000,0x00000000de980000,0x00000000dee80000)</div><div class="line">  to   space 91648K, 0% used [0x00000000e4a80000,0x00000000e4a80000,0x00000000ea400000)</div><div class="line"> ParOldGen       total 493056K, used 250833K [0x0000000084800000, 0x00000000a2980000, 0x00000000d6d80000)</div><div class="line">  object space 493056K, 50% used [0x0000000084800000,0x0000000093cf46f0,0x00000000a2980000)</div><div class="line"> Metaspace       used 3276K, capacity 4500K, committed 4864K, reserved 1056768K</div><div class="line">  class space    used 364K, capacity 388K, committed 512K, reserved 1048576K</div></pre></td></tr></table></figure></p>
+<p>可以看到,每行都会有很详细的发生GC的信息,并且在最后结束的时候,会打印出整个堆新生代,老年代等内存的使用率等信息.<br>注意<code>PSYoungGen</code>代表的不是新生代,而是收集器.</p>
+<p>如果想要在每次GC后,都打印出堆的信息,即上述例子中的程序退出前打印的日志,那么可以使用<code>-XX:+PrintHeapAtGC</code><br>如果想要知道GC发生的时间,注意不是GC发生消费的时间,而是GC在什么时候发生的这个时间,可以使用:<code>-XX+PrintGCTimeStamps</code>,这个只是比<code>-XX:+PrintGC</code>多打印了时间而已.<br>而GC会导致程序停顿,使用<code>-XX:+PrintGCApplicationConcurrentTime</code>可以打印出应用程序的执行时间,使用<code>-XX:+PrintGCApplicationStoppedTime</code>可以但打印出由于GC而产生的停顿时间.<br>如果要跟踪系统内的软引用,弱引用,虚引用以及Finallize队列,可以使用<code>-XX:+PrintReferenceGC</code>.<br>默认情况下,GC日志会在控制台输出,但为了后续分析和定位,可以将日志以文件形式输出,可以使用<code>-Xloggc</code>来指定,如:<code>-Xloggc:log/gc.log</code>可以在当前目录log文件夹下的gc.log文件中,记录所有GC日志,注意仅记录GC日志.</p>
+<h1 id="类加载跟踪"><a href="#类加载跟踪" class="headerlink" title="类加载跟踪"></a>类加载跟踪</h1><p>随着动态代理,AOP等技术的普遍使用,系统在运行阶段可能会生成一些类,这些类比较隐蔽,无法通过文件系统找到,所以可以通过虚拟机提供的参数来跟踪.</p>
+<p><code>-verbose:class</code>跟踪类的加载和卸载,而<code>-XX:+TraceClassLoading</code>仅跟踪类的夹在,<code>-XX:+TraceClassUnloading</code>来跟踪类的卸载.<br>比如打印日志如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[Loaded java.lang.Void from /usr/lib/jvm/jdk1.8.0_111/jre/lib/rt.jar]</div><div class="line">[Loaded sun.misc.Signal$1 from /usr/lib/jvm/jdk1.8.0_111/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Shutdown from /usr/lib/jvm/jdk1.8.0_111/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Shutdown$Lock from /usr/lib/jvm/jdk1.8.0_111/jre/lib/rt.jar]</div></pre></td></tr></table></figure></p>
+<p>上述省略了大部分的日志.可以看到,程序退出的时候,会加载Shutdown这个类.</p>
+<h1 id="系统参数查看"><a href="#系统参数查看" class="headerlink" title="系统参数查看"></a>系统参数查看</h1><p><code>-XX:+PrintVMOptions</code>查看程序运行时,打印虚拟机接受的命令行显示参数,注意是命令行指定的参数,如打印日志:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">VM option &apos;+PrintVMOptions&apos;</div></pre></td></tr></table></figure></p>
+<p><code>-XX:+PrintCommandLineFlags</code>打印传递给虚拟机的显示和隐式参数,隐式参数未必是命令行给的,可能是虚拟机启动时自行设置的.如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-XX:InitialHeapSize=129472768 -XX:MaxHeapSize=2071564288 -XX:+PrintCommandLineFlags -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseParallelGC</div></pre></td></tr></table></figure></p>
+<p>可以看到,虚拟机启动的时候,自动设置了初始化堆容量,最大堆容量等等.</p>
+<p><code>-XX:+PrintFlagsFinal</code>用来打印所有系统参数的值.</p>
+<h1 id="堆的配置参数"><a href="#堆的配置参数" class="headerlink" title="堆的配置参数"></a>堆的配置参数</h1><h2 id="堆初始大小与最大大小"><a href="#堆初始大小与最大大小" class="headerlink" title="堆初始大小与最大大小"></a>堆初始大小与最大大小</h2><p><code>-Xms</code>用来指定初始堆空间,但是如果初始堆空间耗尽,虚拟机将会对堆空间进行扩展,其扩展上限为最大堆空间,而最大堆空间,由<code>-Xmx</code>来指定.比如:<code>-Xmx20m -Xms5m</code>表示初始堆空间5M,而最大堆空间为20M.<br>实际上,<code>-Xms</code>是<code>-XX:InitialHeapSize</code>的缩写,<code>-Xmx</code>是<code>-XX:MaxHeapSize</code>的缩写.<br>但注意,可用内存和最大内存不是一个概念,因垃圾收集算法可能需要一些额外空间,所以可用最大内存总会比最大内存小一点.在程序中通过<code>Runtime.getRuntime().maxMemory()</code>来得到最大可用内存.</p>
+<h2 id="新生代配置"><a href="#新生代配置" class="headerlink" title="新生代配置"></a>新生代配置</h2><p><code>-Xmn</code>可用于设置新生代的大小,设置一个较大的新生代会减少老年代的大小,一般新生代的大小设置为堆空间的1/3到1/4左右.<br><code>-XX:SurvivorRatio</code>用来设置新生代中eden和from/to空间的比例,比例关系为eden/from = eden/to,比如:<code>-XX:SurvivorRatio=2</code>表示eden/from = 2,eden/to = 2.</p>
+<p><code>-XX:NewRatio</code>用来设置老年代和新生代的比例.</p>
+<h2 id="堆溢出"><a href="#堆溢出" class="headerlink" title="堆溢出"></a>堆溢出</h2><p><code>-XX:+HeapDumpOnOutOfMemoryError</code>在内存溢出的时候,导出整个堆信息,和它配合使用的还有:<code>-XX:HeapDumpPath</code>,来指定导出堆的存放路径.<br>如:<code>-Xms5m -Xmx20m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=tmp.dump</code>,程序代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Vector v = new Vector();</div><div class="line">for(int i=0; i&lt;25; i++)</div><div class="line">    v.add(new byte[1*1024*1024]);</div></pre></td></tr></table></figure></p>
+<p>打印日志为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ava.lang.OutOfMemoryError: Java heap space</div><div class="line">Dumping heap to tmp.dump ...</div><div class="line">Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: Java heap space</div><div class="line">	at com.baidu.Main.solve(Main.java:23)</div><div class="line">	at com.baidu.Main.main(Main.java:16)</div><div class="line">Heap dump file created [15690241 bytes in 0.023 secs]</div></pre></td></tr></table></figure></p>
+<p>而对于.dump文件,需要使用一些工具进行分析,比如MAT.</p>
+<h1 id="非堆内存的参数配置"><a href="#非堆内存的参数配置" class="headerlink" title="非堆内存的参数配置"></a>非堆内存的参数配置</h1><h2 id="方法区配置"><a href="#方法区配置" class="headerlink" title="方法区配置"></a>方法区配置</h2><p>在JDK1.8中永久区被彻底移除,使用了新的元数据区存放类的元数据,默认情况,元数据区只受系统可用内存的限制,但依然可使用<code>-XX:MaxMetaspaceSize</code>来指定其最大可用值.</p>
+<h2 id="栈配置"><a href="#栈配置" class="headerlink" title="栈配置"></a>栈配置</h2><p><code>-Xss</code>指定线程栈大小</p>
+<h2 id="直接内存配置"><a href="#直接内存配置" class="headerlink" title="直接内存配置"></a>直接内存配置</h2><p>最大可用直接内存可使用参数<code>-XX:MaxDirectMemorySize</code>设置,如不设置,默认值为最大堆空间,即<code>-Xmx</code>,当直接内存使用量达到<code>-XX:MaxDirectMemorySize</code>时,就会触发垃圾回收.</p>
+<h2 id="Client-Server"><a href="#Client-Server" class="headerlink" title="Client/Server"></a>Client/Server</h2><p>Java虚拟机支持Client和Server两种运行模式,使用参数<code>-client</code>可以指定使用Client模式,使用参数<code>-server</code>可以指定Server模式,而使用<code>java -version</code>可以查看当前模式.<br>与Client模式相比,Server启动比较慢,但是Server模式运行比Client快.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/19/LinkedList实现栈或队列/" rel="next" title="LinkedList实现栈或队列">
+                <i class="fa fa-chevron-left"></i> LinkedList实现栈或队列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/09/常用Java虚拟机参数/"
+           data-title="常用Java虚拟机参数" data-url="http://yoursite.com/2017/05/09/常用Java虚拟机参数/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GC跟踪"><span class="nav-number">1.</span> <span class="nav-text">GC跟踪</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类加载跟踪"><span class="nav-number">2.</span> <span class="nav-text">类加载跟踪</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统参数查看"><span class="nav-number">3.</span> <span class="nav-text">系统参数查看</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#堆的配置参数"><span class="nav-number">4.</span> <span class="nav-text">堆的配置参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#堆初始大小与最大大小"><span class="nav-number">4.1.</span> <span class="nav-text">堆初始大小与最大大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新生代配置"><span class="nav-number">4.2.</span> <span class="nav-text">新生代配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆溢出"><span class="nav-number">4.3.</span> <span class="nav-text">堆溢出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非堆内存的参数配置"><span class="nav-number">5.</span> <span class="nav-text">非堆内存的参数配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法区配置"><span class="nav-number">5.1.</span> <span class="nav-text">方法区配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈配置"><span class="nav-number">5.2.</span> <span class="nav-text">栈配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接内存配置"><span class="nav-number">5.3.</span> <span class="nav-text">直接内存配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Client-Server"><span class="nav-number">5.4.</span> <span class="nav-text">Client/Server</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
