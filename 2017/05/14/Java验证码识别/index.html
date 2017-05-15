@@ -1,0 +1,669 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="准备做一个掌动山威的后台项目,但是该项目有个缺点就是,经常要输入验证码,于是想要在后台实现自动识别验证码的功能,这样用户就不用自己填写.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java验证码识别">
+<meta property="og:url" content="http://yoursite.com/2017/05/14/Java验证码识别/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="准备做一个掌动山威的后台项目,但是该项目有个缺点就是,经常要输入验证码,于是想要在后台实现自动识别验证码的功能,这样用户就不用自己填写.">
+<meta property="og:image" content="http://yoursite.com/images/3423.png">
+<meta property="og:image" content="http://yoursite.com/images/to3523.png">
+<meta property="og:image" content="http://yoursite.com/images/big3423.png">
+<meta property="og:image" content="http://yoursite.com/images/成功率.png">
+<meta property="og:updated_time" content="2017-05-15T06:37:58.865Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java验证码识别">
+<meta name="twitter:description" content="准备做一个掌动山威的后台项目,但是该项目有个缺点就是,经常要输入验证码,于是想要在后台实现自动识别验证码的功能,这样用户就不用自己填写.">
+<meta name="twitter:image" content="http://yoursite.com/images/3423.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/14/Java验证码识别/"/>
+
+
+
+
+
+  <title> Java验证码识别 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/14/Java验证码识别/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java验证码识别
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-14T17:41:35+08:00">
+                2017-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/14/Java验证码识别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/14/Java验证码识别/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>准备做一个掌动山威的后台项目,但是该项目有个缺点就是,经常要输入验证码,于是想要在后台实现自动识别验证码的功能,这样用户就不用自己填写.<br><a id="more"></a><br>识别验证码一般算法是OCR,在网上搜有关内容,发现有个Tess4j可以实现实现验证码的功能,于是搜相关资料,发现一个可以成功实验的,需要依赖的包如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> &lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;net.java.dev.jna&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;jna&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;4.2.1&lt;/version&gt;</div><div class="line">&lt;/dependency&gt;</div><div class="line"></div><div class="line">&lt;dependency&gt;</div><div class="line">    &lt;groupId&gt;net.sourceforge.tess4j&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;tess4j&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;2.0.1&lt;/version&gt;</div><div class="line">    &lt;exclusions&gt;</div><div class="line">        &lt;exclusion&gt;</div><div class="line">            &lt;groupId&gt;com.sun.jna&lt;/groupId&gt;</div><div class="line">            &lt;artifactId&gt;jna&lt;/artifactId&gt;</div><div class="line">        &lt;/exclusion&gt;</div><div class="line">    &lt;/exclusions&gt;</div><div class="line">&lt;/dependency&gt;</div></pre></td></tr></table></figure></p>
+<p>但是因为是Ubuntu系统,在测试的时候,报没有libtesseract.so包,这个时候需要在Ubuntu上安装Tesseract-ocr,执行命令:<code>sudo apt-get install tesseract-ocr</code>.</p>
+<p>测试代码如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">public class ReadImg &#123;</div><div class="line">    public static void main(String[] args) throws IOException &#123;</div><div class="line"></div><div class="line">        URL url = new URL(&quot;http://iecard.wh.sdu.edu.cn/Account/GetCheckCodeImg?rad=45&quot;);</div><div class="line">        File imageFile = new File(&quot;tmp.gif&quot;);</div><div class="line">        if (!imageFile.exists()) imageFile.createNewFile();</div><div class="line"></div><div class="line">        FileOutputStream fileOutputStream = new FileOutputStream(imageFile);</div><div class="line">        BufferedInputStream bis = new BufferedInputStream(url.openStream());</div><div class="line"></div><div class="line">        byte[] buf = new byte[1024];</div><div class="line">        int len = 0;</div><div class="line">        while ((len = bis.read(buf)) != -1) &#123;</div><div class="line">            fileOutputStream.write(buf,0,len);</div><div class="line">            fileOutputStream.flush();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        bis.close();</div><div class="line">        fileOutputStream.close();</div><div class="line"></div><div class="line">        Tesseract tessreact = new Tesseract();</div><div class="line">        try &#123;</div><div class="line">            String result = tessreact.doOCR(imageFile);</div><div class="line">            System.out.println(result);</div><div class="line">        &#125; catch (TesseractException e) &#123;</div><div class="line">            System.err.println(e.getMessage());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>但是结果令人不满意,哈哈哈,玩了2,3个小时,可惜了.</p>
+<p>但是!老子就是不服,就一个数字验证码,还降不了你了?</p>
+<p>于是上网搜索相关资料,找到了资料后,发现了一个非常好玩的方法,参考:<a href="http://blog.csdn.net/problc/article/details/5794460" target="_blank" rel="external">http://blog.csdn.net/problc/article/details/5794460</a></p>
+<p>其验证数字验证码的思路是:图片预处理,分割,训练,识别.</p>
+<p>其<strong>图像预处理</strong>的思路是,首先将图片进行二值化,如:<br><img src="/images/3423.png" alt=""><br>二值化后:<br><img src="/images/to3523.png" alt=""></p>
+<p>代码为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">  public static BufferedImage removeBackgroud(String picFile)</div><div class="line">          throws Exception &#123;</div><div class="line">      BufferedImage img = ImageIO.read(new File(picFile));</div><div class="line">      int width = img.getWidth();</div><div class="line">      int height = img.getHeight();</div><div class="line">      for (int x = 0; x &lt; width; ++x) &#123;</div><div class="line">          for (int y = 0; y &lt; height; ++y) &#123;</div><div class="line">              if (isWhite(img.getRGB(x, y)) == 1) &#123;</div><div class="line">                  img.setRGB(x, y, Color.BLACK.getRGB());</div><div class="line">              &#125; else &#123;</div><div class="line">                  img.setRGB(x, y, Color.WHITE.getRGB());</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;</div><div class="line">      /** 去除小黑点*/</div><div class="line">      for (int x = 0; x &lt; width; ++x) &#123;</div><div class="line">          for (int y = 0; y &lt; height; ++y) &#123;</div><div class="line">              if (isWhite(img.getRGB(x, y)) != 1) &#123;</div><div class="line">                  if( x-1 &gt;= 0 &amp;&amp; isWhite(img.getRGB(x-1,y)) != 1) break;</div><div class="line">                  if (y-1 &gt;= 0 &amp;&amp; isWhite(img.getRGB(x,y-1)) != 1) break;</div><div class="line">                  if (y+1 &lt; height &amp;&amp; isWhite(img.getRGB(x,y+1)) != 1) break;</div><div class="line">                  if (x+1 &lt; width &amp;&amp; isWhite(img.getRGB(x+1,y)) != 1) break;</div><div class="line"></div><div class="line">                  //当前点是小黑点,清除</div><div class="line">                  img.setRGB(x, y, Color.WHITE.getRGB());</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">          //System.out.println();</div><div class="line">      &#125;</div><div class="line">      return img;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">public static int isWhite(int colorInt) &#123;</div><div class="line">      Color color = new Color(colorInt);</div><div class="line">      if (color.getRed() + color.getGreen() + color.getBlue() &gt;450) &#123;</div><div class="line">          return 1;</div><div class="line">      &#125;</div><div class="line">      return 0;</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<p>其中判断是否是白色的思路是,通过像素的RGB值,如果大于某一阀值,表明该像素比较亮,那么就将该像素设置为白色.</p>
+<p>接着是<strong>分割</strong>图片,分割图片遇到不少困难,起初分割的方法是,对于二值化后的图片逐层扫描,碰到黑像素,就停止,然后向下扫描黑像素持续到的位置,之后切割即可.但是这样分割后的图片不是定长的,有的长有的短,导致最后预测验证码的成功率非常低.</p>
+<p>在碰到这个问题的时候,第一个想法是换操作系统,使用PS来查看验证码图片中像素的分布位置,看是否是有规律,但是因为重启电脑比较麻烦,于是上网找Ubuntu方面的图像处理软件,最后找到了Gimp,该软件可以将图片放大为最大值,使用软件查看验证码图片,发现每个验证码的宽高基本一样,只是位置不一样,所以思路便有了.<br><img src="/images/big3423.png" alt=""></p>
+<p>直接贴代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">public static List&lt;BufferedImage&gt; splitImage(BufferedImage bi) throws IOException &#123;</div><div class="line">    List&lt;BufferedImage&gt; splitImgs = new ArrayList&lt;&gt;();</div><div class="line">    List&lt;BufferedImage&gt; resultImsg = new ArrayList&lt;&gt;();</div><div class="line">    int w = bi.getWidth();</div><div class="line">    int h = bi.getHeight();</div><div class="line"></div><div class="line">    splitImgs.add(bi.getSubimage(3,0,8,h));</div><div class="line">    splitImgs.add(bi.getSubimage(16,0,8,h));</div><div class="line">    splitImgs.add(bi.getSubimage(29,0,8,h));</div><div class="line">    splitImgs.add(bi.getSubimage(42,0,8,h));</div><div class="line"></div><div class="line">    for (int i=0; i&lt;splitImgs.size(); i++) &#123;</div><div class="line">        BufferedImage tmp = splitImgs.get(i);</div><div class="line"></div><div class="line">        int startY = -1;</div><div class="line">        startY : for (int y=0; y&lt;h; y++) &#123;</div><div class="line">                    for (int x=0; x&lt;tmp.getWidth(); x++) &#123;</div><div class="line">                        if (isWhite(tmp.getRGB(x,y)) != 1) &#123;</div><div class="line">                            //如果是不是白色</div><div class="line">                            startY = y;</div><div class="line">                            break startY;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line"></div><div class="line">        /**判断以startY为起点,是否最后一行全白,如果是,说明误判*/</div><div class="line">        for(int x=0; x&lt;tmp.getWidth(); x++)&#123;</div><div class="line">            if (isWhite(tmp.getRGB(x,startY+10)) != 1)&#123;</div><div class="line">                //出现非白,则没有误判,退出</div><div class="line">                break;</div><div class="line">            &#125; else if (x == tmp.getWidth()-1 &amp;&amp; isWhite(tmp.getRGB(x,startY+10)) == 1) &#123;</div><div class="line">                //全白,即误判</div><div class="line">                startY--;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        tmp = tmp.getSubimage(0,startY,tmp.getWidth(),11);</div><div class="line">        resultImsg.add(tmp);</div><div class="line">    &#125;</div><div class="line">    return resultImsg;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后是<strong>训练</strong>,其实训练就是模板,对于一个数字,肯定会有一个模板图像,将目标图像和模板图像进行对比,如果相似度高,那么就可以判断是否是某一个数字,比如我的训练是通过多次分割图片而取得的结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">10000011</div><div class="line">11100011</div><div class="line">11100011</div><div class="line">11100011</div><div class="line">11100111</div><div class="line">11100111</div><div class="line">11100111</div><div class="line">11100011</div><div class="line">11100011</div><div class="line">11100011</div><div class="line">10000001</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">11000011    </div><div class="line">10000001</div><div class="line">10110001</div><div class="line">11110001</div><div class="line">11110001</div><div class="line">11110111</div><div class="line">11100111</div><div class="line">11001111</div><div class="line">10011101</div><div class="line">00000001</div><div class="line">00000001</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">11000011</div><div class="line">10000001</div><div class="line">10110001</div><div class="line">11110001</div><div class="line">11110011</div><div class="line">11000001</div><div class="line">11110000</div><div class="line">11111000</div><div class="line">11111000</div><div class="line">00011001</div><div class="line">10000011</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">11111001</div><div class="line">11110001</div><div class="line">11110001</div><div class="line">11100001</div><div class="line">11000001</div><div class="line">11010001</div><div class="line">10110001</div><div class="line">00000000</div><div class="line">00000000</div><div class="line">11110001</div><div class="line">11110001</div><div class="line"></div><div class="line"></div><div class="line">11000000</div><div class="line">11000001</div><div class="line">10011111</div><div class="line">10000111</div><div class="line">10000001</div><div class="line">11110000</div><div class="line">11111000</div><div class="line">11111100</div><div class="line">11111100</div><div class="line">00011101</div><div class="line">10000011</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">11111000</div><div class="line">11100011</div><div class="line">11000111</div><div class="line">10001111</div><div class="line">00000001</div><div class="line">00011000</div><div class="line">00011000</div><div class="line">00011000</div><div class="line">00011000</div><div class="line">10000001</div><div class="line">11000011</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">10000000</div><div class="line">10000000</div><div class="line">10111100</div><div class="line">11111001</div><div class="line">11111011</div><div class="line">11111011</div><div class="line">11110011</div><div class="line">11110011</div><div class="line">11110111</div><div class="line">11100111</div><div class="line">11101111</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">11000011</div><div class="line">10011001</div><div class="line">10011001</div><div class="line">10001001</div><div class="line">10000001</div><div class="line">11000011</div><div class="line">10000001</div><div class="line">00011000</div><div class="line">00011000</div><div class="line">10011001</div><div class="line">11000011</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">11000011</div><div class="line">10011001</div><div class="line">10011000</div><div class="line">10011000</div><div class="line">10011000</div><div class="line">10011000</div><div class="line">11000000</div><div class="line">11111001</div><div class="line">11110011</div><div class="line">11000111</div><div class="line">00001111</div></pre></td></tr></table></figure></p>
+<p>最后一步就是识别,识别直接拿分割到的图片和模板图片进行对比,看其相同位置都是0的个数是多少,个数最大即命中率最大,最后输出结果即可.</p>
+<p>在没有优化代码的时候,成功率为95%,可以看下结果:<br><img src="/images/成功率.png" alt=""></p>
+<p>研究这个东西花了1天左右的时间,虽然看起来比较简单,但是因为在细节上耗费不少时间,所以用的时间还是比较多的.</p>
+<p>在刚开始写这个的时候,感觉自己肯定实现不了,但是最后写着写着发现思路很广泛,但是因为时间关系,当前的代码就优化成这样了,以后有时间在说吧.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/14/ubuntu服务器tomcat开启80端口/" rel="next" title="ubuntu服务器tomcat开启80端口">
+                <i class="fa fa-chevron-left"></i> ubuntu服务器tomcat开启80端口
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/14/Java验证码识别/"
+           data-title="Java验证码识别" data-url="http://yoursite.com/2017/05/14/Java验证码识别/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
