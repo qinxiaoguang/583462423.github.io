@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/05/Java中的一些小细节/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="闲来无事,准备再通读一边&amp;lt;&amp;gt;,该文章用于记录Java知识的一些小细节.">
-<meta property="og:updated_time" content="2017-05-13T04:15:51.991Z">
+<meta property="og:updated_time" content="2017-05-17T06:47:34.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中的一些小细节">
 <meta name="twitter:description" content="闲来无事,准备再通读一边&amp;lt;&amp;gt;,该文章用于记录Java知识的一些小细节.">
@@ -352,6 +352,11 @@
 <li>List<string>和List<object>没有任何关系,但是List<string>和List&lt;? extends Object&gt;是逻辑上的父子关系.</string></object></string></li>
 <li>使用Iterator删除对象的时候,一定要调用next越过刚删除的位置,如:<code>it.remove(); it.next()</code>.</li>
 <li>调用线程中断方法,只是让线程终止,产生中断异常的原因是线程被阻塞,无法检测中断状态.所以在sleep,或wait上调用interrupt方法时,阻塞调用会被InterruptedException异常中断.</li>
+<li>Java中InputStream和Reader的区别不仅仅是一个读字节,一个读字符.在最开始的时候,个人理解为,InputStream是一个字节一个自己的读,而Reader是一个字符一个字符的读,虽然读的内容不一样但是其数据应该一样的吧?答案当然是不一样.对于InputStream而言,其读的数据就是原始数据,而Reader而言,因为是读的字符,所以就涉及到字符的编码格式,其根据编码格式的不同,读入的数据就会不一样.所以,如果将一个字节流转换为字符流时,就提供了制定字符编码的构造器.</li>
+<li>如果想知道当前jdk支持的字符编码格式,可以通过<code>Charset.availableCharsets()</code>来取得默认所有的编码,然后打印即可.</li>
+<li>RandomAccessFile虽然叫随即访问文件,但是其访问文件内容时,并不是随机的,这个随机的意思是,你可以自己指定访问的位置而不像其他流一样,只能从前读到尾.</li>
+<li>读写文件可以通过<code>Path</code>和<code>Files</code>类来进行,方便快捷.如读入所有字节:<code>Files.readAllBytes(path)</code>,向指定文件写入内容:<code>Files.write(path,bytes)</code>.Files中的这些方法,可以处理中等长度的文件,如果文件内容比较大,还是应该使用熟知的流来进行处理.</li>
+<li>文件复制,移动可以通过<code>Files.copy(),Files.move()</code>等方法.文件删除可以通过<code>Files.deleteIfExists(path)</code>.创建文件目录,可用:<code>Files.createDirectories(path)</code>,创建文件<code>Files.createFile(path)</code>等.Files和path结合使用,一些方法其实可以通过<code>File</code>这个类来代替.</li>
 </ol>
 
       
@@ -462,7 +467,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">56</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

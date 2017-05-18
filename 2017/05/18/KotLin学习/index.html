@@ -1,0 +1,840 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="这几天一直在想,有没有一种脚本语言能和Java兼容,且学习跨度不大呢?一直在考虑,到底用python,php,还是go作为自己主要脚本语言.但是突然今天的Google IO大会宣布,Android将使用KotLin作为官方语言,遂赶紧去瞧瞧这门语言是什么样的.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KotLin学习">
+<meta property="og:url" content="http://yoursite.com/2017/05/18/KotLin学习/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="这几天一直在想,有没有一种脚本语言能和Java兼容,且学习跨度不大呢?一直在考虑,到底用python,php,还是go作为自己主要脚本语言.但是突然今天的Google IO大会宣布,Android将使用KotLin作为官方语言,遂赶紧去瞧瞧这门语言是什么样的.">
+<meta property="og:updated_time" content="2017-05-18T13:10:00.265Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KotLin学习">
+<meta name="twitter:description" content="这几天一直在想,有没有一种脚本语言能和Java兼容,且学习跨度不大呢?一直在考虑,到底用python,php,还是go作为自己主要脚本语言.但是突然今天的Google IO大会宣布,Android将使用KotLin作为官方语言,遂赶紧去瞧瞧这门语言是什么样的.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/18/KotLin学习/"/>
+
+
+
+
+
+  <title> KotLin学习 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/KotLin学习/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                KotLin学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-18T13:26:38+08:00">
+                2017-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/18/KotLin学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/18/KotLin学习/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这几天一直在想,有没有一种脚本语言能和Java兼容,且学习跨度不大呢?一直在考虑,到底用python,php,还是go作为自己主要脚本语言.但是突然今天的Google IO大会宣布,Android将使用KotLin作为官方语言,遂赶紧去瞧瞧这门语言是什么样的.</p>
+<a id="more"></a>
+<p>虽然说KotLin并不是脚本语言,但是其用法与脚本语言一样的简洁,并能兼容java,可以完全正常使用Java的类库,并可被编译为JVM字节码或JavaScript.在看到其简介语法,以及对Java的兼容性,就瞬间喜欢上这门语言,所以打算用上一点时间,来学学.</p>
+<p>学习笔记参考官方学习文档:<a href="http://kotlinlang.org/docs/reference/basic-syntax.html" target="_blank" rel="external">http://kotlinlang.org/docs/reference/basic-syntax.html</a></p>
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="基础类型"><a href="#基础类型" class="headerlink" title="基础类型"></a>基础类型</h2><p>在Kotlin中,所有事物都是对象,所以我们可以将成员方法和属性赋值给任何变量.</p>
+<h2 id="Numbers数字类型"><a href="#Numbers数字类型" class="headerlink" title="Numbers数字类型"></a>Numbers数字类型</h2><p>KotLin中处理数字类型和Java非常相似,但并不完全相同.<br>KotLin提供了以下几种自带数字类型:</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>位数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Double</td>
+<td>64</td>
+</tr>
+<tr>
+<td>Float</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Long</td>
+<td>64</td>
+</tr>
+<tr>
+<td>Int</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Short</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Byte</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>可以看到,和Java是几乎一样的.</p>
+<p>创建数字变量,在没有指明类型的时候,会根据字面量来指定,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">val a = 100</div><div class="line">val b = 10.0</div><div class="line">val c = 10.0F</div><div class="line">val d = 100L</div><div class="line">println(a.javaClass)</div><div class="line">println(b.javaClass)</div><div class="line">println(c.javaClass)</div><div class="line">println(d.javaClass)</div></pre></td></tr></table></figure></p>
+<p>打印结果为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">int</div><div class="line">double</div><div class="line">float</div><div class="line">long</div></pre></td></tr></table></figure></p>
+<p>如果要指明类型,需要在变量名后加<code>:type</code>,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">val a :Int= 100</div><div class="line">val b :Double= 10.0</div><div class="line">val c :Double= 10.0</div><div class="line">val d :Long= 100L</div></pre></td></tr></table></figure></p>
+<p>但注意,赋值时并没有强制类型转换:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val a:Double = 10F //error</div><div class="line">val b:FLoat = 10.0 //error</div></pre></td></tr></table></figure></p>
+<p>而如果想要使用封箱类型,需要在类型后加上<code>?</code>,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">val a:Int? = 100  //a is a boxed int type</div></pre></td></tr></table></figure></p>
+<p>虽然不能强制类型转换,但是可以通过该类型中的某方法来转换为其他类型,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val a :Int = 1</div><div class="line">val b : Byte = a.toByte()</div></pre></td></tr></table></figure></p>
+<p>而如果使用包装类型的时候,其转换方式为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val a :Int? = 1</div><div class="line">val b : Byte? = a?.toByte()</div></pre></td></tr></table></figure></p>
+<p><code>?.</code>表示非空对象才能调用其后的方法.</p>
+<h2 id="Characters"><a href="#Characters" class="headerlink" title="Characters"></a>Characters</h2><p>字符类型通过<code>Char</code>来表示，但是与Ｊava中不同的是，Char类型的变量,不允许和数字类型进行比较,比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val a:Char = &apos;a&apos;</div><div class="line">if(a == 1)//error</div></pre></td></tr></table></figure></p>
+<p>但是可以通过<code>toInt()</code>,<code>toLong()</code>等方法来将Char类型转换为数字类型</p>
+<h2 id="Booleans"><a href="#Booleans" class="headerlink" title="Booleans"></a>Booleans</h2><p>通过<code>Boolean</code>来表示,其中<code>&amp;&amp;</code>,<code>||</code>,<code>!</code>等逻辑操作,仅能用来操作Boolean类型.</p>
+<h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><p>KotLin中没有<code>&lt;&lt;</code>,<code>&gt;&gt;</code>,<code>&amp;</code>,<code>|</code>等操作,取代的是:</p>
+<table>
+<thead>
+<tr>
+<th>KotLin</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shl</td>
+<td>&lt;&lt;</td>
+</tr>
+<tr>
+<td>shr</td>
+<td>&gt;&gt;</td>
+</tr>
+<tr>
+<td>ushr</td>
+<td>&gt;&gt;&gt;</td>
+</tr>
+<tr>
+<td>and</td>
+<td>&amp;</td>
+</tr>
+<tr>
+<td>or</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>xor</td>
+<td>^</td>
+</tr>
+<tr>
+<td>inv</td>
+<td>!</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数组类型"><a href="#数组类型" class="headerlink" title="数组类型"></a>数组类型</h2><p>数组通过<code>Array</code>类型来指定,查看KotLin中<code>Array</code>类型的源码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class Array&lt;T&gt; &#123;</div><div class="line">    public inline constructor(size: Int, init: (Int) -&gt; T)</div><div class="line">    public operator fun get(index: Int): T</div><div class="line">    public operator fun set(index: Int, value: T): Unit</div><div class="line">    public val size: Int</div><div class="line">    public operator fun iterator(): Iterator&lt;T&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可发现其构造函数只有一个,并有一个Int属性Size,以及3个方法.</p>
+<p>创建数组可通过<code>arrayOf()</code>和<code>arrayOfNulls</code>方法,以及<code>Array</code>构造方法.<br>如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">val arrs = arrayOf(&quot;1&quot;,&quot;2&quot;)         //arrs为String数组类型,大小为2</div><div class="line">val arrs = arrayOfNulls&lt;String&gt;(5)  //arrs为String数组类型,且被Null填充,大小为5</div><div class="line">val arrs = Array(5,&#123;i-&gt;i&#125;)          //通过构造器创建的数组,其中5表大小,后边为一个生成函数</div></pre></td></tr></table></figure></p>
+<p>同样数组可以通过<code>[]</code>来获取值,也可以通过get()方法来获取值,但是通过get方法来获取的时候,编译器会推荐使用<code>[]</code>.也就是说,完全可以把<code>get</code>,<code>set</code>遗忘.</p>
+<p>与Java不同的是,KotLin中的数组类型,在指定数组中项目的类型后,就不能再改变其类型,比如<code>Array&lt;String&gt;</code>不能转换为Array<any>.KotLin同样提供了一系列的原始数据类型的数组,比如<code>ByteArray</code>,<code>IntArray</code>等</any></p>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>String是不可变类型,通过<code>[]</code>来获取String中某位置上的字符,同样,String也可以通过迭代器进行遍历:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (c in str) &#123;</div><div class="line">	println(c)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>KotLin中有两种类型的String,查看样例就明白了:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">val s1 = &quot;Hellow,world\n&quot;</div><div class="line">var s2 = &quot;&quot;&quot;</div><div class="line">	for (c in &quot;foo&quot;)</div><div class="line">		print(c)</div><div class="line">&quot;&quot;&quot;</div></pre></td></tr></table></figure></p>
+<p>可通过<code>trimMargin()</code>方法移除<code>|</code>符号外的多余空格,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">val text = &quot;&quot;&quot;</div><div class="line">   |Tell me and I forget.</div><div class="line">   |Teach me and I remember.</div><div class="line">   |Involve me and I learn.</div><div class="line">   |(Benjamin Franklin)</div><div class="line">   &quot;&quot;&quot;.trimMargin()</div><div class="line">   println(text)</div></pre></td></tr></table></figure></p>
+<p>将打印:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Tell me and I forget.</div><div class="line">Teach me and I remember.</div><div class="line">Involve me and I learn.</div><div class="line">(Benjamin Franklin)</div></pre></td></tr></table></figure></p>
+<p>而如果给<code>trimMargin</code>传递参数,则会移除该参数类型外的空格,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">val text = &quot;&quot;&quot;</div><div class="line">&gt;Tell me and I forget.</div><div class="line">|Teach me and I remember.</div><div class="line">|Involve me and I learn.</div><div class="line">|(Benjamin Franklin)</div><div class="line">&quot;&quot;&quot;.trimMargin(&quot;&gt;&quot;)</div><div class="line">println(text)</div></pre></td></tr></table></figure></p>
+<p>则打印:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Tell me and I forget.</div><div class="line">    |Teach me and I remember.</div><div class="line">    |Involve me and I learn.</div><div class="line">    |(Benjamin Franklin)</div></pre></td></tr></table></figure></p>
+<p>String中如果要引用其他String变量,可以通过以下方式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">val i = 10</div><div class="line">val s = &quot;i = $i&quot;</div><div class="line"></div><div class="line">s = &quot;abc&quot;</div><div class="line">val str = &quot;$s.length is $&#123;s.length&#125;&quot;</div></pre></td></tr></table></figure></p>
+<p>而如果要表示一个<code>$</code>符号,则可以通过<code>var price = &quot;${&#39;$&#39;} 9.99&quot;</code></p>
+<h1 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h1><p>在KotLin中,每个.kt文件都会被自动导入以下包:</p>
+<ul>
+<li>kotlin.*</li>
+<li>kotlin.annotation.*</li>
+<li>kotlin.collections.*</li>
+<li>kotlin.comparisons.*</li>
+<li>kotlin.io.*</li>
+<li>kotlin.ranges.*</li>
+<li>kotlin.sequences.*</li>
+<li>kotlin.text.*</li>
+</ul>
+<p>而针对不同的平台,会导入不同的包:<br>–JVM: </p>
+<ul>
+<li>java.lang.*</li>
+<li>kotlin.jvm.*</li>
+</ul>
+<p>–JS:</p>
+<ul>
+<li>kotlin.js.*</li>
+</ul>
+<p>import和java中类似,但KotLin中的import还有一个特点,可以在import的时候重命名,这样做可以用于解决重名冲突比如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import foo.Bar</div><div class="line">import bar.Bar as bBar  //bBar表示bar.Bar</div></pre></td></tr></table></figure></p>
+<p>与java不同的是,KotLin没有<code>import static</code>这种语法.</p>
+<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><p>在KotLin中没有三木运算符,原因是if已经可以工作的很好了,如果要用三木运算符,可以这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">val max = if(a &gt; b) a else b</div></pre></td></tr></table></figure></p>
+<p>还有一种比较奇葩的写法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">val max = if (a &gt; b) &#123;</div><div class="line">	print(&quot;Choose a&quot;)</div><div class="line">	a</div><div class="line">&#125; else &#123;</div><div class="line">	print(&quot;Choose b&quot;)</div><div class="line">	b</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="when"><a href="#when" class="headerlink" title="when"></a>when</h2><p>when对应java/c中的switch,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">when (x) &#123;</div><div class="line">	1 -&gt; print(&quot;x==1&quot;)</div><div class="line">	2 -&gt; print(&quot;x==2&quot;)</div><div class="line">	else -&gt; &#123;</div><div class="line">		print(&quot;x is other&quot;)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>但是不同的是,碰到一个分支就只运行该分支,不用break语句.<br>同样,when也可以作为一个表达式,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">val s = 1</div><div class="line">val t = when (s) &#123;</div><div class="line">    10 -&gt; &#123;</div><div class="line">        1</div><div class="line">    &#125;</div><div class="line">    else -&gt; &#123;</div><div class="line">        println(&quot;haha&quot;)</div><div class="line">        2</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>但是这种写法要在分支的最后写上其对应的值.</p>
+<p>如果有多种分支对应同一种操作,那么可以简化写法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">when (x) &#123;</div><div class="line">	0, 1 -&gt; print(&quot;x == 0 or x == 1&quot;)</div><div class="line">	else -&gt; print(&quot;otherwise&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>条件中也可以使用任意表达式,如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">when (x) &#123;</div><div class="line">    parseInt(s) -&gt; print(&quot;s encodes x&quot;)</div><div class="line">    else -&gt; print(&quot;s does not encode x&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>条件也可以通过<code>in</code>或<code>!in</code>判断是否在某个范围或者不在某一范围:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">when (x) &#123;</div><div class="line">    in 1..10 -&gt; print(&quot;x is in the range&quot;)</div><div class="line">    in validNumbers -&gt; print(&quot;x is valid&quot;)</div><div class="line">    !in 10..20 -&gt; print(&quot;x is outside the range&quot;)</div><div class="line">    else -&gt; print(&quot;none of the above&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以通过<code>is</code>或<code>!is</code>来判断变量是否是某种类型:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">val hasPrefix = when(x) &#123;</div><div class="line">    is String -&gt; x.startsWith(&quot;prefix&quot;)</div><div class="line">    else -&gt; false</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="For循环"><a href="#For循环" class="headerlink" title="For循环"></a>For循环</h2><p>for-each和java中类似,不过可以省略类型,:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">val arrs = arrayOf(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;)</div><div class="line">for (item in arrs) println(item)</div></pre></td></tr></table></figure></p>
+<p>如果要指明类型,需要这么写:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (item: Int in ints) &#123;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果对于数组而言,想获取下标,可以通过:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">for (i in arrs.indices)</div></pre></td></tr></table></figure></p>
+<p>也有这种操作,同时获取下标和值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for ((index, value) in array.withIndex()) &#123;</div><div class="line">    println(&quot;the element at $index is $value&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="while"><a href="#while" class="headerlink" title="while"></a>while</h2><p>while循环和传统的一样,所以就不贴代码</p>
+<h1 id="跳转"><a href="#跳转" class="headerlink" title="跳转"></a>跳转</h1><h2 id="Break和Continue"><a href="#Break和Continue" class="headerlink" title="Break和Continue"></a>Break和Continue</h2><p>循环语句中可以有一个label,以<code>@</code>命名结尾,和Java中的一样,不过Java中命名并没有<code>@</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">loop@ for (i in 1..100) &#123;</div><div class="line">    for (j in 1..100) &#123;</div><div class="line">        if (...) break@loop</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"># Class</div><div class="line"></div><div class="line">## Constructors</div><div class="line">一个类有一个主要的构造方法,和多个次要的构造方法,主要的构造方法是类头的一部分,它编写在类名的后边:</div></pre></td></tr></table></figure></p>
+<p>class Person constructor(firstName: String) {</p>
+<p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">如果主构造器没有注解或修饰符,就可以将`constructor`省略:</div></pre></td></tr></table></figure></p>
+<p>class Person(firstName: String) {<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在构造器中不能有任何代码,初始化的代码可以在init体内:</div></pre></td></tr></table></figure></p>
+<p>class Customer(name: String) {<br>    init {<br>        println(“${name}”)<br>    }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">其中`$&#123;name&#125;`和`$name`是一样的.</div><div class="line"></div><div class="line">但是,构造器的方法,不但能用到init块中,也可以用于属性赋值,如:</div></pre></td></tr></table></figure></p>
+<p>class Person(name: String) {<br>    val myName = name<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">事实上,除了构造器获取参数后初始化属性方式外,在KotLin中,还有一种更简洁的声明方式:</div></pre></td></tr></table></figure></p>
+<p>class Person(val firstName: String, val lastName: String) {<br>    //…<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">即在构造方法中,参数前加上val即可.</div><div class="line"></div><div class="line">如果构造器里有注解,或者修饰符,构造关键字就是必须的,如:</div></pre></td></tr></table></figure></p>
+<p>class Customer public @Inject constructor(name: String) { … }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">如果有第二个构造器,就可以通过constructor进行指明:</div></pre></td></tr></table></figure></p>
+<p>class Person {<br>    constructor(parent: Person) {<br>        //parent.children.add(this)<br>    }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">而如果其余构造器使用该类的某种构造器,就可以使用`this`关键字:</div></pre></td></tr></table></figure></p>
+<p>class Person(val name: String) {<br>    constructor(name: String, parent: Person) : this(name) {<br>        parent.children.add(this)<br>    }<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">如果想要自己的类不被公开,即不能被实例化,就可以将构造器变为似有的:</div></pre></td></tr></table></figure></p>
+<p>class DontCreateMe private constructor () {<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">如果想要创建一个类实例,与Java类似,但是并不需要new关键字,并且KotLin中不存在new关键字:</div></pre></td></tr></table></figure></p>
+<p>val invoice = Invoice()<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 类成员</div><div class="line">类成员包括</div><div class="line">* 构造器和init块</div><div class="line">* 函数</div><div class="line">* 属性</div><div class="line">* 内嵌类</div><div class="line">* 对象声明</div><div class="line"></div><div class="line">## 继承</div><div class="line">在KotLin中,所有类的父类不叫`Object`而是`Any`,但是`Any`并不等同于`java.lang.Object`.</div><div class="line">创建一个拥有父类的类,可以通过`:`指明父类,如:</div></pre></td></tr></table></figure></p>
+<p>open class Base(p: Int)</p>
+<p>class Derived(p: Int): Base(p)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">如果两个类都没有主要构造器,但次要构造器需要指明调用父类或该类的某构造方法:</div></pre></td></tr></table></figure></p>
+<p>class MyView : View {<br>    constructor(ctx: Context) : super(ctx)</p>
+<pre><code>constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs)
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">open关键字和java中final正好相反,open表示允许其他类继承该类.默认的,KotLin中所有的类都是final型的.</div><div class="line"></div><div class="line">## 重写方法</div><div class="line">open同样用于方法,如果没有指明是open类型的,那么就是final型的,不可被重写,重写方法,需要使用override关键字,如:</div></pre></td></tr></table></figure></p>
+<p>open class Base {<br>    open fun v() {}<br>    fun nv() {}<br>}<br>class Derived() : Base() {<br>    override fun v() {}<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">如果子类中,override仅仅重写了方法,并没有加final关键字时,那么该方法依然是可被重写的,如果想要将其变为final,就需要明确指定其为final型的.:</div></pre></td></tr></table></figure></p>
+<p>open class AnotherDerived() : Base() {<br>    final override fun v() {}<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 重写属性</div><div class="line">重写属性和重写方法有相似之处,父类要明确指定为open类型的,如果重写的时候,可以通过get()来将其重写为父类的属性值:</div></pre></td></tr></table></figure></p>
+<p>open class Person(name: String) {<br>    open val myName = name<br>}</p>
+<p>class Student(name: String) : Person(name) {<br>    override val myName: String<br>        get() = super.myName<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">当然初始化的方式有很多,比如:</div></pre></td></tr></table></figure></p>
+<p>override val myName: String = “bb”</p>
+<p>override val myName: String get() = “cc”</p>
+<p>override val myName: String get() = {return “dd”}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">## 抽象类型</div><div class="line">抽象类不需要指定其成员为open,因为open是默认的.如:</div></pre></td></tr></table></figure></p>
+<p>abstract class AbastractPerson {<br>    abstract fun f()<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">抽象类也可从open 类中继承,并重写某一方法为抽象方法:</div></pre></td></tr></table></figure></p>
+<p>open class OpenClass {<br>    open fun f(){<br>        println(“a”)<br>    }<br>}</p>
+<p>abstract class AbastractPerson : OpenClass() {<br>    override abstract fun f()<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 属性和域</div><div class="line">## 声明属性</div><div class="line">通过`val`或`var`来进行声明属性,但是`var`声明的属性是可变的,`val`声明的属性是不可变的.</div><div class="line"></div><div class="line">## Getters和Setters</div><div class="line">声明一个属性完整的语法是:</div></pre></td></tr></table></figure></p>
+<p>var <propertyname>[: <propertytype>] [= <property_initializer>]<br>    [<getter>]<br>    [<setter>]<br>```</setter></getter></property_initializer></propertytype></propertyname></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/17/NoClassDefFoundError相关错误/" rel="next" title="NoClassDefFoundError相关错误">
+                <i class="fa fa-chevron-left"></i> NoClassDefFoundError相关错误
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/18/KotLin学习/"
+           data-title="KotLin学习" data-url="http://yoursite.com/2017/05/18/KotLin学习/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">58</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础"><span class="nav-number">1.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础类型"><span class="nav-number">1.1.</span> <span class="nav-text">基础类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Numbers数字类型"><span class="nav-number">1.2.</span> <span class="nav-text">Numbers数字类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Characters"><span class="nav-number">1.3.</span> <span class="nav-text">Characters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Booleans"><span class="nav-number">1.4.</span> <span class="nav-text">Booleans</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作符"><span class="nav-number">1.5.</span> <span class="nav-text">操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组类型"><span class="nav-number">1.6.</span> <span class="nav-text">数组类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">1.7.</span> <span class="nav-text">String</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Packages"><span class="nav-number">2.</span> <span class="nav-text">Packages</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#流程控制"><span class="nav-number">3.</span> <span class="nav-text">流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#if"><span class="nav-number">3.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#when"><span class="nav-number">3.2.</span> <span class="nav-text">when</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#For循环"><span class="nav-number">3.3.</span> <span class="nav-text">For循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#while"><span class="nav-number">3.4.</span> <span class="nav-text">while</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跳转"><span class="nav-number">4.</span> <span class="nav-text">跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Break和Continue"><span class="nav-number">4.1.</span> <span class="nav-text">Break和Continue</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
