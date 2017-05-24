@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://yoursite.com/images/加载图片内存消耗.png">
 <meta property="og:image" content="http://yoursite.com/images/加载图片不消耗内存.png">
 <meta property="og:image" content="http://yoursite.com/images/View继承关系.jpg">
-<meta property="og:updated_time" content="2017-03-11T13:55:12.814Z">
+<meta property="og:updated_time" content="2017-05-22T02:55:57.755Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安卓有关面试题">
 <meta name="twitter:description" content="什么?你想点开看?对不起,这只是个标题,里面没有任何内容,请回吧!
@@ -482,7 +482,14 @@
 <h1 id="JAVA集合"><a href="#JAVA集合" class="headerlink" title="JAVA集合"></a>JAVA集合</h1><p><a href="http://jingyan.baidu.com/article/8065f87ff69c2623312498ce.html" target="_blank" rel="external">集合面试题</a></p>
 <h2 id="java中常用集合类功能，区别和性能"><a href="#java中常用集合类功能，区别和性能" class="headerlink" title="java中常用集合类功能，区别和性能"></a>java中常用集合类功能，区别和性能</h2><p>首先看一个集合类图，这个我是在毕老师的学习教程下截的一个图，已经总结的很全面了。<br><img src="/images/集合类图.png" alt=""></p>
 <p>java中集合可以分为三类，如下</p>
-<p>Set 集合<br>HashSet: 调用对象的hashCode()方法，获得哈希码，然后再集合中计算存放对象的位置。通过比较哈希码与equals()方法来判别是否重复。所以，重载了equals()方法同时也要重载hashCode()方法<br>TreeSet:继承ShortedSet接口，能够对集合中对象排序。默认排序方式是自然排序，但该方式只能对实现了Comparable接口的对象排序，java中对Integer、Byte、Double、Character、String等数值型和字符型对象都实现了该接口。<br>List集合<br>LinkedList: 链表结构<br>ArrayList：大小可变的数组<br>Map集合<br>HashMap：与hashSet相似，调用hashCode和equals方法来比较键是否相等，HashMap中不允许存在相同的键。<br>TreeMap：可自然排序，也可以通过传递Comparator的实现类构造TreeMap<br>集合的类型和使用方法比较多，所以有空可以去下列博文细读，总结的蛮详细的：<a href="http://www.360doc.com/content/12/0717/15/7662927_224736595.shtml" target="_blank" rel="external">http://www.360doc.com/content/12/0717/15/7662927_224736595.shtml</a></p>
+<p>Set 集合<br>HashSet: 调用对象的hashCode()方法，获得哈希码，然后再集合中计算存放对象的位置。通过比较哈希码与equals()方法来判别是否重复。所以，重载了equals()方法同时也要重载hashCode()方法<br>TreeSet:继承ShortedSet接口，能够对集合中对象排序。默认排序方式是自然排序，但该方式只能对实现了Comparable接口的对象排序，java中对Integer、Byte、Double、Character、String等数值型和字符型对象都实现了该接口。<br>List集合<br>LinkedList: 链表结构<br>ArrayList：大小可变的数组,数组增长为原来的二分之一.<br>其增长源码是:<code>int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);</code><br>而Vector的增长源码是:<code>int newCapacity = oldCapacity + ((capacityIncrement &gt; 0) ?capacityIncrement : oldCapacity);</code></p>
+<p>Map集合<br>HashMap：与hashSet相似，调用hashCode和equals方法来比较键是否相等，HashMap中不允许存在相同的键。<br>TreeMap：可自然排序，也可以通过传递Comparator的实现类构造TreeMap<br>集合的类型和使用方法比较多，所以有空可以去下列博文细读，总结的蛮详细的：<a href="http://www.360doc.com/content/12/0717/15/7662927_224736595.shtml" target="_blank" rel="external">http://www.360doc.com/content/12/0717/15/7662927_224736595.shtml</a></p>
+<ul>
+<li>HashTable和HashMap的区别<br>HashMap是线程不安全的,HashTable是线程安全的.<br>在存储方面,HashMap的源码是:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public V put(K key, V value) &#123;</div><div class="line">    return putVal(hash(key), key, value, false, true);</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">static final int hash(Object key) &#123;</div><div class="line">    int h;</div><div class="line">    return (key == null) ? 0 : (h = key.hashCode()) ^ (h &gt;&gt;&gt; 16);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可见,其存储的时候hash值是通过key来获取的,但是如果key为空,则hash值是0,所以对于HashMap来言,其键值是可以为null的,并且值也可以为null.<br>而HashTable的源码是:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public synchronized V put(K key, V value) &#123;</div><div class="line">	// Make sure the value is not null</div><div class="line">	if (value == null) &#123;</div><div class="line">	    throw new NullPointerException();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	// Makes sure the key is not already in the hashtable.</div><div class="line">	Entry&lt;?,?&gt; tab[] = table;</div><div class="line">	int hash = key.hashCode();</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以看到,其存取的时候,首先会判断value是不是为空,如果为空抛出异常,而key值会调用key.hashCode()方法,当然key为空也会抛出异常,所以HashTable中key,value不能为空.</p>
 <h2 id="并发相关的集合类"><a href="#并发相关的集合类" class="headerlink" title="并发相关的集合类"></a>并发相关的集合类</h2><p><a href="http://www.ibm.com/developerworks/cn/java/j-jtp07233/" target="_blank" rel="external">目前还没搞懂这个集合类有什么大的作用，想要学习戳这。</a></p>
 <h2 id="部分常用集合类的内部实现方式"><a href="#部分常用集合类的内部实现方式" class="headerlink" title="部分常用集合类的内部实现方式"></a>部分常用集合类的内部实现方式</h2><p>这就是研究集合内部代码的过程嘛~</p>
 <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><h2 id="Thread、Runnable、Callable、Futrue类关系与区别"><a href="#Thread、Runnable、Callable、Futrue类关系与区别" class="headerlink" title="Thread、Runnable、Callable、Futrue类关系与区别"></a>Thread、Runnable、Callable、Futrue类关系与区别</h2><p>Future是一个接口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public interface Future&lt;V&gt; &#123;</div><div class="line"></div><div class="line">    boolean cancel(boolean mayInterruptIfRunning);</div><div class="line">    boolean isCancelled();</div><div class="line">    boolean isDone();</div><div class="line">    V get() throws InterruptedException, ExecutionException;</div><div class="line">    V get(long timeout, TimeUnit unit)</div><div class="line">        throws InterruptedException, ExecutionException, TimeoutException;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -1106,7 +1113,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">60</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
