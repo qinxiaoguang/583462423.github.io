@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/26/Java字节码常用指令/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="在看多线程有关内容的时候,很多文章经常会拿出字节码的一些指令来讲解,看我晕头晕脑的,于是开始狂补字节码指令方面的内容.参考书籍为:&amp;lt;&amp;lt;实战Java虚拟机&amp;gt;&amp;gt;,不得不说,&amp;lt;&amp;lt;实战Java虚拟机&amp;gt;&amp;gt;这本书写的是真的好.">
-<meta property="og:updated_time" content="2017-05-26T08:16:39.331Z">
+<meta property="og:updated_time" content="2017-05-26T08:18:58.284Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java字节码常用指令">
 <meta name="twitter:description" content="在看多线程有关内容的时候,很多文章经常会拿出字节码的一些指令来讲解,看我晕头晕脑的,于是开始狂补字节码指令方面的内容.参考书籍为:&amp;lt;&amp;lt;实战Java虚拟机&amp;gt;&amp;gt;,不得不说,&amp;lt;&amp;lt;实战Java虚拟机&amp;gt;&amp;gt;这本书写的是真的好.">
@@ -388,8 +388,72 @@
 </tbody>
 </table>
 <h1 id="局部变量压栈"><a href="#局部变量压栈" class="headerlink" title="局部变量压栈"></a>局部变量压栈</h1><p>大体分为<code>xload</code>(x为i,l,f,d,a),xload_n(x为i,l,f,d,a. n为0~3),xaload(x为i,l,f,d,a,b,c,s)</p>
-<p>其中x表示数据类型为:<br>|x取值|含义|<br>|-|-|<br>|i|int|<br>|l|long|<br>|f|float|<br>|d|double|<br>|a|对象索引|<br>|b|byte|<br>|c|char|<br>|s|short|</p>
-<p>指令:<br>|指令名称|指令功能|<br>|-|-|<br>|xload_n|将第n个局部变量压入操作数栈|<br>|xload x|将第x个局部变量压入操作数栈|<br>|xaload|将指定数据类型的数组的某个元素压入操作数栈|</p>
+<p>其中x表示数据类型为:</p>
+<table>
+<thead>
+<tr>
+<th>x取值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i</td>
+<td>int</td>
+</tr>
+<tr>
+<td>l</td>
+<td>long</td>
+</tr>
+<tr>
+<td>f</td>
+<td>float</td>
+</tr>
+<tr>
+<td>d</td>
+<td>double</td>
+</tr>
+<tr>
+<td>a</td>
+<td>对象索引</td>
+</tr>
+<tr>
+<td>b</td>
+<td>byte</td>
+</tr>
+<tr>
+<td>c</td>
+<td>char</td>
+</tr>
+<tr>
+<td>s</td>
+<td>short</td>
+</tr>
+</tbody>
+</table>
+<p>指令:</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>指令功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xload_n</td>
+<td>将第n个局部变量压入操作数栈</td>
+</tr>
+<tr>
+<td>xload x</td>
+<td>将第x个局部变量压入操作数栈</td>
+</tr>
+<tr>
+<td>xaload</td>
+<td>将指定数据类型的数组的某个元素压入操作数栈</td>
+</tr>
+</tbody>
+</table>
 <p>xaload比较特殊,其压入栈的时候,需要操作数栈中栈顶为索引,第二个元素为数组引用a,<br>比如要压入一个数组元素<code>s[0]</code>,那么指令为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">aload_2   //将局部变量2位置的数组引用压入操作数栈</div><div class="line">iconst_0  //将int 0 压入操作数栈</div><div class="line">saload    //取栈中元素组成s[0],并压入操作数栈</div></pre></td></tr></table></figure></p>
 <h1 id="出栈装入局部变量表指令"><a href="#出栈装入局部变量表指令" class="headerlink" title="出栈装入局部变量表指令"></a>出栈装入局部变量表指令</h1><p>分为xstore_n,xastore,xstore,其用法和load基本一样.</p>
 <table>
