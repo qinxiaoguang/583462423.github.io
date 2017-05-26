@@ -1,0 +1,946 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在看多线程有关内容的时候,很多文章经常会拿出字节码的一些指令来讲解,看我晕头晕脑的,于是开始狂补字节码指令方面的内容.参考书籍为:&amp;lt;&amp;lt;实战Java虚拟机&amp;gt;&amp;gt;,不得不说,&amp;lt;&amp;lt;实战Java虚拟机&amp;gt;&amp;gt;这本书写的是真的好.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java字节码常用指令">
+<meta property="og:url" content="http://yoursite.com/2017/05/26/Java字节码常用指令/index.html">
+<meta property="og:site_name" content="Everything Changes">
+<meta property="og:description" content="在看多线程有关内容的时候,很多文章经常会拿出字节码的一些指令来讲解,看我晕头晕脑的,于是开始狂补字节码指令方面的内容.参考书籍为:&amp;lt;&amp;lt;实战Java虚拟机&amp;gt;&amp;gt;,不得不说,&amp;lt;&amp;lt;实战Java虚拟机&amp;gt;&amp;gt;这本书写的是真的好.">
+<meta property="og:updated_time" content="2017-05-26T08:16:39.331Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java字节码常用指令">
+<meta name="twitter:description" content="在看多线程有关内容的时候,很多文章经常会拿出字节码的一些指令来讲解,看我晕头晕脑的,于是开始狂补字节码指令方面的内容.参考书籍为:&amp;lt;&amp;lt;实战Java虚拟机&amp;gt;&amp;gt;,不得不说,&amp;lt;&amp;lt;实战Java虚拟机&amp;gt;&amp;gt;这本书写的是真的好.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/26/Java字节码常用指令/"/>
+
+
+
+
+
+  <title> Java字节码常用指令 | Everything Changes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Everything Changes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/26/Java字节码常用指令/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="QxG">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Everything Changes">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Java字节码常用指令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-26T15:18:25+08:00">
+                2017-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/26/Java字节码常用指令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/26/Java字节码常用指令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在看多线程有关内容的时候,很多文章经常会拿出字节码的一些指令来讲解,看我晕头晕脑的,于是开始狂补字节码指令方面的内容.参考书籍为:&lt;&lt;实战Java虚拟机&gt;&gt;,不得不说,&lt;&lt;实战Java虚拟机&gt;&gt;这本书写的是真的好.</p>
+<a id="more"></a>
+<p>Java虚拟机字节码指令多达200余个,这里只列出常用指令.<br>首先说明指令的第一个字符总是喜欢表示数据类型,i表示int,l为long,f为float,d为double,a为对象引用,如果指令隐含参数,则用<code>_</code>来隔开.</p>
+<h1 id="常量入栈指令"><a href="#常量入栈指令" class="headerlink" title="常量入栈指令"></a>常量入栈指令</h1><p>根据类型和入栈内容,可分为const,push,ldc等系列指令</p>
+<p>const系列</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>指令功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>aconst_null</td>
+<td>将null压入操作数栈</td>
+</tr>
+<tr>
+<td>iconst_m1</td>
+<td>将-1压入操作数栈</td>
+</tr>
+<tr>
+<td>iconst_x</td>
+<td>注意x是某个数(0~5),这里只是拿x当通配符,将x压入栈</td>
+</tr>
+<tr>
+<td>lconst_0,fconst_0,dconst_0</td>
+<td>分别是将int 0,float 0,double 0 压栈</td>
+</tr>
+</tbody>
+</table>
+<p>push,ldc系列</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>指令功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bipush x</td>
+<td>bipush接收8位整数,其中x为8位整数,将x入栈</td>
+</tr>
+<tr>
+<td>sipush x</td>
+<td>x为16位证书,将x入栈</td>
+</tr>
+<tr>
+<td>ldc p</td>
+<td>万能指令,p为8位,但不是实际参数,其是一个引用,指向常量池中某个int,float,String,将指向的内容压入栈</td>
+</tr>
+<tr>
+<td>ldc_w p2</td>
+<td>p2表示16位参数</td>
+</tr>
+<tr>
+<td>ldw2_w p3</td>
+<td>p3指向long,double</td>
+</tr>
+</tbody>
+</table>
+<h1 id="局部变量压栈"><a href="#局部变量压栈" class="headerlink" title="局部变量压栈"></a>局部变量压栈</h1><p>大体分为<code>xload</code>(x为i,l,f,d,a),xload_n(x为i,l,f,d,a. n为0~3),xaload(x为i,l,f,d,a,b,c,s)</p>
+<p>其中x表示数据类型为:<br>|x取值|含义|<br>|-|-|<br>|i|int|<br>|l|long|<br>|f|float|<br>|d|double|<br>|a|对象索引|<br>|b|byte|<br>|c|char|<br>|s|short|</p>
+<p>指令:<br>|指令名称|指令功能|<br>|-|-|<br>|xload_n|将第n个局部变量压入操作数栈|<br>|xload x|将第x个局部变量压入操作数栈|<br>|xaload|将指定数据类型的数组的某个元素压入操作数栈|</p>
+<p>xaload比较特殊,其压入栈的时候,需要操作数栈中栈顶为索引,第二个元素为数组引用a,<br>比如要压入一个数组元素<code>s[0]</code>,那么指令为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">aload_2   //将局部变量2位置的数组引用压入操作数栈</div><div class="line">iconst_0  //将int 0 压入操作数栈</div><div class="line">saload    //取栈中元素组成s[0],并压入操作数栈</div></pre></td></tr></table></figure></p>
+<h1 id="出栈装入局部变量表指令"><a href="#出栈装入局部变量表指令" class="headerlink" title="出栈装入局部变量表指令"></a>出栈装入局部变量表指令</h1><p>分为xstore_n,xastore,xstore,其用法和load基本一样.</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>指令功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xstore_n</td>
+<td>表示将操作数栈弹出一个x类型的数,并把其赋值给局部变量位置0处的引用.</td>
+</tr>
+<tr>
+<td>xastore</td>
+<td>针对数组操作,与xaload用法一样,也需要栈中两个辅助位置.</td>
+</tr>
+<tr>
+<td>xstore x</td>
+<td>弹出栈中数据,并赋值给局部变量x位置</td>
+</tr>
+</tbody>
+</table>
+<h1 id="通用型操作"><a href="#通用型操作" class="headerlink" title="通用型操作"></a>通用型操作</h1><table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>指令功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dup</td>
+<td>duplicate复制,将栈顶元素复制一份,并压入栈顶</td>
+</tr>
+<tr>
+<td>pop</td>
+<td>把元素从栈顶弹出,直接废弃</td>
+</tr>
+<tr>
+<td>dup2</td>
+<td>复制栈顶两个字长,即8个字节数据</td>
+</tr>
+<tr>
+<td>pop2</td>
+<td>丢弃栈顶8字节数据</td>
+</tr>
+</tbody>
+</table>
+<p>以为<code>Object obj = new Object</code>举例,其编译的字节码为:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">new #3            //创建#3指定的数据类型对象,并压入栈</div><div class="line">dup               //复制一份刚创建的对象,并压入栈</div><div class="line">invokespecial #16 //调用该对象的初始化方法,即构造方法,并弹出栈</div><div class="line">astore_2          //将该对象赋值给局部变量表位置2</div></pre></td></tr></table></figure></p>
+<h1 id="类型转换指令"><a href="#类型转换指令" class="headerlink" title="类型转换指令"></a>类型转换指令</h1><table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>指令功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x2y</td>
+<td>栈顶x数据类型的数据转换为y类型的数据</td>
+</tr>
+</tbody>
+</table>
+<p>其中x,y表示的类型有i,l,c,b,f,d,s即前边的表格表示的类型.</p>
+<h1 id="运算指令"><a href="#运算指令" class="headerlink" title="运算指令"></a>运算指令</h1><ul>
+<li>加法指令:<code>iadd</code>,<code>ladd</code>,<code>fadd</code>,<code>dadd</code></li>
+<li>减法指令:<code>isub</code>,<code>lsub</code>,<code>fsub</code>,<code>dsub</code></li>
+<li>乘法指令:<code>imul</code>,<code>lmul</code>,<code>fmul</code>,<code>dmul</code></li>
+<li>除法指令:<code>idiv</code>,<code>ldiv</code>,<code>fdiv</code>,<code>ddiv</code></li>
+<li>取余指令:<code>irem</code>,<code>lrem</code>,<code>frem</code>,<code>drem</code></li>
+<li>数值取反:<code>ineg</code>,<code>lneg</code>,<code>fneg</code>,<code>dneg</code></li>
+<li>自增指令:<code>iinc</code></li>
+<li>位运算-&gt;位移指令:<code>ishl</code>,<code>ishr</code>,<code>iushr</code>,<code>lshl</code>,<code>lshr</code>,<code>lushr</code></li>
+<li>位预算-&gt;或,与,异或:<code>ior lor</code>,<code>iand land</code>,<code>ixor lxor</code></li>
+</ul>
+<h1 id="对象-数组操作指令"><a href="#对象-数组操作指令" class="headerlink" title="对象/数组操作指令"></a>对象/数组操作指令</h1><h2 id="创建数组-对象"><a href="#创建数组-对象" class="headerlink" title="创建数组/对象"></a>创建数组/对象</h2><p>创建指令有:new,newarray,anewarray,multianewarray</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>指令功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new #p</td>
+<td>创建常量池p指向的数据类型对象,并将该对象压入栈</td>
+</tr>
+<tr>
+<td>newarray x</td>
+<td>x表示基本数据类型,如int,float.创建基本数据类型的数组,创建个数为栈顶值</td>
+</tr>
+<tr>
+<td>anewarray #p</td>
+<td>创常量池p指向的数据类型数组,同样个数为栈顶值</td>
+</tr>
+<tr>
+<td>multianewarray #p x</td>
+<td>创建多维数组,p指定数据类型,x指定维数,每维具体个数通过栈顶指定</td>
+</tr>
+</tbody>
+</table>
+<h2 id="字段访问"><a href="#字段访问" class="headerlink" title="字段访问"></a>字段访问</h2><p>字段访问指令用于访问类或者对象的字段,主要有:getfield,putfield,getstatic,putstatic</p>
+<table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>指令功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getfield #p</td>
+<td>用于获取实例对象的字段</td>
+</tr>
+<tr>
+<td>putfield</td>
+<td></td>
+</tr>
+<tr>
+<td>getstatic #p</td>
+<td>获取p指向的对象或值(静态字段),并将其压入栈</td>
+</tr>
+<tr>
+<td>putstatic</td>
+</tr>
+</tbody>
+</table>
+<h2 id="类型检查指令"><a href="#类型检查指令" class="headerlink" title="类型检查指令"></a>类型检查指令</h2><table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>指令功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>instanceof #p</td>
+<td>检查栈顶对象是否为p指向的数据类型,并将结果压栈,对应java instanceof</td>
+</tr>
+<tr>
+<td>checkcast #p</td>
+<td>检查当前栈顶对象是否可以强转为p指向的数据类型,该指令不压入任何数据,如何转换失败,直接抛出ClassCastException</td>
+</tr>
+</tbody>
+</table>
+<h1 id="比较控制指令"><a href="#比较控制指令" class="headerlink" title="比较控制指令"></a>比较控制指令</h1><ul>
+<li>比较指令:比较两个元素大小,并将比较结果入栈:<code>dcmpg</code>,<code>dcmpl</code>,<code>fcmpg</code>,<code>fcmpl</code>,<code>lcmp</code></li>
+<li>条件转移指令:<code>ifeq</code>,<code>iflt</code>,<code>ifle</code>,<code>ifne</code>,<code>ifgt</code>,<code>ifge</code>,<code>ifnull</code>,<code>ifnotnull</code></li>
+<li>比较条件转移指令,将上述两个指令结合:<code>if_icmpeq</code>,<code>if_icmpne</code>,<code>if_icmplt</code>,<code>if_icmpgt</code>…</li>
+</ul>
+<h1 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h1><p>switch会生成两种指令,<code>tableswitch</code>,<code>lookupswitch</code>,其中<code>tableswitch</code>处理的是连续的case值,<code>lookupswitch</code>处理的是分散的case值,需要和case一一对比.所以<code>tableswitch</code>在效率上是比<code>lookupswitch</code>高的</p>
+<h1 id="函数调用与返回"><a href="#函数调用与返回" class="headerlink" title="函数调用与返回"></a>函数调用与返回</h1><table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>指令功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invokevirtual</td>
+<td>虚函数调用,调用对象的实例方法,根据对象实际类型,调用其方法,联想多态,Java中常用调用方式</td>
+</tr>
+<tr>
+<td>invokeinterface</td>
+<td>接口方法调用</td>
+</tr>
+<tr>
+<td>invokespecial</td>
+<td>调用构造方法,私有方法,父类方法等特殊方法</td>
+</tr>
+<tr>
+<td>invokestatic</td>
+<td>调用类的静态方法</td>
+</tr>
+<tr>
+<td>invokedynamic</td>
+<td>调用动态绑定方法</td>
+</tr>
+<tr>
+<td>xreturn</td>
+<td>返回x类型</td>
+</tr>
+<tr>
+<td>return</td>
+<td>返回void</td>
+</tr>
+</tbody>
+</table>
+<h1 id="同步控制"><a href="#同步控制" class="headerlink" title="同步控制"></a>同步控制</h1><table>
+<thead>
+<tr>
+<th>指令名称</th>
+<th>指令功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>monitorenter</td>
+<td>临界区进入,如果当前对象监视器计数器为0,则允许进入,如果为1,判断持有线程的监视器是否为自己,如果是则进入,否则进行等待.</td>
+</tr>
+<tr>
+<td>monitorexit</td>
+<td>退出监视器</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/24/Java一系列加密算法/" rel="next" title="Java一系列加密算法">
+                <i class="fa fa-chevron-left"></i> Java一系列加密算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/26/Java字节码常用指令/"
+           data-title="Java字节码常用指令" data-url="http://yoursite.com/2017/05/26/Java字节码常用指令/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="QxG" />
+          <p class="site-author-name" itemprop="name">QxG</p>
+          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常量入栈指令"><span class="nav-number">1.</span> <span class="nav-text">常量入栈指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#局部变量压栈"><span class="nav-number">2.</span> <span class="nav-text">局部变量压栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#出栈装入局部变量表指令"><span class="nav-number">3.</span> <span class="nav-text">出栈装入局部变量表指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通用型操作"><span class="nav-number">4.</span> <span class="nav-text">通用型操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型转换指令"><span class="nav-number">5.</span> <span class="nav-text">类型转换指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运算指令"><span class="nav-number">6.</span> <span class="nav-text">运算指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象-数组操作指令"><span class="nav-number">7.</span> <span class="nav-text">对象/数组操作指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建数组-对象"><span class="nav-number">7.1.</span> <span class="nav-text">创建数组/对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字段访问"><span class="nav-number">7.2.</span> <span class="nav-text">字段访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型检查指令"><span class="nav-number">7.3.</span> <span class="nav-text">类型检查指令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比较控制指令"><span class="nav-number">8.</span> <span class="nav-text">比较控制指令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#switch"><span class="nav-number">9.</span> <span class="nav-text">switch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数调用与返回"><span class="nav-number">10.</span> <span class="nav-text">函数调用与返回</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#同步控制"><span class="nav-number">11.</span> <span class="nav-text">同步控制</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">QxG</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"qxgzone"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
