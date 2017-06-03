@@ -13,8 +13,17 @@
 
 
 
+
+
+
+
+
+
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
 
 
 
@@ -65,7 +74,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -77,7 +86,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
 
 
 
@@ -101,11 +110,11 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 'undefined',
+      userId: '0',
       author: '博主'
     },
     algolia: {
@@ -126,7 +135,7 @@
 
 
 
-  <title> Everything Changes </title>
+  <title>Everything Changes</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -142,38 +151,45 @@
 
 
 
+
+
+
+
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
+  <div class="container sidebar-position-left 
    page-home 
  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Everything Changes</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Everything Changes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-    
-      <p class="site-subtitle"></p>
-    
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -241,20 +257,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/09/重装系统后Hexo文件恢复方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/09/重装系统后Hexo文件恢复方法/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="QxG">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Everything Changes">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QxG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Everything Changes">
+    </span>
 
     
       <header class="post-header">
@@ -262,16 +275,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2017/01/09/重装系统后Hexo文件恢复方法/" itemprop="url">
-                  重装系统后Hexo文件恢复方法
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2017/01/09/重装系统后Hexo文件恢复方法/" itemprop="url">重装系统后Hexo文件恢复方法</a></h1>
         
 
         <div class="post-meta">
@@ -283,7 +288,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-09T11:31:42+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-09T11:31:42+08:00">
                 2017-01-09
               </time>
             
@@ -310,8 +315,8 @@
           
 
           
-
           
+
           
 
           
@@ -321,7 +326,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -350,8 +354,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -374,20 +383,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/09/Ubuntu16-04-安装系统后的一系列配置/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/09/Ubuntu16-04-安装系统后的一系列配置/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="QxG">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Everything Changes">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QxG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Everything Changes">
+    </span>
 
     
       <header class="post-header">
@@ -395,16 +401,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2017/01/09/Ubuntu16-04-安装系统后的一系列配置/" itemprop="url">
-                  Ubuntu16.04 安装系统后的一系列配置
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2017/01/09/Ubuntu16-04-安装系统后的一系列配置/" itemprop="url">Ubuntu16.04 安装系统后的一系列配置</a></h1>
         
 
         <div class="post-meta">
@@ -416,7 +414,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-09T11:28:26+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-09T11:28:26+08:00">
                 2017-01-09
               </time>
             
@@ -443,8 +441,8 @@
           
 
           
-
           
+
           
 
           
@@ -454,7 +452,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -483,8 +480,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -507,20 +509,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/07/转-关于TCP协议，我想你应该懂了！/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/07/转-关于TCP协议，我想你应该懂了！/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="QxG">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Everything Changes">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QxG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Everything Changes">
+    </span>
 
     
       <header class="post-header">
@@ -528,16 +527,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2017/01/07/转-关于TCP协议，我想你应该懂了！/" itemprop="url">
-                  [转]关于TCP协议，我想你应该懂了！
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2017/01/07/转-关于TCP协议，我想你应该懂了！/" itemprop="url">[转]关于TCP协议，我想你应该懂了！</a></h1>
         
 
         <div class="post-meta">
@@ -549,7 +540,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-07T23:25:13+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-07T23:25:13+08:00">
                 2017-01-07
               </time>
             
@@ -576,8 +567,8 @@
           
 
           
-
           
+
           
 
           
@@ -587,7 +578,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -616,8 +606,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -640,20 +635,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/07/一件非常悲剧的事情/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/07/一件非常悲剧的事情/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="QxG">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="Everything Changes">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="Everything Changes" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="QxG">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Everything Changes">
+    </span>
 
     
       <header class="post-header">
@@ -661,16 +653,8 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2017/01/07/一件非常悲剧的事情/" itemprop="url">
-                  一件非常悲剧的事情
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2017/01/07/一件非常悲剧的事情/" itemprop="url">一件非常悲剧的事情</a></h1>
         
 
         <div class="post-meta">
@@ -682,7 +666,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-07T12:00:43+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-07T12:00:43+08:00">
                 2017-01-07
               </time>
             
@@ -709,8 +693,8 @@
           
 
           
-
           
+
           
 
           
@@ -720,7 +704,6 @@
         </div>
       </header>
     
-
 
     <div class="post-body" itemprop="articleBody">
 
@@ -751,8 +734,13 @@
       
     </div>
 
+    <div>
+      
+    </div>
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -774,7 +762,7 @@
   </nav>
 
 
-          
+
           </div>
           
 
@@ -806,10 +794,12 @@
                src="/images/avatar.gif"
                alt="QxG" />
           <p class="site-author-name" itemprop="name">QxG</p>
-          <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+           
+              <p class="site-description motion-element" itemprop="description">努力才会有机遇</p>
+          
         </div>
         <nav class="site-state motion-element">
-        
+
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
@@ -822,6 +812,8 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">8</span>
@@ -848,6 +840,8 @@
 
 
       </section>
+
+      
 
       
 
@@ -885,30 +879,38 @@
 
 
         
-
 <div class="busuanzi-count">
-
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
   
 
   
-    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
-  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
   
 </div>
-
 
 
         
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -928,6 +930,14 @@
 
 
   
+
+
+
+
+
+
+
+
 
 
 
@@ -954,21 +964,25 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
 
 
 
   
-  
-
   
 
   
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+  
+
+  
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
 
 
 
@@ -992,6 +1006,15 @@
   </script>
 
   
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
 
 
 
@@ -1005,7 +1028,10 @@
 
 
   
-  
+
+
+
+
 
   
 
@@ -1015,6 +1041,9 @@
 
   
 
+  
+
+  
 
 </body>
 </html>
