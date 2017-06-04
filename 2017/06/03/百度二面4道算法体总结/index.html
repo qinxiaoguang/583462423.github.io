@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/06/03/百度二面4道算法体总结/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="面的是安卓岗,没想到面试官就问了操作系统和算法…答的不好,纪念一下.">
-<meta property="og:updated_time" content="2017-06-03T11:47:35.285Z">
+<meta property="og:updated_time" content="2017-06-04T14:34:01.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="百度二面4道算法题总结">
 <meta name="twitter:description" content="面的是安卓岗,没想到面试官就问了操作系统和算法…答的不好,纪念一下.">
@@ -337,27 +337,18 @@
       
         <p>面的是安卓岗,没想到面试官就问了操作系统和算法…答的不好,纪念一下.</p>
 <a id="more"></a>
-<ol>
-<li>检测单向链表环结构</li>
-</ol>
-<p>最早是在剑指offer上看的原题,思路是使用两个指针,一个指针一次走两步,一个指针一次走一步,如果存在环状结构,那么两指针就像是两个人在操场跑步,一个跑的快,一个跑的慢,那么最终肯定会相遇,类比到这个题,如果快指针走的尾节点时,两个指针都没有相遇,那么肯定是无环结构.</p>
-<ol>
-<li>给定数组[0,1,2,3,4,5,6,7,8,9]随机抽取一个数,请以最快的时间复杂度来求出这个数.</li>
-</ol>
-<p>虽然面试官说的是10个数,看起来很小,但是在答题的时候,要将其考虑成复杂度很大的数.刚开始回答的答案是,将数组中所有数相加,然后用0~9的总和减去这个数就是答案.但是面试官这不是最优的,优化一下?<br>然后我想了想,O(n)不是最优的,那么比O(n)小一点呢,所以遍历一遍,如果对应位置的数不是本身,比如a[0] = 0,a[1] = 1,如果a[m] != m ,那么随机取的数就是m.但是面试官说还不是最优化的,提示让用二分.</p>
+<h1 id="检测单向链表环结构"><a href="#检测单向链表环结构" class="headerlink" title="检测单向链表环结构"></a>检测单向链表环结构</h1><p>最早是在剑指offer上看的原题,思路是使用两个指针,一个指针一次走两步,一个指针一次走一步,如果存在环状结构,那么两指针就像是两个人在操场跑步,一个跑的快,一个跑的慢,那么最终肯定会相遇,类比到这个题,如果快指针走的尾节点时,两个指针都没有相遇,那么肯定是无环结构.</p>
+<h1 id="给定数组-0-1-2-3-4-5-6-7-8-9-随机抽取一个数-请以最快的时间复杂度来求出这个数"><a href="#给定数组-0-1-2-3-4-5-6-7-8-9-随机抽取一个数-请以最快的时间复杂度来求出这个数" class="headerlink" title="给定数组[0,1,2,3,4,5,6,7,8,9]随机抽取一个数,请以最快的时间复杂度来求出这个数."></a>给定数组[0,1,2,3,4,5,6,7,8,9]随机抽取一个数,请以最快的时间复杂度来求出这个数.</h1><p>虽然面试官说的是10个数,看起来很小,但是在答题的时候,要将其考虑成复杂度很大的数.刚开始回答的答案是,将数组中所有数相加,然后用0~9的总和减去这个数就是答案.但是面试官这不是最优的,优化一下?<br>然后我想了想,O(n)不是最优的,那么比O(n)小一点呢,所以遍历一遍,如果对应位置的数不是本身,比如a[0] = 0,a[1] = 1,如果a[m] != m ,那么随机取的数就是m.但是面试官说还不是最优化的,提示让用二分.</p>
 <p>到这我就卡这了,二分的话,如何判断二分过后,选择哪一边呢?在刚开始的时候,我思考是用树状数组来做,其查询复杂度是log(n),但是后来发现创建的时间复杂度是nlog(n),然后就放弃这一思路.</p>
 <p>到现在都没能想出来一个二分的思路.有谁想出来,联系我呀~</p>
-<ol>
-<li>请设计一个高效率的不重复的随机数算法,要求生成0~9.</li>
-</ol>
-<p>对于这一问题,我一直没搞明白,随机数不是有Math.random()么,那么我用这个生成0~9的数后,用一个数组来进行标记,如果生成过了,就重新生成,这样不就可以了么.</p>
+<hr>
+<p>后记,今天跟朋友在讨论这个题,这神人,突然发觉,可以使用二分.<br>方法是,首先对前一半数组求和,如果发现和不是期望值,则被抽走的数肯定在后半部分,否则,抽走的部分肯定是前半部分,就这样依次二分下去,即为结果.</p>
+<p>但是后来想了想,这种方法不是没有遍历一遍快么?<br>可能是我没有揣测出面试官的出题意图= =,面试官可能就是想让我用二分的方法来解决,但是我就是没get到那个点.</p>
+<h1 id="请设计一个高效率的不重复的随机数算法-要求生成0-9"><a href="#请设计一个高效率的不重复的随机数算法-要求生成0-9" class="headerlink" title="请设计一个高效率的不重复的随机数算法,要求生成0~9."></a>请设计一个高效率的不重复的随机数算法,要求生成0~9.</h1><p>对于这一问题,我一直没搞明白,随机数不是有Math.random()么,那么我用这个生成0~9的数后,用一个数组来进行标记,如果生成过了,就重新生成,这样不就可以了么.</p>
 <p>我一直没太搞明白面试官的意思,到底是用Math.random()生成的,还是不用Math.random()生成的.所以一直卡这了.</p>
 <p>到面试结束,去网上搜才明白.</p>
 <p>原来是不用随机数生成啊.这个问题是,自己设计一个随机数算法,来生成不重复的数.<br>解决思路是,对于[0,1,2,3,4,5,6,7,8,9]这个数组,将数组中的内容打乱,这样就是一个不重复的随机数序列了.= =</p>
-<ol>
-<li>0~9的无序数中,随机抽取出来两个,问这两个数是多少.</li>
-</ol>
-<p>我想的方法,都被否决了= =心累..<br>我的思路是,将数组进行排序,然后遍历一遍就能找到.<br>然后面试官说,不能排序.<br>然后我说,遍历一遍,用一个数组标记,然后再对该数组遍历一遍,就能取得结果.<br>然后面试官说,不能开辟数组.</p>
+<h1 id="0-9的无序数中-随机抽取出来两个-问这两个数是多少"><a href="#0-9的无序数中-随机抽取出来两个-问这两个数是多少" class="headerlink" title="0~9的无序数中,随机抽取出来两个,问这两个数是多少."></a>0~9的无序数中,随机抽取出来两个,问这两个数是多少.</h1><p>我想的方法,都被否决了= =心累..<br>我的思路是,将数组进行排序,然后遍历一遍就能找到.<br>然后面试官说,不能排序.<br>然后我说,遍历一遍,用一个数组标记,然后再对该数组遍历一遍,就能取得结果.<br>然后面试官说,不能开辟数组.</p>
 <p>(蒙蔽).jpg</p>
 <p>讲真,如果我之前看过这种题,哪怕是看过一遍,我肯定会有思路来解,但是我没见过啊.完全靠瞎猜.</p>
 <p>想了半天,就想对了第一步,先求出两个数之和,然后后边的步骤想不出来了..</p>
@@ -463,8 +454,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -517,6 +517,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#检测单向链表环结构"><span class="nav-number">1.</span> <span class="nav-text">检测单向链表环结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#给定数组-0-1-2-3-4-5-6-7-8-9-随机抽取一个数-请以最快的时间复杂度来求出这个数"><span class="nav-number">2.</span> <span class="nav-text">给定数组[0,1,2,3,4,5,6,7,8,9]随机抽取一个数,请以最快的时间复杂度来求出这个数.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请设计一个高效率的不重复的随机数算法-要求生成0-9"><span class="nav-number">3.</span> <span class="nav-text">请设计一个高效率的不重复的随机数算法,要求生成0~9.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-9的无序数中-随机抽取出来两个-问这两个数是多少"><span class="nav-number">4.</span> <span class="nav-text">0~9的无序数中,随机抽取出来两个,问这两个数是多少.</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
