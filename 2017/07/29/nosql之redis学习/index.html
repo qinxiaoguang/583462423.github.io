@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="redis," />
 
 
 
@@ -93,16 +93,16 @@
 
 
 
-<meta name="description" content="具体步骤如下：1.安装npm2.重新部署hexo3.将原来备份的hexo文件中的部分文件复制到新部署的hexo中4.部署ssh，完成。">
+<meta name="description" content="项目中要使用redis作缓存，前一段日子学了一下，这里做一个小总结。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重装系统后Hexo文件恢复方法">
-<meta property="og:url" content="http://yoursite.com/2017/01/09/重装系统后Hexo文件恢复方法/index.html">
+<meta property="og:title" content="nosql之redis学习">
+<meta property="og:url" content="http://yoursite.com/2017/07/29/nosql之redis学习/index.html">
 <meta property="og:site_name" content="Everything Changes">
-<meta property="og:description" content="具体步骤如下：1.安装npm2.重新部署hexo3.将原来备份的hexo文件中的部分文件复制到新部署的hexo中4.部署ssh，完成。">
-<meta property="og:updated_time" content="2017-01-09T03:35:04.564Z">
+<meta property="og:description" content="项目中要使用redis作缓存，前一段日子学了一下，这里做一个小总结。">
+<meta property="og:updated_time" content="2017-07-29T10:14:07.392Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重装系统后Hexo文件恢复方法">
-<meta name="twitter:description" content="具体步骤如下：1.安装npm2.重新部署hexo3.将原来备份的hexo文件中的部分文件复制到新部署的hexo中4.部署ssh，完成。">
+<meta name="twitter:title" content="nosql之redis学习">
+<meta name="twitter:description" content="项目中要使用redis作缓存，前一段日子学了一下，这里做一个小总结。">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/01/09/重装系统后Hexo文件恢复方法/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/07/29/nosql之redis学习/"/>
 
 
 
 
 
-  <title>重装系统后Hexo文件恢复方法 | Everything Changes</title>
+  <title>nosql之redis学习 | Everything Changes</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -256,7 +256,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/09/重装系统后Hexo文件恢复方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/29/nosql之redis学习/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="QxG">
@@ -273,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">重装系统后Hexo文件恢复方法</h1>
+          <h1 class="post-title" itemprop="name headline">nosql之redis学习</h1>
         
 
         <div class="post-meta">
@@ -285,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-09T11:31:42+08:00">
-                2017-01-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T13:15:05+08:00">
+                2017-07-29
               </time>
             
 
@@ -304,8 +304,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/09/重装系统后Hexo文件恢复方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/09/重装系统后Hexo文件恢复方法/" itemprop="commentCount"></span>
+                <a href="/2017/07/29/nosql之redis学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/29/nosql之redis学习/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -335,18 +335,47 @@
       
 
       
-        <p>具体步骤如下：<br>1.安装npm<br>2.重新部署hexo<br>3.将原来备份的hexo文件中的部分文件复制到新部署的hexo中<br>4.部署ssh，完成。</p>
+        <p>项目中要使用redis作缓存，前一段日子学了一下，这里做一个小总结。</p>
 <a id="more"></a>
-<h1 id="安装npm"><a href="#安装npm" class="headerlink" title="安装npm"></a>安装npm</h1><p>安装npm的前提是电脑上已经安装了nodejs和git。而一般安装nodejs的时候默认是直接安装npm了的，所以没有安装nodejs和git的，自行百度安装方法。</p>
-<p>不过目前的系统是ubuntu，所以安装方法异常简单，只需要<code>sudo apt install xxx</code>即可，目前系统版本是16.04所以不需要apt-get</p>
-<h1 id="部署hexo"><a href="#部署hexo" class="headerlink" title="部署hexo"></a>部署hexo</h1><p>首先要安装hexo，命令如下:<br>npm install -g hexo</p>
-<p>安装完成后，在你想要部署的文件下初始化hexo，比如我的文件为’Hexo’,那么在该文件下,执行下列命令：<br>hexo init</p>
-<h1 id="替换文件"><a href="#替换文件" class="headerlink" title="替换文件"></a>替换文件</h1><p>上一部完成后，需要把备份的文件中scaffolds, source, themes 和 _config.yml等替换到新部署的hexo文件中。</p>
-<p>完成这一步后，先别着急上传，使用hexo s命令打开服务器，浏览器中输入<a href="http://localhost:4000查看blog是否显示正确。" target="_blank" rel="external">http://localhost:4000查看blog是否显示正确。</a></p>
-<p>如果显示不正确，可能就是前边的步骤有问题，需要重新操作。</p>
-<h1 id="配置ssh"><a href="#配置ssh" class="headerlink" title="配置ssh"></a>配置ssh</h1><p>如果你的Hexo上传使用的ssh方式，你需要重新生成ssh key并添加到github或coding中去，具体方法可以参照:<br><a href="http://jingyan.baidu.com/article/a65957f4e91ccf24e77f9b11.html" target="_blank" rel="external">Window github ssh配置</a></p>
-<p>coding方式与github基本一样，直接配置即可。</p>
-<p>到此大功告成，可以继续玩耍blog了。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>当前数据库的演变：单击mysql-&gt;缓存+mysql+垂直拆分 -&gt; mysql主从读写分离 -&gt; 分裤分表,水平拆分,mysql集群 </p>
+<p>mysql扩展性差，比如我想给某个表加个字段，mysql不好实现。</p>
+<p>NoSql = not only sql，泛指非关系型数据库。</p>
+<h1 id="CAP理论"><a href="#CAP理论" class="headerlink" title="CAP理论"></a>CAP理论</h1><p>C(Consistency):强一致性<br>A(Availability):可用性<br>P(Partition tolerace):分区容错性<br>CAP理论的核心是：一个分布式系统不可能同时满足一致性，可用性和分区容错性这三个需求，最多只能同时较好的满足两个。<br>因此根据CAP理论将数据库分为了CA，CP，AP三大类。<br>CA：单点集群，在可扩展性上不太强大，如：关系型数据库<br>CP：通常性能不高，如：redis,mongoDB<br>AP：对一致性要求比较低</p>
+<p>对于分布式系统而言，P必占，所以只能从A，C里面挑选一个</p>
+<h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>REmote DIctionary Server:远程字典服务器，开源，C语言编写，KV，基于内存，支持持久化。</p>
+<h2 id="能干嘛"><a href="#能干嘛" class="headerlink" title="能干嘛"></a>能干嘛</h2><p>内存存储和持久化，将当前网站的最活跃用户存储在redis中，发布/订阅，定时器计数器等。</p>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>redis-benchmark 测试性能。</p>
+<ul>
+<li>单线程：epoll函数，多路IO复用</li>
+<li>默认16个数据库，初始默认使用0号</li>
+<li>select命令切换数据库：select 9,选择第9个数据库</li>
+<li>Dbsize 查看当前数据库key的数量</li>
+<li>Flushdb 清空当前库，注意是当前</li>
+<li>Flushall 清空所有库</li>
+<li>16个库都是一个密码</li>
+<li>redis索引从0开始</li>
+<li>默认端口6379</li>
+</ul>
+<h2 id="五大常用数据类型"><a href="#五大常用数据类型" class="headerlink" title="五大常用数据类型"></a>五大常用数据类型</h2><p>string,list,set,hash,zset(sorted set)</p>
+<p>常用操作可参考:redisdoc.com，很详细。</p>
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>string二进制安全类型，可以包含任意数据，比如jpg序列化的对象等，string是redis最基本的类型，value最多可以是512M。</p>
+<h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>类型java中的map</p>
+<h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p>底层通过链表实现，可以插到头部，也可以插到尾部</p>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>通过hashtable实现，string类型的无序集合</p>
+<h3 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h3><p>和set一样，不过是有序的，不是排序的，他实现有序的方法是让每个元素关联一个double值，double可重复。</p>
+<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><p>redis持久化有两种，rdb和aof</p>
+<h3 id="rdb"><a href="#rdb" class="headerlink" title="rdb"></a>rdb</h3><p>Redis Database</p>
+<p>在指定的时间间隔内将内存中的数据集快照写入磁盘，恢复的时候是直接将快照文件直接读到内存中</p>
+<p>redis会单独创建一个子进程来进行持久化，会先将数据写入到一个临时文件中，等到持久化过程都结束了，再用这个临时文件替换上次持久化好的文件。整个过程中，主进程是不进行任何IO操作的，这就确保了极高的性能，如果需要进行大规模数据恢复，且对于数据恢复的完整性不是非常敏感，那RDB方式要比AOF更加高效。<br>RDB的缺点是最后一次持久化数据 之后的数据可能会丢失。</p>
+<p>RDB触发的条件可以配置-&gt;1分钟内改了1W次，5分钟内改了10次，15分钟内改了一次等。</p>
+<p>RDB保存的文件是dump.rdb</p>
+<h3 id="aof"><a href="#aof" class="headerlink" title="aof"></a>aof</h3><p>Append only file</p>
+<p>以日志的形式来记录每个写操作，将redis执行过的所有写指令记录下来(读操作不记录)，只许追加文件但不可以改写文件，redis启动之初会读取改文件重新构建数据，换言之，redis重启的话就根据日志文件的内容将写指令从前到后执行一次以完成数据的恢复工作。</p>
+<p>默认是关闭的，并异步操作</p>
+<p>保存的文件是appendonly.aof</p>
+<p>rdb和aof两者可以同时启用</p>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>multi开启事务，EXEC进行提交</p>
+<p>不保证原子性，redis同一事务中如果有一条命令执行失败，其后的命令仍然执行，没有回滚。</p>
 
       
     </div>
@@ -374,6 +403,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+        </div>
+      
 
       
       
@@ -383,8 +418,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/09/Ubuntu16-04-安装系统后的一系列配置/" rel="next" title="Ubuntu16.04 安装系统后的一系列配置">
-                <i class="fa fa-chevron-left"></i> Ubuntu16.04 安装系统后的一系列配置
+              <a href="/2017/07/03/比赛管理后台项目所遇到的问题/" rel="next" title="比赛管理后台项目所遇到的问题">
+                <i class="fa fa-chevron-left"></i> 比赛管理后台项目所遇到的问题
               </a>
             
           </div>
@@ -392,10 +427,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/09/安卓中Jsoup解析乱码问题/" rel="prev" title="安卓中Jsoup解析乱码问题">
-                安卓中Jsoup解析乱码问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,8 +452,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/01/09/重装系统后Hexo文件恢复方法/"
-           data-title="重装系统后Hexo文件恢复方法" data-url="http://yoursite.com/2017/01/09/重装系统后Hexo文件恢复方法/">
+      <div class="ds-thread" data-thread-key="2017/07/29/nosql之redis学习/"
+           data-title="nosql之redis学习" data-url="http://yoursite.com/2017/07/29/nosql之redis学习/">
       </div>
     
   </div>
@@ -519,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装npm"><span class="nav-number">1.</span> <span class="nav-text">安装npm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#部署hexo"><span class="nav-number">2.</span> <span class="nav-text">部署hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#替换文件"><span class="nav-number">3.</span> <span class="nav-text">替换文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置ssh"><span class="nav-number">4.</span> <span class="nav-text">配置ssh</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CAP理论"><span class="nav-number">2.</span> <span class="nav-text">CAP理论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis"><span class="nav-number">3.</span> <span class="nav-text">redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#是什么"><span class="nav-number">3.1.</span> <span class="nav-text">是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#能干嘛"><span class="nav-number">3.2.</span> <span class="nav-text">能干嘛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">3.3.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五大常用数据类型"><span class="nav-number">3.4.</span> <span class="nav-text">五大常用数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#string"><span class="nav-number">3.4.1.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hash"><span class="nav-number">3.4.2.</span> <span class="nav-text">hash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#list"><span class="nav-number">3.4.3.</span> <span class="nav-text">list</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">3.4.4.</span> <span class="nav-text">set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zset"><span class="nav-number">3.4.5.</span> <span class="nav-text">zset</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化"><span class="nav-number">3.5.</span> <span class="nav-text">持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rdb"><span class="nav-number">3.5.1.</span> <span class="nav-text">rdb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aof"><span class="nav-number">3.5.2.</span> <span class="nav-text">aof</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">3.6.</span> <span class="nav-text">事务</span></a></li></ol></li></ol></div>
             
 
           </div>
