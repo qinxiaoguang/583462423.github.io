@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="在sql执行方面,如果发现sql性能下降,其可能原因有执行时间长,或等待时间长.再细分就是:查询语句写的烂,索引失效,关联查询太多join,服务器调优及各参数设置 …">
 <meta property="og:image" content="http://yoursite.com/images/SQLJoins.jpg">
-<meta property="og:updated_time" content="2017-06-24T04:32:37.052Z">
+<meta property="og:updated_time" content="2017-07-25T01:05:19.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql索引优化">
 <meta name="twitter:description" content="在sql执行方面,如果发现sql性能下降,其可能原因有执行时间长,或等待时间长.再细分就是:查询语句写的烂,索引失效,关联查询太多join,服务器调优及各参数设置 …">
@@ -389,7 +389,7 @@
 <li>在使用!=或者&lt;&gt;时,无法使用索引会导致全表扫描.</li>
 <li>is null,is not null无法使用索引</li>
 <li>like以通配符开头(‘%’)索引会失效.比如like(‘%lisi’)索引失效,但是like(‘lisi%’)索引并不会失效.那么此时出现问题,like ‘%lisi%’我就是想要,那么如何解决其索引失效的问题?解决办法就是使用覆盖索引,对于select后面跟的内容,如果被包含在覆盖索引中,那么就会使用到索引,比如有索引ABC,那么如果select A,B,C from table where A like ‘%lisi%’这种情况会使用到索引.</li>
-<li>字符串不加单引号导致索引失效</li>
+<li>字符串不加单引号导致索引失效,原因内部做了隐含的类型转换，再看第三条就知道了。</li>
 <li>少用or,用or的时候也会导致索引失效.    </li>
 </ul>
 <h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>对于优化的思路,一般不会直接使用explain进行优化,而是首先观察SQL情况,比如开启一天,然后开启慢查询日志,设置阙值,抓取慢SQL,接着才是使用explain进行优化,接着是show profile,最后进行服务器参数调优.<br>所以对于整体的优化思路, 可以总结为以下四步:</p>
@@ -415,6 +415,7 @@
 <li>locked</li>
 </ul>
 <p>那么如何优化，这个时候就可以采用explain + sql的形式，进行细致的优化。</p>
+<p>还有一种日志方式叫全局查询日志，该方法会将所有的sql语句保存下来，如果出现bug，可以查看从头到尾执行的sql语句，手动复现这些语句，更细致的查找到哪条语句导致的bug，生产环境禁止使用，一般在测试环境使用，具体使用方式请百度。</p>
 
       
     </div>
@@ -457,8 +458,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/11/华为fx面试总结/" rel="next" title="华为fx面试总结">
-                <i class="fa fa-chevron-left"></i> 华为fx面试总结
+              <a href="/2017/06/01/面试总结/" rel="next" title="面试总结">
+                <i class="fa fa-chevron-left"></i> 面试总结
               </a>
             
           </div>
@@ -466,6 +467,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/03/比赛管理后台项目所遇到的问题/" rel="prev" title="比赛管理后台项目所遇到的问题">
+                比赛管理后台项目所遇到的问题 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -541,7 +546,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">67</span>
+                <span class="site-state-item-count">65</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -554,7 +559,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
