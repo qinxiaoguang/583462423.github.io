@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/21/Linux学习笔记/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="Bash">
-<meta property="og:updated_time" content="2017-05-11T08:48:38.078Z">
+<meta property="og:updated_time" content="2017-07-31T04:06:31.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux学习笔记">
 <meta name="twitter:description" content="Bash">
@@ -379,8 +379,32 @@
 <p><strong>usermod</strong>:对已创建的用户进行修改<br>-I 新用户名<br>-u 新用户id<br>-d 用户家目录位置<br>-g 用户所属组<br>-G 附属组<br>-L 锁定用户使其不能登录<br>-U 解除锁定</p>
 <p><strong>userdel</strong>：用来删除制定用户<br>没有参数时，只是删除用户，但是不删除家目录，而加上-r参数才会删除家目录。</p>
 <h1 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h1><p>每个文件拥有三种权限</p>
-<p>|权限|对文件的影响|对目录的影响|</p>
-<p>|–|–|–|<br>|r(读取)|可读取文件内容|可列出目录内容|<br>|w(写入)|可修改文件内容|可在目录中创建删除文件|<br>|x(执行)|可作为命令执行|可访问目录内容|</p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>对文件的影响</th>
+<th>对目录的影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r(读取)</td>
+<td>可读取文件内容</td>
+<td>可列出目录内容</td>
+</tr>
+<tr>
+<td>w(写入)</td>
+<td>可修改文件内容</td>
+<td>可在目录中创建删除文件</td>
+</tr>
+<tr>
+<td>x(执行)</td>
+<td>可作为命令执行</td>
+<td>可访问目录内容</td>
+</tr>
+</tbody>
+</table>
 <p>目录必须拥有x权限，否则无法查看其内容。</p>
 <p>Linux权限都是基于UGO进行设计，U是user,G是group，O是other，并且权限三个一组(rwx)，所以一般对于一个文件的权限是9个字符,但是开头还有额外的一个字符d,表示文件类型，d是dir即文件夹。</p>
 <p><strong>chown</strong>修改文件的所属用户，<strong>chgrp</strong>修改文件所属组</p>
@@ -590,7 +614,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -603,7 +627,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

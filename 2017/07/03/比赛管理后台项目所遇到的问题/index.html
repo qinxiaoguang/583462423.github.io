@@ -99,7 +99,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/07/03/比赛管理后台项目所遇到的问题/index.html">
 <meta property="og:site_name" content="Everything Changes">
 <meta property="og:description" content="一般做项目经常会遇到问题，各种大大小小的问题，细节问题等，总觉得做一遍后就记得怎么用了，但是下次再遇到的时候，只有一点印象，如何解决还得重新去搜索资料。这应该是通病吧，所以还是勤快点，遇到问题，提早解决并记录。">
-<meta property="og:updated_time" content="2017-07-29T05:08:44.589Z">
+<meta property="og:updated_time" content="2017-08-01T00:43:07.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="比赛管理后台项目所遇到的问题">
 <meta name="twitter:description" content="一般做项目经常会遇到问题，各种大大小小的问题，细节问题等，总觉得做一遍后就记得怎么用了，但是下次再遇到的时候，只有一点印象，如何解决还得重新去搜索资料。这应该是通病吧，所以还是勤快点，遇到问题，提早解决并记录。">
@@ -338,6 +338,7 @@
         <p>一般做项目经常会遇到问题，各种大大小小的问题，细节问题等，总觉得做一遍后就记得怎么用了，但是下次再遇到的时候，只有一点印象，如何解决还得重新去搜索资料。这应该是通病吧，所以还是勤快点，遇到问题，提早解决并记录。</p>
 <a id="more"></a>
 <h1 id="Intellij-现实UML类间关系"><a href="#Intellij-现实UML类间关系" class="headerlink" title="Intellij 现实UML类间关系"></a>Intellij 现实UML类间关系</h1><p>ctrl+alt+U</p>
+<h1 id="idea查看所有类"><a href="#idea查看所有类" class="headerlink" title="idea查看所有类"></a>idea查看所有类</h1><p>alt + 7.<br>或者view-&gt;tool windows -&gt; structure</p>
 <h1 id="String转Timestamp"><a href="#String转Timestamp" class="headerlink" title="String转Timestamp"></a>String转Timestamp</h1><p>一般来说，HTML前端使用ajax传到后台的时间格式基本上都是String类型，比如<code>2017-01-02T01:00</code>，但是后台怎么识别你这个是日期格式呢？所以需要自己去实现，首先要有SimpleDateFormat的支持，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String time = &quot;2017-01-02T01:00&quot;;</div><div class="line">SimpleDateFormat sdf = new SimpleDateFormat(&quot;yy-MM-dd&apos;T&apos;hh:ss&quot;);</div><div class="line">Timestamp t = new Timestamp(sdf.parse(time).getTime);</div></pre></td></tr></table></figure></p>
 <p>如上，但是注意，如果想要SimpleDateFormat匹配字母，不能直接输入，而是需要使用单引号括起来，否则会报错。</p>
 <h1 id="Autowired自动导入Service失败"><a href="#Autowired自动导入Service失败" class="headerlink" title="@Autowired自动导入Service失败"></a>@Autowired自动导入Service失败</h1><p>一般使用Service都是通过接口，如<code>SimpleService</code>这是一个接口，然后一个实现类<code>SimpleServiceImpl</code>，但是@Service要标记到实现类上，这样引入的方式为下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">@Autowired</div><div class="line">SimpleService simpleService;</div></pre></td></tr></table></figure></p>
@@ -474,7 +475,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-count">67</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -487,7 +488,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
@@ -522,7 +523,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intellij-现实UML类间关系"><span class="nav-number">1.</span> <span class="nav-text">Intellij 现实UML类间关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String转Timestamp"><span class="nav-number">2.</span> <span class="nav-text">String转Timestamp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Autowired自动导入Service失败"><span class="nav-number">3.</span> <span class="nav-text">@Autowired自动导入Service失败</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mybatis插入数据，回写id"><span class="nav-number">4.</span> <span class="nav-text">mybatis插入数据，回写id</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mybatis打印sql语句"><span class="nav-number">5.</span> <span class="nav-text">mybatis打印sql语句</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intellij-现实UML类间关系"><span class="nav-number">1.</span> <span class="nav-text">Intellij 现实UML类间关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#idea查看所有类"><span class="nav-number">2.</span> <span class="nav-text">idea查看所有类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#String转Timestamp"><span class="nav-number">3.</span> <span class="nav-text">String转Timestamp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Autowired自动导入Service失败"><span class="nav-number">4.</span> <span class="nav-text">@Autowired自动导入Service失败</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mybatis插入数据，回写id"><span class="nav-number">5.</span> <span class="nav-text">mybatis插入数据，回写id</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mybatis打印sql语句"><span class="nav-number">6.</span> <span class="nav-text">mybatis打印sql语句</span></a></li></ol></div>
             
 
           </div>
